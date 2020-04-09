@@ -1,0 +1,157 @@
+.topnav {
+  overflow: hidden;
+  background-color: #ffffff;
+}
+body.show-nav {
+  transform: translateX(300px);
+  transition: transform 0.3s ease-in-out;
+}
+
+.active {
+  background-color: #4caf50;
+  color: white;
+}
+.topnav ul {
+  padding: 0;
+  list-style-type: none;
+  margin: 0;
+}
+
+input:focus,
+button:focus {
+  outline: none;
+}
+
+.topnav ul li {
+  padding: 15px;
+  display: inline-block;
+}
+.topnav ul li a {
+  color: #070707;
+  text-decoration: none;
+}
+.topnav ul li form {
+  margin-left: 30px;
+  position: relative;
+  width: 100%;
+}
+
+.topnav ul li form button {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 5px 0;
+  color: black;
+  border: 0;
+  background-color: white;
+  width: 10%;
+}
+
+.topnav ul li form input {
+  border-radius: 5px;
+  font-size: 20px;
+  width: 100%;
+  font-weight: 200;
+  border: 1px solid black;
+  padding: 5px 30px;
+}
+.topnav .icon {
+  display: none;
+}
+
+.topnav .icon:hover {
+  text-decoration: none;
+}
+
+.responsive {
+  background-color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100vh;
+  z-index: 100;
+  transform: translateX(-100%);
+  box-shadow: 0 20px 0 0 rgba(0, 0, 0, 0.5);
+}
+
+.responsive ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.responsive ul li {
+  border-bottom: 2px solid rgba(200, 200, 200, 0.1);
+  padding: 20px;
+  text-align: center;
+}
+.responsive ul div {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 2px solid rgba(200, 200, 200, 0.1);
+}
+.responsive ul div li {
+  border-bottom: none;
+}
+
+.responsive ul li a {
+  color: #070707;
+}
+
+.responsive ul li form {
+  position: relative;
+  width: 100%;
+}
+
+.responsive ul li form button {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  border-radius: 5px;
+  font-size: 20px;
+  padding: 0;
+  color: black;
+  border: 0;
+  background-color: white;
+  width: 10%;
+}
+
+.responsive ul li form input {
+  border-radius: 5px;
+  font-size: 20px;
+  width: 100%;
+  font-weight: 200;
+  border: 1px solid black;
+  padding: 0 30px;
+}
+
+.topnav ul li a:hover {
+  text-decoration: underline;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+@media screen and (max-width: 800px) {
+  .topnav li:not(:first-child),
+  .dropdown .dropbtn {
+    display: none;
+  }
+  .topnav a.icon {
+    display: block;
+  }
+  .topnav li.home {
+    margin-top: -60px;
+    display: block;
+    margin-left: 33.3vw;
+  }
+}
