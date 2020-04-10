@@ -3,7 +3,8 @@ import { Route } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Student from './Components/Student/Student';
 import Instructor from './Components/Instructor/Instructor';
-import { Navbar } from './Components/Navbar/Navbar';
+import Navbar from './Components/Navbar/Navbar';
+import Footer from './Components/Footer/Footer';
 
 function Router() {
   return (
@@ -20,6 +21,7 @@ function Router() {
       ></Route>
       <Route path='/courses' component={Student}></Route>
       <Route path='/Instructor' component={Instructor}></Route>
+      <Footer />
     </div>
   );
 }

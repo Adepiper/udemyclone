@@ -1,9 +1,10 @@
 .topnav {
   overflow: hidden;
   background-color: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
 }
 body.show-nav {
-  transform: translateX(300px);
+  transform: translateX(250px);
   transition: transform 0.3s ease-in-out;
 }
 
@@ -25,6 +26,7 @@ button:focus {
 .topnav ul li {
   padding: 15px;
   display: inline-block;
+  margin-right: 10px;
 }
 .topnav ul li a {
   color: #070707;
@@ -65,16 +67,31 @@ button:focus {
   text-decoration: none;
 }
 
+.topnav .home a {
+  color: black;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.topnav .home a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+.topnav ul li a:hover {
+  text-decoration: underline;
+  color: rgba(0, 0, 0, 0.8);
+}
+
 .responsive {
   background-color: #ffffff;
   position: fixed;
   top: 0;
   left: 0;
-  width: 300px;
+  width: 250px;
   height: 100vh;
   z-index: 100;
   transform: translateX(-100%);
-  box-shadow: 0 20px 0 0 rgba(0, 0, 0, 0.5);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.2);
 }
 
 .responsive ul {
@@ -126,10 +143,6 @@ button:focus {
   font-weight: 200;
   border: 1px solid black;
   padding: 0 30px;
-}
-
-.topnav ul li a:hover {
-  text-decoration: underline;
 }
 
 .dropdown-content a:hover {

@@ -1,0 +1,25 @@
+footer {
+  display: flex;
+  justify-content: space-evenly;
+  padding: 40px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+footer a {
+  color: black;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+footer a:hover {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+@media (max-width: 500px) {
+  footer {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+  }
+}
