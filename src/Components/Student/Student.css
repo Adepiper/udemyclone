@@ -1,0 +1,53 @@
+.student header {
+  margin: 20px 50px 10px 50px;
+  padding: 20px;
+}
+.student header h2 {
+  align-items: center;
+}
+
+.student .screen {
+  margin: 20px 50px;
+  width: 75%;
+  height: 500px;
+  border-radius: 5px;
+}
+
+.student .stack,
+.student .description {
+  display: flex;
+  border-bottom: 1px solid #777;
+  margin-bottom: 20px;
+}
+.student .description h3,
+.student .stack h3 {
+  width: 40%;
+  font-weight: 100;
+  font-size: 16px;
+}
+.student .description p,
+.student .stack p {
+  width: 60%;
+}
+
+@media (max-width: 800px) {
+  .student header {
+    margin: 20px 0;
+    padding: 0;
+  }
+  .student .screen {
+    margin: 20px 0;
+    width: 100%;
+    height: 250px;
+  }
+  .student .description h3,
+  .student .stack h3 {
+    width: 50%;
+    font-weight: 100;
+    font-size: 16px;
+  }
+  .student .description p,
+  .student .stack p {
+    width: 50%;
+  }
+}
