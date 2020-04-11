@@ -34,9 +34,9 @@ export class Navbar extends Component {
       */}
           <ul>
             <li>
-              <Link to='' className='icon' onClick={this.toggleBtn}>
+              <a href='#' className='icon' onClick={this.toggleBtn}>
                 &#9776;
-              </Link>
+              </a>
             </li>
             <li className='home'>
               <Link to='/'>Piperland</Link>
@@ -54,7 +54,7 @@ export class Navbar extends Component {
               </form>
             </li>
             <li className='float-right'>
-              <Link to='/instructor'>Login</Link>
+              <Link to='/login'>Login</Link>
             </li>
             <li className='float-right'>
               <Link to='/courses'>Register</Link>

@@ -5,6 +5,7 @@ import Student from './Components/Student/Student';
 import Instructor from './Components/Instructor/Instructor';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
+import Login from './Components/Login/Login';
 
 function Router() {
   return (
@@ -21,6 +22,7 @@ function Router() {
       ></Route>
       <Route path='/courses' component={Student}></Route>
       <Route path='/Instructor' component={Instructor}></Route>
+      <Route path='/login' component={Login}></Route>
       <Footer />
     </div>
   );

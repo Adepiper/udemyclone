@@ -1,0 +1,100 @@
+.instructor {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0;
+}
+
+.instructor header {
+  width: 70%;
+  margin: 15px;
+  text-align: center;
+}
+
+.instructor .form {
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  width: 70%;
+  margin: 20px 0 40px 0;
+}
+
+.instructor .form form {
+  padding: 30px 40px;
+}
+
+.instructor .form form .formgroup {
+  margin-bottom: 10px;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.instructor .form form .formgroup label {
+  color: #777;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.instructor .form form .formgroup input {
+  border: 2px solid #f0f0f0;
+  width: 100%;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.instructor .form form .formgroup input:focus {
+  outline: none;
+  border-color: #777;
+}
+
+.instructor .form form .formgroup select {
+  border: 2px solid #f0f0f0;
+  width: 100%;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+}
+.instructor .form form .formgroup select:focus {
+  outline: none;
+  border-color: #777;
+}
+
+.instructor .form form .formgroup input[type='file'] {
+  border: none;
+}
+
+.instructor .form form .formgroup input[type='file']:hover {
+  cursor: pointer;
+}
+
+.instructor .form form .instructor-btn {
+  cursor: pointer;
+  background-color: #3498db;
+  border: none;
+  border-radius: 4px;
+  color: #fff;
+  display: block;
+  font-size: 16px;
+  padding: 10px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.instructor .form form .instructor-btn:hover {
+  background-color: #133449;
+  border: none;
+}
+
+.instructor .form form .instructor-btn:focus {
+  outline: none;
+}
+
+@media (max-width: 700px) {
+  .instructor header {
+    width: 100%;
+  }
+  .instructor .form {
+    width: 100%;
+  }
+}
