@@ -15,7 +15,8 @@ export class Router extends Component {
     super(props);
 
     this.state = {
-      videos: []
+      videos: [],
+      selectedVideo: null
     };
 
     this.videoSearch('React Tutorials');
@@ -29,25 +30,43 @@ export class Router extends Component {
       },
       data => {
         this.setState({
-          videos: data
+          videos: data,
+          selectedVideo: data[0]
         });
       }
     );
   }
+
   render() {
     return (
       <div>
-        {/* <Navbar />*/}
+        <Navbar
+          onSearchTermChange={searchTerm => this.videoSearch(searchTerm)}
+        />
         <Route
           exact
           path='/'
           render={prop => (
             <React.Fragment>
-              <Home videos={this.state.videos} />
+              <Home
+                videos={this.state.videos}
+                onVideoSelect={userSelected =>
+                  this.setState({
+                    selectedVideo: userSelected
+                  })
+                }
+              />
             </React.Fragment>
           )}
         ></Route>
-        <Route path='/courses' component={Student}></Route>
+        <Route
+          path='/courses'
+          render={prop => (
+            <React.Fragment>
+              <Student video={this.state.selectedVideo} />
+            </React.Fragment>
+          )}
+        ></Route>
         <Route path='/Instructor' component={Instructor}></Route>
         <Route path='/login' component={Login}></Route>
         <Footer />

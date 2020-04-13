@@ -12,10 +12,12 @@ export class Navbar extends Component {
     this.inputChange = this.inputChange.bind(this);
   }
 
-  inputhChange(event) {
+  inputChange(event) {
+    const { onSearchTermChange } = this.props;
     this.setState({
       term: event.target.value
     });
+    onSearchTermChange(event.target.value);
   }
 
   toggleBtn() {
@@ -27,27 +29,6 @@ export class Navbar extends Component {
     return (
       <div>
         <div className='topnav' id='myTopnav'>
-          {/*
-
-          
-          <Link to='#home' className=' home'>
-            Home
-          </Link>
-          <Link to='#news'>News</Link>
-          <Link to='#contact'>Contact</Link>
-          <div className='dropdown'>
-            <button className='dropbtn'>
-              Dropdown
-              <i className='fa fa-caret-down'></i>
-            </button>
-            <div className='dropdown-content'>
-              <Link to='#'>Link 1</Link>
-              <Link to='#'>Link 2</Link>
-              <Link to='#'>Link 3</Link>
-            </div>
-          </div>
-          <Link to='#about'>About</Link>
-      */}
           <ul>
             <li>
               <a href='#' className='icon' onClick={this.toggleBtn}>

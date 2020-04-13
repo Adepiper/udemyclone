@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import './Home.css';
+import Courses from './Courses';
 
 export class Home extends Component {
   render() {
-    const { videos } = this.props;
-    console.log(videos);
+    const { videos, onVideoSelect } = this.props;
 
     return (
       <div className='container-fluid'>
@@ -21,26 +21,7 @@ export class Home extends Component {
           </header>
 
           <div className=' courses'>
-            {/* <div className='course'>
-              <img alt='' />
-              <p className='info'></p>
-            </div>
-            <div className='course'>
-              <img alt='' />
-              <p className='info'></p>
-            </div>
-            <div className='course'>
-              <img alt='' />
-              <p className='info'></p>
-            </div>
-            <div className='course'>
-              <img alt='' />
-              <p className='info'>hello</p>
-            </div>
-            <div className='course'>
-              <img alt='' />
-              <p className='info'></p>
-            </div>*/}
+            <Courses Videos={videos} onUserSelected={onVideoSelect} />
           </div>
         </div>
       </div>
