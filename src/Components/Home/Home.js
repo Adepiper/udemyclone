@@ -3,6 +3,9 @@ import './Home.css';
 
 export class Home extends Component {
   render() {
+    const { videos } = this.props;
+    console.log(videos);
+
     return (
       <div className='container-fluid'>
         <div className='container'>
@@ -18,7 +21,7 @@ export class Home extends Component {
           </header>
 
           <div className=' courses'>
-            <div className='course'>
+            {/* <div className='course'>
               <img alt='' />
               <p className='info'></p>
             </div>
@@ -37,7 +40,7 @@ export class Home extends Component {
             <div className='course'>
               <img alt='' />
               <p className='info'></p>
-            </div>
+            </div>*/}
           </div>
         </div>
       </div>

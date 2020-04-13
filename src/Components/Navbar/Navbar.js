@@ -3,11 +3,27 @@ import './Navbar.css';
 import { Link } from 'react-router-dom';
 
 export class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      term: ''
+    };
+
+    this.inputChange = this.inputChange.bind(this);
+  }
+
+  inputhChange(event) {
+    this.setState({
+      term: event.target.value
+    });
+  }
+
   toggleBtn() {
     document.body.classList.toggle('show-nav');
   }
 
   render() {
+    const { term } = this.state;
     return (
       <div>
         <div className='topnav' id='myTopnav'>
@@ -47,6 +63,8 @@ export class Navbar extends Component {
                   type='text'
                   placeholder='Search Courses'
                   className='formControl'
+                  value={term}
+                  onChange={this.inputChange}
                 />
                 <button className=''>
                   <i className='fa fa-search'></i>
@@ -84,6 +102,8 @@ export class Navbar extends Component {
                   type='text'
                   placeholder='Search Courses'
                   className='formControl'
+                  value={term}
+                  onChange={this.inputChange}
                 />
                 <button className=''>
                   <i className='fa fa-search'></i>
