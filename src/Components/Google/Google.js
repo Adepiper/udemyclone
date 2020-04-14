@@ -47,7 +47,7 @@ export class Google extends Component {
         discoveryDocs: DISCOVERY_DOCS
       })
       .then(() => {
-        gapi.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
+        gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
         this.updateSigninStatus(
           window.gapi.auth2.getAuthInstance().isSignedIn.get()
         );
