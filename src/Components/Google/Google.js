@@ -10,10 +10,17 @@ const SCOPES = 'https://www.googleapis.com/auth/youtube.force-ssl';
 const defaultChannel = 'techguyweb';
 
 export class Google extends Component {
-  state = {
-    gapiReady: false,
-    isSignIn: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      gapiReady: false,
+      isSignIn: false
+    };
+
+    this.handleSignoutClick = this.handleSignoutClick.bind(this);
+    this.handleAuthClick = this.handleAuthClick.bind(this);
+    this.updateSigninStatus = this.updateSigninStatus.bind(this);
+  }
   loadYoutubeApi() {
     const script = document.createElement('script');
     script.src = 'https://apis.google.com/js/client.js';
@@ -47,8 +54,8 @@ export class Google extends Component {
         discoveryDocs: DISCOVERY_DOCS
       })
       .then(() => {
-        //gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
-        //this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+        gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
+        this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         this.handleAuthClick();
         this.handleSignoutClick();
       });
@@ -64,7 +71,7 @@ export class Google extends Component {
   }
 
   updateSigninStatus(isSignedIn) {
-    return this.setState({
+    this.setState({
       isSignIn: isSignedIn
     });
   }
