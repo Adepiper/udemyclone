@@ -64,16 +64,10 @@ export class Google extends Component {
   }
 
   updateSigninStatus(isSignedIn) {
-    if (isSignedIn) {
-      this.setState({
-        isSignIn: true
-      });
-      this.getChannel(defaultChannel);
-    } else {
-      this.setState({
-        isSignIn: false
-      });
-    }
+    this.setState({
+      isSignIn: isSignedIn
+    });
+    this.getChannel(defaultChannel);
   }
 
   getChannel() {}
@@ -156,6 +150,13 @@ export class Google extends Component {
                 onClick={this.handleAuthClick}
               >
                 Log In
+              </button>
+              <button
+                className='btn red'
+                id='signout-button'
+                onClick={this.handleSignoutClick}
+              >
+                Log Out
               </button>
               <br />
             </div>
