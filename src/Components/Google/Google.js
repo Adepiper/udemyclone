@@ -60,7 +60,7 @@ export class Google extends Component {
   }
 
   handleSignoutClick() {
-    gapi.getAuthInstance().signOut();
+    gapi.auth2.getAuthInstance().signOut();
   }
 
   updateSigninStatus(isSignedIn) {
