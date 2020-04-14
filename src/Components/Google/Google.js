@@ -7,13 +7,11 @@ const DISCOVERY_DOCS =
   'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest';
 const SCOPES = 'https://www.googleapis.com/auth/youtube.force-ssl';
 const defaultChannel = 'techguyweb';
-const signOutButton = document.getElementById('signout-button');
-const isSignInButton = document.getElementById('authorize-button');
 
 export class Google extends Component {
   state = {
     gapiReady: false,
-    isSignIn: false
+    isSignIn: null
   };
   loadYoutubeApi() {
     const script = document.createElement('script');
@@ -33,7 +31,7 @@ export class Google extends Component {
 
   handleClientLoad() {
     const script = document.createElement('script');
-    script.src = 'https://apis.google.com/js/client.js';
+    script.src = 'https://apis.google.com/js/api.js';
     script.onload = () => {
       gapi.load('client:auth2', this.initClient);
     };
@@ -61,6 +59,7 @@ export class Google extends Component {
 
   handleSignoutClick() {
     gapi.auth2.getAuthInstance().signOut();
+    console.log('piper');
   }
 
   updateSigninStatus(isSignedIn) {
