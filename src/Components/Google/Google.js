@@ -3,8 +3,9 @@ import React, { Component } from 'react';
 const API_KEY = 'AIzaSyBZKu1Pi-lbJU9sOPcetUMjePrriExFmuY';
 const CLIENT_ID =
   '42073983734-mes17bmpppr9if5elo6kn4f8segn4hsi.apps.googleusercontent.com';
-const DISCOVERY_DOCS =
-  'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest';
+const DISCOVERY_DOCS = [
+  'https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest'
+];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.force-ssl';
 const defaultChannel = 'techguyweb';
 
