@@ -7,8 +7,9 @@ import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import Login from './Components/Login/Login';
 import YTSearch from 'youtube-api-search';
+import Google from './Components/Google/Google';
 
-const API_Key = 'AIzaSyBZKu1Pi-lbJU9sOPcetUMjePrriExFmuY';
+const API_KEY = 'AIzaSyBZKu1Pi-lbJU9sOPcetUMjePrriExFmuY';
 
 export class Router extends Component {
   constructor(props) {
@@ -16,16 +17,33 @@ export class Router extends Component {
 
     this.state = {
       videos: [],
-      selectedVideo: null
+      selectedVideo: null,
+      gapiReady: false
     };
 
-    this.videoSearch('React Tutorials');
+    this.videoSearch();
+  }
+
+  loadYoutubeApi() {
+    const script = document.createElement('script');
+    script.src = 'https://apis.google.com/js/client.js';
+
+    script.onload = () => {
+      window.gapi.load('client', () => {
+        window.gapi.client.setApiKey(API_KEY);
+        window.gapi.client.load('youtube', 'v3', () => {
+          this.setState({ gapiReady: true });
+        });
+      });
+    };
+
+    document.body.appendChild(script);
   }
 
   videoSearch(term) {
     YTSearch(
       {
-        key: API_Key,
+        key: API_KEY,
         term: term
       },
       data => {
@@ -67,8 +85,17 @@ export class Router extends Component {
             </React.Fragment>
           )}
         ></Route>
+
         <Route path='/Instructor' component={Instructor}></Route>
         <Route path='/login' component={Login}></Route>
+        <Route
+          path='/google'
+          render={prop => (
+            <React.Fragment>
+              <Google />
+            </React.Fragment>
+          )}
+        ></Route>
         <Footer />
       </div>
     );
