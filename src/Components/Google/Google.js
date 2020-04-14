@@ -48,9 +48,7 @@ export class Google extends Component {
       })
       .then(() => {
         gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
-        this.updateSigninStatus(
-          window.gapi.auth2.getAuthInstance().isSignedIn.get()
-        );
+        this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         this.handleAuthClick();
         this.handleSignoutClick();
       });
@@ -69,7 +67,6 @@ export class Google extends Component {
     this.setState({
       isSignIn: isSignedIn
     });
-    this.getChannel(defaultChannel);
   }
 
   getChannel() {}
