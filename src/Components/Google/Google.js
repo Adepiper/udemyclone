@@ -17,9 +17,9 @@ export class Google extends Component {
       isSignIn: false
     };
 
-    this.handleSignoutClick = this.handleSignoutClick.bind(this);
-    this.handleAuthClick = this.handleAuthClick.bind(this);
-    this.updateSigninStatus = this.updateSigninStatus.bind(this);
+    //this.handleSignoutClick = this.handleSignoutClick.bind(this);
+    //this.handleAuthClick = this.handleAuthClick.bind(this);
+    //this.updateSigninStatus = this.updateSigninStatus.bind(this);
   }
   loadYoutubeApi() {
     const script = document.createElement('script');
@@ -37,15 +37,15 @@ export class Google extends Component {
     document.body.appendChild(script);
   }
 
-  handleClientLoad() {
+  handleClientLoad = () => {
     const script = document.createElement('script');
     script.src = 'https://apis.google.com/js/api.js';
     script.onload = () => {
       gapi.load('client:auth2', this.initClient);
     };
     document.body.appendChild(script);
-  }
-  initClient() {
+  };
+  initClient = () => {
     gapi.client
       .init({
         apiKey: API_KEY,
@@ -59,24 +59,24 @@ export class Google extends Component {
         this.handleAuthClick();
         this.handleSignoutClick();
       });
-  }
+  };
 
-  handleAuthClick() {
+  handleAuthClick = () => {
     gapi.auth2.getAuthInstance().signIn();
-  }
+  };
 
-  handleSignoutClick() {
+  handleSignoutClick = () => {
     gapi.auth2.getAuthInstance().signOut();
     console.log('piper');
-  }
+  };
 
-  updateSigninStatus(isSignedIn) {
+  updateSigninStatus = isSignedIn => {
     this.setState({
       isSignIn: isSignedIn
     });
-  }
+  };
 
-  getChannel() {}
+  getChannel = () => {};
 
   componentDidMount() {
     this.handleClientLoad();
