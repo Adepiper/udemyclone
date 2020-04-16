@@ -1,5 +1,6 @@
 /* global gapi */
 import React, { Component } from 'react';
+import Channeldata from './Channeldata';
 const API_KEY = 'AIzaSyBZKu1Pi-lbJU9sOPcetUMjePrriExFmuY';
 const CLIENT_ID =
   '42073983734-mes17bmpppr9if5elo6kn4f8segn4hsi.apps.googleusercontent.com';
@@ -95,7 +96,7 @@ export class Google extends Component {
   }
 
   render() {
-    const { isSignIn } = this.state;
+    const { isSignIn, channel } = this.state;
     if (isSignIn) {
       return (
         <div>
@@ -138,7 +139,9 @@ export class Google extends Component {
                       </div>
                     </form>
                   </div>
-                  <div id='channel-data' className='col s6'></div>
+                  <div id='channel-data' className='col s6'>
+                    <Channeldata channel={channel} />
+                  </div>
                 </div>
                 <div className='row' id='video-container'></div>
               </div>
