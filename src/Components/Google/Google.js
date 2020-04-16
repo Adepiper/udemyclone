@@ -16,10 +16,6 @@ export class Google extends Component {
       gapiReady: false,
       isSignIn: false
     };
-
-    //this.handleSignoutClick = this.handleSignoutClick.bind(this);
-    //this.handleAuthClick = this.handleAuthClick.bind(this);
-    //this.updateSigninStatus = this.updateSigninStatus.bind(this);
   }
   loadYoutubeApi() {
     const script = document.createElement('script');
@@ -67,16 +63,18 @@ export class Google extends Component {
 
   handleSignoutClick = () => {
     gapi.auth2.getAuthInstance().signOut();
-    console.log('piper');
   };
 
   updateSigninStatus = isSignedIn => {
     this.setState({
       isSignIn: isSignedIn
     });
+    this.getChannel(defaultChannel);
   };
 
-  getChannel = () => {};
+  getChannel = channel => {
+    console.log(channel);
+  };
 
   componentDidMount() {
     this.handleClientLoad();
@@ -157,13 +155,7 @@ export class Google extends Component {
               >
                 Log In
               </button>
-              <button
-                className='btn red'
-                id='signout-button'
-                onClick={this.handleSignoutClick}
-              >
-                Log Out
-              </button>
+
               <br />
             </div>
           </section>
