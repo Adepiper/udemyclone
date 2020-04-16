@@ -101,8 +101,23 @@ export class Google extends Component {
         this.setState({
           channel: channel
         });
+        const playListId = channel.contentDetails.relatedPlaylists.uploads;
+        this.requestVideoPlaylist(playListId);
       })
       .catch(err => alert('No channel by that name'));
+  };
+
+  requestVideoPlaylist = Id => {
+    const requestOptions = {
+      playlistId: Id,
+      part: 'snippet',
+      maxResults: 10
+    };
+
+    const request = gapi.client.youtube.playlistItems.list(requestOptions);
+    request.execute(response => {
+      console.log(response);
+    });
   };
 
   componentDidMount() {
