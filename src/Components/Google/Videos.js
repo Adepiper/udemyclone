@@ -8,7 +8,10 @@ export class Videos extends Component {
       return <div>loading</div>;
     } else {
       console.log(items);
-      return <div>confirm</div>;
+      items.map(item => {
+        console.log(item);
+        return <div>confirm</div>;
+      });
     }
   }
 }
