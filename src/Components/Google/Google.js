@@ -15,7 +15,7 @@ export class Google extends Component {
     super(props);
     this.state = {
       gapiReady: false,
-      isSignIn: false,
+      isSignIn: null,
       channel: []
     };
   }
@@ -73,6 +73,8 @@ export class Google extends Component {
         isSignIn: isSignedIn
       });
       this.getChannel(defaultChannel);
+    } else {
+      return false;
     }
   };
 
@@ -84,6 +86,7 @@ export class Google extends Component {
       })
       .then(res => {
         const channel = res.result.items[0];
+        console.log(channel);
         this.setState({
           channel: channel
         });
@@ -142,24 +145,7 @@ export class Google extends Component {
                     </form>
                   </div>
                   <div id='channel-data' className='col s6'>
-                    <div>
-                      <ul className='collection'>
-                        <li className='collection-item'>
-                          ${channel.snippet.title}
-                        </li>
-                        <li className='collection-item'>${channel.id}</li>
-                        <li className='collection-item'>
-                          {channel.statistics.subscriberCount}
-                        </li>
-                        <li className='collection-item'>
-                          ${channel.statistics.videoCount}
-                        </li>
-                        <li className='collection-item'>
-                          ${channel.statistics.viewCount}
-                        </li>
-                      </ul>
-                      <p>${channel.snippet.description}</p>
-                    </div>
+                    <Channeldata channel={channel} />
                   </div>
                 </div>
                 <div className='row' id='video-container'></div>
