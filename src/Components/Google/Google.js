@@ -148,9 +148,7 @@ export class Google extends Component {
                       </div>
                     </form>
                   </div>
-                  <div id='channel-data' className='col s6'>
-                    <Channeldata channel={channel} />
-                  </div>
+                  <div id='channel-data' className='col s6'></div>
                 </div>
                 <div className='row' id='video-container'></div>
               </div>
