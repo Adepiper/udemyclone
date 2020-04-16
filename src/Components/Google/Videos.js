@@ -10,22 +10,8 @@ export class Videos extends Component {
     } else {
       items.map(item => {
         const videoId = item.snippet.resourceId.videoId;
-        return (
-          // eslint-disable-next-line react/jsx-no-comment-textnodes
-          <div className='col-s3' key={videoId}>
-            {
-              // eslint-disable-next-line jsx-a11y/iframe-has-title
-            }
-            <iframe
-              width='100%'
-              height='auto'
-              src={`https://www.youtube.com/embed/${videoId}`}
-              frameForder='0'
-              allow='accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture'
-              allowFullScreen
-            ></iframe>
-          </div>
-        );
+        console.log(videoId);
+        return <div className='col-s3'>okay</div>;
       });
     }
   }
