@@ -87,9 +87,6 @@ export class Google extends Component {
 
   submit = e => {
     e.preventDefault();
-    this.setState({
-      name: e.target.value
-    });
     this.getChannel(e.target.value);
   };
 
