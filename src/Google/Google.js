@@ -31,7 +31,7 @@ export class Google extends Component {
         discoveryDocs: DISCOVERY_DOCS
       })
       .then(() => {
-        console.log(gapi.auth2.getAuthInstance());
+        console.log(gapi.auth2.getAuthInstance().currentUser);
         this.handleAuthClick();
         this.handleSignoutClick();
       });
