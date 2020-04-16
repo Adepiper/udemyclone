@@ -1,4 +1,3 @@
-/* eslint-disable jsx-a11y/iframe-has-title */
 import React, { Component } from 'react';
 
 export class Videos extends Component {
