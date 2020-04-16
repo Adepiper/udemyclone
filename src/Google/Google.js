@@ -13,17 +13,6 @@ const newChannel =
   'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
 
 export class Google extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      gapiReady: false,
-      isSignIn: null,
-      channel: [],
-      name: '',
-      items: []
-    };
-  }
-
   handleClientLoad = () => {
     const script = document.createElement('script');
     script.src = 'https://apis.google.com/js/api.js';
@@ -34,19 +23,19 @@ export class Google extends Component {
   };
 
   initClient = () => {
-    return gapi.client
-      .init({
-        apiKey: API_KEY,
-        clientId: CLIENT_ID,
-        scope: SCOPES,
-        discoveryDocs: DISCOVERY_DOCS
-      })
-      .then(() => {
+    return gapi.client.init({
+      apiKey: API_KEY,
+      clientId: CLIENT_ID,
+      scope: SCOPES,
+      discoveryDocs: DISCOVERY_DOCS
+    });
+    /* .then(() => {
         gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
         this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
         this.handleAuthClick();
         this.handleSignoutClick();
       });
+      */
   };
 
   /*  onChange = e => {
