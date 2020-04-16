@@ -4,7 +4,9 @@ export class Channeldata extends Component {
   render() {
     const { channel } = this.props;
     console.log(channel);
-    if (channel.length > 0) {
+    if (channel.length === 0) {
+      return <div>Loading</div>;
+    } else {
       return (
         <div>
           <ul className='collection'>
@@ -21,8 +23,6 @@ export class Channeldata extends Component {
           <p>${channel.snippet.description}</p>
         </div>
       );
-    } else {
-      return <div>Loading</div>;
     }
   }
 }

@@ -86,7 +86,6 @@ export class Google extends Component {
       })
       .then(res => {
         const channel = res.result.items[0];
-        console.log(channel);
         this.setState({
           channel: channel
         });
