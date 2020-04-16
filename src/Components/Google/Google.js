@@ -82,9 +82,7 @@ export class Google extends Component {
       })
       .then(res => {
         const channel = res.result.items[0];
-        this.setState({
-          channel: channel
-        });
+        console.log(channel);
       })
       .catch(err => alert('No channel by that name'));
   };
@@ -139,26 +137,7 @@ export class Google extends Component {
                       </div>
                     </form>
                   </div>
-                  <div id='channel-data' className='col s6'>
-                    <div>
-                      <ul className='collection'>
-                        <li className='collection-item'>
-                          ${channel.snippet.title}
-                        </li>
-                        <li className='collection-item'>${channel.id}</li>
-                        <li className='collection-item'>
-                          {channel.statistics.subscriberCount}
-                        </li>
-                        <li className='collection-item'>
-                          ${channel.statistics.videoCount}
-                        </li>
-                        <li className='collection-item'>
-                          ${channel.statistics.viewCount}
-                        </li>
-                      </ul>
-                      <p>${channel.snippet.description}</p>
-                    </div>
-                  </div>
+                  <div id='channel-data' className='col s6'></div>
                 </div>
                 <div className='row' id='video-container'></div>
               </div>
