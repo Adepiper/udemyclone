@@ -80,7 +80,6 @@ export class Google extends Component {
     this.setState({
       input: e.target.value
     });
-    this.getChannel(e.target.value);
   };
 
   getChannel = channel => {
@@ -148,7 +147,9 @@ export class Google extends Component {
                       </div>
                     </form>
                   </div>
-                  <div id='channel-data' className='col s6'></div>
+                  <div id='channel-data' className='col s6'>
+                    <Channeldata channel={channel} />
+                  </div>
                 </div>
                 <div className='row' id='video-container'></div>
               </div>
