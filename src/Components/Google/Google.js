@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Channeldata from './Channeldata';
 import Videos from './Videos';
+import Items from './Items';
 const API_KEY = 'AIzaSyBZKu1Pi-lbJU9sOPcetUMjePrriExFmuY';
 const CLIENT_ID =
   '42073983734-mes17bmpppr9if5elo6kn4f8segn4hsi.apps.googleusercontent.com';
