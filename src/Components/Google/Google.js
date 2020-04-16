@@ -16,7 +16,8 @@ export class Google extends Component {
     this.state = {
       gapiReady: false,
       isSignIn: null,
-      channel: []
+      channel: [],
+      name: defaultChannel
     };
   }
   loadYoutubeApi() {
@@ -78,6 +79,14 @@ export class Google extends Component {
     }
   };
 
+  submit = e => {
+    e.preventDefault();
+    this.setState({
+      name: e.target.value
+    });
+    this.getChannel(e.target.value);
+  };
+
   getChannel = channel => {
     gapi.client.youtube.channels
       .list({
@@ -137,6 +146,7 @@ export class Google extends Component {
                           type='submit'
                           value='Get Channel Data'
                           className='btn grey'
+                          onSubmit={this.submit}
                         >
                           Get Channel data
                         </button>
