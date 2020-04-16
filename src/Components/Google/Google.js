@@ -17,7 +17,7 @@ export class Google extends Component {
       gapiReady: false,
       isSignIn: false,
       channel: [],
-      input: ''
+      input: defaultChannel
     };
   }
   loadYoutubeApi() {
