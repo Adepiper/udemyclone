@@ -17,7 +17,7 @@ export class Google extends Component {
       gapiReady: false,
       isSignIn: null,
       channel: [],
-      name: defaultChannel
+      name: ''
     };
   }
   loadYoutubeApi() {
@@ -58,6 +58,12 @@ export class Google extends Component {
         this.handleAuthClick();
         this.handleSignoutClick();
       });
+  };
+
+  onChange = e => {
+    this.setState({
+      name: e.target.value
+    });
   };
 
   handleAuthClick = () => {
@@ -107,7 +113,7 @@ export class Google extends Component {
   }
 
   render() {
-    const { isSignIn, channel } = this.state;
+    const { isSignIn, channel, name } = this.state;
     if (isSignIn) {
       return (
         <div>
@@ -135,18 +141,19 @@ export class Google extends Component {
               <div id='content'>
                 <div className='row'>
                   <div className='col s6'>
-                    <form id='channel-form'>
+                    <form id='channel-form' onSubmit={this.submit}>
                       <div className='input-field col s6'>
                         <input
                           type='text'
                           placeholder='Enter Channel Name'
                           id='channel-input'
+                          onChange={this.onChange}
+                          value={name}
                         />
                         <button
                           type='submit'
                           value='Get Channel Data'
                           className='btn grey'
-                          onSubmit={this.submit}
                         >
                           Get Channel data
                         </button>
