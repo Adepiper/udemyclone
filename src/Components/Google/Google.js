@@ -68,10 +68,12 @@ export class Google extends Component {
   };
 
   updateSigninStatus = isSignedIn => {
-    this.setState({
-      isSignIn: isSignedIn
-    });
-    this.getChannel(defaultChannel);
+    if (isSignedIn) {
+      this.setState({
+        isSignIn: isSignedIn
+      });
+      this.getChannel(defaultChannel);
+    }
   };
 
   getChannel = channel => {
