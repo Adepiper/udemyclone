@@ -8,12 +8,11 @@ export class Videos extends Component {
     if (items.length === 0) {
       return <div>loading</div>;
     } else {
-      items.forEach(item => {
+      items.map(item => {
         const videoId = item.snippet.resourceId.videoId;
-
         return (
           // eslint-disable-next-line react/jsx-no-comment-textnodes
-          <div className='col-s3'>
+          <div className='col-s3' key={videoId}>
             {
               // eslint-disable-next-line jsx-a11y/iframe-has-title
             }
