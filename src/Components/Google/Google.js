@@ -14,7 +14,8 @@ export class Google extends Component {
     super(props);
     this.state = {
       gapiReady: false,
-      isSignIn: false
+      isSignIn: false,
+      channel: []
     };
   }
   loadYoutubeApi() {
@@ -80,6 +81,11 @@ export class Google extends Component {
       })
       .then(res => {
         console.log(res);
+        const channel = res.result.items[0];
+        console.log(channel);
+        this.setState({
+          channel: channel
+        });
       })
       .catch(err => alert('No channel by that name'));
   };
