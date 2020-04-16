@@ -23,19 +23,18 @@ export class Google extends Component {
   };
 
   initClient = () => {
-    return gapi.client.init({
-      apiKey: API_KEY,
-      clientId: CLIENT_ID,
-      scope: SCOPES,
-      discoveryDocs: DISCOVERY_DOCS
-    });
-    /* .then(() => {
-        gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
-        this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+    return gapi.client
+      .init({
+        apiKey: API_KEY,
+        clientId: CLIENT_ID,
+        scope: SCOPES,
+        discoveryDocs: DISCOVERY_DOCS
+      })
+      .then(() => {
+        console.log(gapi.auth2.getAuthInstance());
         this.handleAuthClick();
         this.handleSignoutClick();
       });
-      */
   };
 
   /*  onChange = e => {
