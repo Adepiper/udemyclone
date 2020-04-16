@@ -80,6 +80,7 @@ export class Google extends Component {
     this.setState({
       input: e.target.value
     });
+    this.getChannel(e.target.value);
   };
 
   getChannel = channel => {
@@ -132,18 +133,21 @@ export class Google extends Component {
               <div id='content'>
                 <div className='row'>
                   <div className='col s6'>
-                    <form id='channel-form' onSubmit={this.submit}>
+                    <form id='channel-form'>
                       <div className='input-field col s6'>
                         <input
                           type='text'
                           placeholder='Enter Channel Name'
                           id='channel-input'
                         />
-                        <input
+                        <button
                           type='submit'
                           value='Get Channel Data'
                           className='btn grey'
-                        />
+                          onSubmit={this.submit}
+                        >
+                          Get Channel data
+                        </button>
                       </div>
                     </form>
                   </div>
