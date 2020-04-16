@@ -8,16 +8,6 @@ export class Navbar extends Component {
     this.state = {
       term: ''
     };
-
-    this.inputChange = this.inputChange.bind(this);
-  }
-
-  inputChange(event) {
-    const { onSearchTermChange } = this.props;
-    this.setState({
-      term: event.target.value
-    });
-    onSearchTermChange(event.target.value);
   }
 
   toggleBtn() {
@@ -25,7 +15,6 @@ export class Navbar extends Component {
   }
 
   render() {
-    const { term } = this.state;
     return (
       <div>
         <div className='topnav' id='myTopnav'>
@@ -44,8 +33,6 @@ export class Navbar extends Component {
                   type='text'
                   placeholder='Search Courses'
                   className='formControl'
-                  value={term}
-                  onChange={this.inputChange}
                 />
                 <button className=''>
                   <i className='fa fa-search'></i>
@@ -83,8 +70,6 @@ export class Navbar extends Component {
                   type='text'
                   placeholder='Search Courses'
                   className='formControl'
-                  value={term}
-                  onChange={this.inputChange}
                 />
                 <button className=''>
                   <i className='fa fa-search'></i>

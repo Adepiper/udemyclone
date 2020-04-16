@@ -7,7 +7,7 @@ export class Videos extends Component {
       return <div>loading</div>;
     } else {
       return items.map(item => (
-        <div className='col s3'>
+        <div className='col-3'>
           <iframe
             width='100%'
             height='auto'

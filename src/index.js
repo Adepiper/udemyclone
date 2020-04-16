@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Root from './Root';
 import * as serviceWorker from './serviceWorker';
+import Google, { GoogleContext } from './Google';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Root />
+    <GoogleContext.Provider value={new Google()}>
+      <Root />
+    </GoogleContext.Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

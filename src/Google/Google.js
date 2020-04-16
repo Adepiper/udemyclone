@@ -1,8 +1,5 @@
 /* global gapi */
 import React, { Component } from 'react';
-import Channeldata from './Channeldata';
-import Videos from './Videos';
-import Items from './Items';
 const API_KEY = 'AIzaSyBZKu1Pi-lbJU9sOPcetUMjePrriExFmuY';
 const CLIENT_ID =
   '42073983734-mes17bmpppr9if5elo6kn4f8segn4hsi.apps.googleusercontent.com';
@@ -11,6 +8,9 @@ const DISCOVERY_DOCS = [
 ];
 const SCOPES = 'https://www.googleapis.com/auth/youtube.force-ssl';
 const defaultChannel = 'techguyweb';
+
+const newChannel =
+  'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
 
 export class Google extends Component {
   constructor(props) {
@@ -23,21 +23,6 @@ export class Google extends Component {
       items: []
     };
   }
-  loadYoutubeApi() {
-    const script = document.createElement('script');
-    script.src = 'https://apis.google.com/js/client.js';
-
-    script.onload = () => {
-      gapi.load('client', () => {
-        gapi.client.setApiKey(API_KEY);
-        gapi.client.load('youtube', 'v3', () => {
-          this.setState({ gapiReady: true });
-        });
-      });
-    };
-
-    document.body.appendChild(script);
-  }
 
   handleClientLoad = () => {
     const script = document.createElement('script');
@@ -47,8 +32,9 @@ export class Google extends Component {
     };
     document.body.appendChild(script);
   };
+
   initClient = () => {
-    gapi.client
+    return gapi.client
       .init({
         apiKey: API_KEY,
         clientId: CLIENT_ID,
@@ -63,21 +49,22 @@ export class Google extends Component {
       });
   };
 
-  onChange = e => {
+  /*  onChange = e => {
     this.setState({
       name: e.target.value
     });
   };
+  */
 
   handleAuthClick = () => {
-    gapi.auth2.getAuthInstance().signIn();
+    return gapi.auth2.getAuthInstance().signIn();
   };
 
   handleSignoutClick = () => {
-    gapi.auth2.getAuthInstance().signOut();
+    return gapi.auth2.getAuthInstance().signOut();
   };
 
-  updateSigninStatus = isSignedIn => {
+  /* updateSigninStatus = isSignedIn => {
     if (isSignedIn) {
       this.setState({
         isSignIn: isSignedIn
@@ -86,20 +73,20 @@ export class Google extends Component {
     } else {
       return false;
     }
-  };
+  }*/
 
-  submit = e => {
+  /* submit = e => {
     e.preventDefault();
     this.getChannel(this.state.name);
   };
+  */
 
   getChannel = channel => {
-    gapi.client.youtube.channels
-      .list({
-        part: 'snippet, contentDetails, statistics',
-        forUsername: channel
-      })
-      .then(res => {
+    return gapi.client.youtube.channels.list({
+      part: 'snippet, contentDetails, statistics',
+      forUsername: channel
+    });
+    /*.then(res => {
         const channel = res.result.items[0];
         this.setState({
           channel: channel
@@ -108,6 +95,7 @@ export class Google extends Component {
         this.requestVideoPlaylist(playListId);
       })
       .catch(err => alert('No channel by that name'));
+      */
   };
 
   requestVideoPlaylist = Id => {
@@ -118,7 +106,8 @@ export class Google extends Component {
     };
 
     const request = gapi.client.youtube.playlistItems.list(requestOptions);
-    request.execute(response => {
+    return request;
+    /*  request.execute(response => {
       const items = response.result.items;
 
       if (items) {
@@ -126,14 +115,10 @@ export class Google extends Component {
           items: items
         });
       }
-    });
+    });*/
   };
 
-  componentDidMount() {
-    this.handleClientLoad();
-  }
-
-  render() {
+  /* render() {
     const { isSignIn, channel, name, items } = this.state;
     if (isSignIn) {
       return (
@@ -223,7 +208,7 @@ export class Google extends Component {
         </div>
       );
     }
-  }
+  } */
 }
 
 export default Google;
