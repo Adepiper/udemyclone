@@ -73,7 +73,15 @@ export class Google extends Component {
   };
 
   getChannel = channel => {
-    console.log(channel);
+    gapi.client.youtube.channels
+      .list({
+        part: 'snippet, contentDetails, statistics',
+        forUsername: channel
+      })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => alert('No channel by that name'));
   };
 
   componentDidMount() {
