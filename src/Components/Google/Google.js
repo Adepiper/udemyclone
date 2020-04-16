@@ -16,8 +16,7 @@ export class Google extends Component {
     this.state = {
       gapiReady: false,
       isSignIn: false,
-      channel: [],
-      input: defaultChannel
+      channel: []
     };
   }
   loadYoutubeApi() {
@@ -80,7 +79,6 @@ export class Google extends Component {
     this.setState({
       input: e.target.value
     });
-    this.getChannel(e.target.value);
   };
 
   getChannel = channel => {
