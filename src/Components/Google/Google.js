@@ -1,6 +1,7 @@
 /* global gapi */
 import React, { Component } from 'react';
 import Channeldata from './Channeldata';
+import Videos from './Videos';
 const API_KEY = 'AIzaSyBZKu1Pi-lbJU9sOPcetUMjePrriExFmuY';
 const CLIENT_ID =
   '42073983734-mes17bmpppr9if5elo6kn4f8segn4hsi.apps.googleusercontent.com';
@@ -17,7 +18,8 @@ export class Google extends Component {
       gapiReady: false,
       isSignIn: null,
       channel: [],
-      name: ''
+      name: '',
+      items: []
     };
   }
   loadYoutubeApi() {
@@ -116,7 +118,13 @@ export class Google extends Component {
 
     const request = gapi.client.youtube.playlistItems.list(requestOptions);
     request.execute(response => {
-      console.log(response);
+      const items = response.result.items;
+
+      if (items) {
+        this.setState({
+          items: items
+        });
+      }
     });
   };
 
@@ -125,7 +133,7 @@ export class Google extends Component {
   }
 
   render() {
-    const { isSignIn, channel, name } = this.state;
+    const { isSignIn, channel, name, items } = this.state;
     if (isSignIn) {
       return (
         <div>
@@ -176,7 +184,9 @@ export class Google extends Component {
                     <Channeldata channel={channel} />
                   </div>
                 </div>
-                <div className='row' id='video-container'></div>
+                <div className='row' id='video-container'>
+                  <Videos items={items} />
+                </div>
               </div>
             </div>
           </section>
