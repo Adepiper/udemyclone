@@ -31,6 +31,20 @@ export class Router extends Component {
     google.handleAuthClick();
   };
 
+  logOut = () => {
+    const { google } = this.props;
+    google
+      .initClient()
+      .then(() => {
+        this.setState({
+          isSignedIn: null
+        });
+        google.handleSignoutClick();
+      })
+      .catch(err => console.log(err));
+    google.handleSignoutClick();
+  };
+
   updateSignInStatus = isSignedIn => {
     if (isSignedIn) {
       this.setState({
@@ -51,7 +65,11 @@ export class Router extends Component {
     const { isSignedIn } = this.state;
     return (
       <div>
-        <Navbar loginUser={this.loginUser} isSignedIn={isSignedIn} />
+        <Navbar
+          loginUser={this.loginUser}
+          isSignedIn={isSignedIn}
+          logOut={this.logOut}
+        />
         <Route
           exact
           path='/'
