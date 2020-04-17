@@ -1,3 +1,4 @@
+/* global gapi */
 import React, { Component } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
@@ -13,6 +14,11 @@ export class Navbar extends Component {
 
   loginIn = () => {
     const { google } = this.props;
+    google.initClient().then(() => {
+      console.log(gapi.auth2.getAuthInstance().currentUser);
+      google.handleAuthClick();
+      this.handleSignoutClick();
+    });
     google.handleAuthClick();
   };
 
