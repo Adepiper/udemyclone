@@ -71,6 +71,11 @@ export class Router extends Component {
         users: res.data
       });
     });
+    const { users } = this.state;
+
+    users.map(user => {
+      console.log(user.id);
+    });
   };
 
   logOut = () => {
