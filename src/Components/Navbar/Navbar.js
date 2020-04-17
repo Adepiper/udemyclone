@@ -11,8 +11,6 @@ export class Navbar extends Component {
 
   render() {
     const { isSignedIn, loginUser, logOut } = this.props;
-    console.log(isSignedIn);
-
     if (isSignedIn) {
       return (
         <div>

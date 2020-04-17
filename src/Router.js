@@ -23,16 +23,17 @@ export class Router extends Component {
 
   loginUser = () => {
     const { google } = this.props;
+    google.handleAuthClick();
     google.initClient().then(() => {
       gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
       this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
       google.handleAuthClick();
     });
-    google.handleAuthClick();
   };
 
   logOut = () => {
     const { google } = this.props;
+    google.handleSignoutClick();
     google
       .initClient()
       .then(() => {
@@ -42,7 +43,6 @@ export class Router extends Component {
         google.handleSignoutClick();
       })
       .catch(err => console.log(err));
-    google.handleSignoutClick();
   };
 
   updateSignInStatus = isSignedIn => {
