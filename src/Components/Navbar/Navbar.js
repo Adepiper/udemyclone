@@ -8,7 +8,7 @@ export class Navbar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      term: ''
+      isSignedin: null
     };
   }
 
@@ -17,9 +17,17 @@ export class Navbar extends Component {
     google.initClient().then(() => {
       console.log(gapi.auth2.getAuthInstance().currentUser);
       google.handleAuthClick();
-      this.handleSignoutClick();
     });
     google.handleAuthClick();
+  };
+
+  logOut = () => {
+    const { google } = this.props;
+    google.initClient().then(() => {
+      console.log(gapi.auth2.getAuthInstance().currentUser);
+      google.handleSignoutClick();
+    });
+    google.handleSignoutClick();
   };
 
   toggleBtn() {
@@ -53,6 +61,9 @@ export class Navbar extends Component {
             </li>
             <li className='float-right'>
               <button onClick={this.loginIn}>Login</button>
+            </li>
+            <li className='float-right'>
+              <button onClick={this.logOut}>Logout</button>
             </li>
             <li className='float-right'>
               <Link to='/courses'>Register</Link>
