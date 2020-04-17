@@ -8,6 +8,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import Login from './Components/Login/Login';
 import { withGoogle } from './Google';
+import axios from 'axios';
 
 export class Router extends Component {
   constructor(props) {
@@ -17,7 +18,8 @@ export class Router extends Component {
       videos: [],
       selectedVideo: null,
       gapiReady: false,
-      isSignedIn: null
+      isSignedIn: null,
+      user: []
     };
   }
 
@@ -38,13 +40,29 @@ export class Router extends Component {
   getUserData = (isSignedin, basicProfile) => {
     if (isSignedin) {
       const profile = basicProfile.getBasicProfile();
-      console.log('ID: ' + profile.getId());
-      console.log('Full Name: ' + profile.getName());
-      console.log('Given Name: ' + profile.getGivenName());
-      console.log('Family Name: ' + profile.getFamilyName());
-      console.log('Image URL: ' + profile.getImageUrl());
-      console.log('Email: ' + profile.getEmail());
+
+      const id = profile.getId();
+      const firstName = profile.getGivenName();
+      const lastname = profile.getFamilyName();
+      const imageUrl = profile.getImageUrl();
+      const email = profile.getEmail();
+
+      this.addUserData(id, firstName, lastname, email, imageUrl);
     }
+  };
+
+  addUserData = (id, firstname, lastname, Email, imageUrl) => {
+    axios
+      .post('https://peaceful-dawn-85735.herokuapp.com/users', {
+        id,
+        firstname,
+        lastname,
+        Email,
+        imageUrl
+      })
+      .then(res => {
+        console.log(res.data);
+      });
   };
 
   logOut = () => {
