@@ -25,6 +25,7 @@ export class Router extends Component {
     const { google } = this.props;
     google.handleAuthClick();
     google.initClient().then(() => {
+      console.log(gapi.auth2);
       gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
       this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
       google.handleAuthClick();
