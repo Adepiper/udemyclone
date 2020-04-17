@@ -72,10 +72,13 @@ export class Router extends Component {
       });
     });
     const { users } = this.state;
-
-    users.map(user => {
-      console.log(user.id);
-    });
+    if (users.length === 0) {
+      console.log(false);
+    } else {
+      users.map(user => {
+        console.log(user.id);
+      });
+    }
   };
 
   logOut = () => {
