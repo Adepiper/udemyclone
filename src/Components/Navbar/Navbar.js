@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { withGoogle } from '../../Google';
 
 export class Navbar extends Component {
+  state = {
+    isSignedIn: null
+  };
   logOut = () => {
     const { google } = this.props;
     google
@@ -22,6 +25,7 @@ export class Navbar extends Component {
 
   render() {
     const { isSignedIn, loginUser } = this.props;
+    console.log(isSignedIn);
 
     if (isSignedIn) {
       return (
