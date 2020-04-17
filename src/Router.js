@@ -52,17 +52,25 @@ export class Router extends Component {
   };
 
   addUserData = (id, firstname, lastname, Email, imageUrl) => {
-    axios
-      .post('https://peaceful-dawn-85735.herokuapp.com/users', {
-        id,
-        firstname,
-        lastname,
-        Email,
-        imageUrl
-      })
-      .then(res => {
-        console.log(res.data);
-      });
+    const { users } = this.state;
+
+    users.map(user => {
+      if (user.id === id) {
+        return true;
+      } else {
+        axios
+          .post('https://peaceful-dawn-85735.herokuapp.com/users', {
+            id,
+            firstname,
+            lastname,
+            Email,
+            imageUrl
+          })
+          .then(res => {
+            console.log(res.data);
+          });
+      }
+    });
   };
 
   getUsers = () => {
@@ -73,14 +81,6 @@ export class Router extends Component {
     });
   };
 
-  setUsers = () => {
-    const { users } = this.state;
-    if (users.length === 0) {
-      console.log(false);
-    } else {
-      console.log(users);
-    }
-  };
   logOut = () => {
     const { google } = this.props;
     google.handleSignoutClick();
@@ -107,10 +107,12 @@ export class Router extends Component {
     }
   };
 
-  componentDidMount() {
+  componentDidUpdate() {
     this.props.google.handleClientLoad();
+  }
+
+  componentDidMount() {
     this.getUsers();
-    this.setUsers();
   }
 
   render() {
