@@ -5,52 +5,23 @@ import { Link } from 'react-router-dom';
 import { withGoogle } from '../../Google';
 
 export class Navbar extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isSignedin: null
-    };
-  }
-
-  loginIn = () => {
-    const { google } = this.props;
-    google.initClient().then(() => {
-      gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
-      this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
-      google.handleAuthClick();
-    });
-    google.handleAuthClick();
-  };
-
   logOut = () => {
     const { google } = this.props;
     google
       .initClient()
       .then(() => {
         google.handleSignoutClick();
-        this.setState({
-          isSignedIn: null
-        });
       })
       .catch(err => console.log(err));
     google.handleSignoutClick();
   };
 
-  updateSignInStatus = isSignedIn => {
-    if (isSignedIn) {
-      this.setState({
-        isSignedIn: isSignedIn
-      });
-    } else {
-      return null;
-    }
-  };
   toggleBtn() {
     document.body.classList.toggle('show-nav');
   }
 
   render() {
-    const { isSignedIn } = this.state;
+    const { isSignedIn, loginUser } = this.props;
 
     if (isSignedIn) {
       return (
@@ -147,7 +118,7 @@ export class Navbar extends Component {
               </form>
             </li>
             <li className='float-right'>
-              <button onClick={this.loginIn}>Login</button>
+              <button onClick={loginUser}>Login</button>
             </li>
             <li className='float-right'>
               <Link to='/courses'>Register</Link>
@@ -164,7 +135,7 @@ export class Navbar extends Component {
           <ul>
             <div>
               <li className=''>
-                <button onClick={this.loginIn}>Login</button>
+                <button onClick={loginUser}>Login</button>
               </li>
             </div>
 

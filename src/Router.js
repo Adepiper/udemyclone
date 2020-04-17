@@ -16,18 +16,42 @@ export class Router extends Component {
     this.state = {
       videos: [],
       selectedVideo: null,
-      gapiReady: false
+      gapiReady: false,
+      isSignedIn: null
     };
   }
+
+  loginUser = () => {
+    const { google } = this.props;
+    google.initClient().then(() => {
+      gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
+      this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      google.handleAuthClick();
+    });
+    google.handleAuthClick();
+  };
+
+  updateSignInStatus = isSignedIn => {
+    if (isSignedIn) {
+      this.setState({
+        isSignedIn: isSignedIn
+      });
+    } else {
+      this.setState({
+        isSignedIn: null
+      });
+    }
+  };
 
   componentDidMount() {
     this.props.google.handleClientLoad();
   }
 
   render() {
+    const { isSignedIn } = this.state;
     return (
       <div>
-        <Navbar />
+        <Navbar loginUser={this.loginUser} isSignedIn={isSignedIn} />
         <Route
           exact
           path='/'
