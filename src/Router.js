@@ -31,11 +31,7 @@ export class Router extends Component {
         gapi.auth2.getAuthInstance().isSignedIn.get(),
         gapi.auth2.getAuthInstance().currentUser.get()
       );
-      gapi.auth2
-        .getAuthInstance()
-        .isSignedIn.listen(
-          this.updateSigninStatus(gapi.auth2.getAuthInstance().isSignedIn.get())
-        );
+      gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSignInStatus());
       this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
       google.handleAuthClick();
     });
