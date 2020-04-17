@@ -71,16 +71,16 @@ export class Router extends Component {
         users: res.data
       });
     });
+  };
+
+  setUsers = () => {
     const { users } = this.state;
     if (users.length === 0) {
       console.log(false);
     } else {
-      users.map(user => {
-        console.log(user.id);
-      });
+      console.log(users);
     }
   };
-
   logOut = () => {
     const { google } = this.props;
     google.handleSignoutClick();
@@ -110,6 +110,7 @@ export class Router extends Component {
   componentDidMount() {
     this.props.google.handleClientLoad();
     this.getUsers();
+    this.setUsers();
   }
 
   render() {
