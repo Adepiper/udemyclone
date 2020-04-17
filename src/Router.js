@@ -52,7 +52,11 @@ export class Router extends Component {
   };
 
   addUserData = (id, firstname, lastname, Email, imageUrl) => {
-    axios
+    axios.get('https://peaceful-dawn-85735.herokuapp.com/users').then(res => {
+      console.log(res.data);
+    });
+
+    /*  axios
       .post('https://peaceful-dawn-85735.herokuapp.com/users', {
         id,
         firstname,
@@ -63,6 +67,7 @@ export class Router extends Component {
       .then(res => {
         console.log(res.data);
       });
+      */
   };
 
   logOut = () => {
@@ -93,6 +98,7 @@ export class Router extends Component {
 
   componentDidMount() {
     this.props.google.handleClientLoad();
+    this.addUserData();
   }
 
   render() {
