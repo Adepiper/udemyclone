@@ -25,11 +25,26 @@ export class Router extends Component {
     const { google } = this.props;
     google.handleAuthClick();
     google.initClient().then(() => {
-      console.log(gapi.auth2);
+      this.getUserData(
+        gapi.auth2.getAuthInstance().isSignedIn.get(),
+        gapi.auth2.getAuthInstance().currentUser.get()
+      );
       gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSigninStatus);
       this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
       google.handleAuthClick();
     });
+  };
+
+  getUserData = (isSignedin, basicProfile) => {
+    if (isSignedin) {
+      const profile = basicProfile.getBasicProfile();
+      console.log('ID: ' + profile.getId());
+      console.log('Full Name: ' + profile.getName());
+      console.log('Given Name: ' + profile.getGivenName());
+      console.log('Family Name: ' + profile.getFamilyName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail());
+    }
   };
 
   logOut = () => {
