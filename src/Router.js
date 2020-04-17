@@ -31,7 +31,7 @@ export class Router extends Component {
         gapi.auth2.getAuthInstance().isSignedIn.get(),
         gapi.auth2.getAuthInstance().currentUser.get()
       );
-      gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSignInStatus());
+      gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSignInStatus);
       this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
       google.handleAuthClick();
     });
@@ -55,9 +55,7 @@ export class Router extends Component {
     const { users } = this.state;
 
     users.map(user => {
-      if (user.id === id) {
-        return true;
-      } else {
+      if (user.id !== id) {
         axios
           .post('https://peaceful-dawn-85735.herokuapp.com/users', {
             id,
