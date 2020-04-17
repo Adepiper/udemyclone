@@ -10,7 +10,7 @@ export class Navbar extends Component {
   }
 
   render() {
-    const { isSignedIn, loginUser } = this.props;
+    const { isSignedIn, loginUser, logOut } = this.props;
     console.log(isSignedIn);
 
     if (isSignedIn) {
@@ -39,7 +39,7 @@ export class Navbar extends Component {
                 </form>
               </li>
               <li className='float-right'>
-                <button onClick={this.logOut}>Logout</button>
+                <button onClick={logOut}>Logout</button>
               </li>
               <li className='float-right'>
                 <Link to='/courses'>Register</Link>
@@ -56,7 +56,7 @@ export class Navbar extends Component {
             <ul>
               <div>
                 <li className=''>
-                  <button onClick={this.logOut}>Logout</button>
+                  <button onClick={logOut}>Logout</button>
                 </li>
               </div>
 
