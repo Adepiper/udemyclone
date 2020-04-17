@@ -19,7 +19,7 @@ export class Router extends Component {
       selectedVideo: null,
       gapiReady: false,
       isSignedIn: null,
-      user: []
+      users: []
     };
   }
 
@@ -52,11 +52,7 @@ export class Router extends Component {
   };
 
   addUserData = (id, firstname, lastname, Email, imageUrl) => {
-    axios.get('https://peaceful-dawn-85735.herokuapp.com/users').then(res => {
-      console.log(res.data);
-    });
-
-    /*  axios
+    axios
       .post('https://peaceful-dawn-85735.herokuapp.com/users', {
         id,
         firstname,
@@ -67,7 +63,14 @@ export class Router extends Component {
       .then(res => {
         console.log(res.data);
       });
-      */
+  };
+
+  getUsers = () => {
+    axios.get('https://peaceful-dawn-85735.herokuapp.com/users').then(res => {
+      this.setState({
+        users: res.data
+      });
+    });
   };
 
   logOut = () => {
@@ -98,7 +101,7 @@ export class Router extends Component {
 
   componentDidMount() {
     this.props.google.handleClientLoad();
-    this.addUserData();
+    this.getUsers();
   }
 
   render() {
