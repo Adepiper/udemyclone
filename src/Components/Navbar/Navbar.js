@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
+import { withGoogle } from '../../Google';
 
 export class Navbar extends Component {
   constructor(props) {
@@ -9,6 +10,11 @@ export class Navbar extends Component {
       term: ''
     };
   }
+
+  loginIn = () => {
+    const { google } = this.props;
+    google.handleAuthClick();
+  };
 
   toggleBtn() {
     document.body.classList.toggle('show-nav');
@@ -40,7 +46,7 @@ export class Navbar extends Component {
               </form>
             </li>
             <li className='float-right'>
-              <Link to='/login'>Login</Link>
+              <button onClick={this.loginIn}>Login</button>
             </li>
             <li className='float-right'>
               <Link to='/courses'>Register</Link>
@@ -89,4 +95,4 @@ export class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default withGoogle(Navbar);
