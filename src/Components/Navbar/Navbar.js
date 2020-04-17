@@ -24,12 +24,15 @@ export class Navbar extends Component {
 
   logOut = () => {
     const { google } = this.props;
-    google.initClient().then(() => {
-      google.handleSignoutClick();
-      this.setState({
-        isSignedIn: null
-      });
-    });
+    google
+      .initClient()
+      .then(() => {
+        google.handleSignoutClick();
+        this.setState({
+          isSignedIn: null
+        });
+      })
+      .catch(err => console.log(err));
     google.handleSignoutClick();
   };
 
