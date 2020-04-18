@@ -131,17 +131,17 @@ export class Router extends Component {
       .catch(err => alert('No channel by that name'));
       */
   };
-
-  componentDidUpdate() {
-    this.props.google.handleClientLoad();
+  componentWillMount() {
+    this.getUsers();
   }
 
   componentDidMount() {
-    this.getUsers();
+    this.props.google.handleClientLoad();
   }
 
   render() {
     const { isSignedIn, user } = this.state;
+
     return (
       <div>
         <Navbar
