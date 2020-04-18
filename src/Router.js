@@ -100,6 +100,7 @@ export class Router extends Component {
   updateSignInStatus = isSignedIn => {
     if (isSignedIn) {
       localStorage.setItem('user', isSignedIn);
+      this.getSignInStatus();
     }
   };
 
