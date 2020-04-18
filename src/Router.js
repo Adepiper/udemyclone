@@ -19,7 +19,8 @@ export class Router extends Component {
       selectedVideo: null,
       gapiReady: false,
       isSignedIn: null,
-      users: []
+      users: [],
+      user: []
     };
   }
 
@@ -40,20 +41,18 @@ export class Router extends Component {
   getUserData = (isSignedin, basicProfile) => {
     if (isSignedin) {
       const profile = basicProfile.getBasicProfile();
-
       const id = profile.getId();
       const firstName = profile.getGivenName();
       const lastname = profile.getFamilyName();
       const imageUrl = profile.getImageUrl();
       const email = profile.getEmail();
-
       this.addUserData(id, firstName, lastname, email, imageUrl);
+      this.getIndividualData(id, firstName, lastname, email, imageUrl);
     }
   };
 
   addUserData = (id, firstname, lastname, Email, imageUrl) => {
     const { users } = this.state;
-
     users.map(user => {
       if (user.id !== id) {
         axios
@@ -71,6 +70,15 @@ export class Router extends Component {
             console.log(err);
           });
       }
+    });
+  };
+
+  getIndividualData = (id, firstName, lastname, email, imageUrl) => {
+    let userData = [];
+    userData.push(id, firstName, lastname, email, imageUrl);
+    console.log(userData);
+    this.setState({
+      user: userData
     });
   };
 
@@ -106,6 +114,23 @@ export class Router extends Component {
         isSignedIn: null
       });
     }
+  };
+
+  getChannel = channel => {
+    return gapi.client.youtube.channels.list({
+      part: 'snippet, contentDetails, statistics',
+      forUsername: channel
+    });
+    /*.then(res => {
+        const channel = res.result.items[0];
+        this.setState({
+          channel: channel
+        });
+        const playListId = channel.contentDetails.relatedPlaylists.uploads;
+        this.requestVideoPlaylist(playListId);
+      })
+      .catch(err => alert('No channel by that name'));
+      */
   };
 
   componentDidUpdate() {

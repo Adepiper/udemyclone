@@ -7,7 +7,7 @@ export class Instructor extends Component {
       <div className='container-fluid'>
         <div className='container'>
           <div className='instructor'>
-            <header>
+            {/*<header>
               <h3>
                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae,
                 iste?
@@ -51,6 +51,7 @@ export class Instructor extends Component {
                 <button className='instructor-btn'>Submit</button>
               </form>
             </div>
+                */}
           </div>
         </div>
       </div>
