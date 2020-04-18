@@ -1,7 +1,20 @@
+/* global gapi */
 import React, { Component } from 'react';
 import './Instructor.css';
 
 export class Instructor extends Component {
+  getChannel = () => {
+    return gapi.client.youtube.channels
+      .list({
+        part: 'snippet, contentDetails, statistics',
+        id: 'UCz3-6QUWq5fdPHW0P8Yb-nQ'
+      })
+      .then(res => {
+        const channel = res.result.items[0];
+        console.log(channel);
+      })
+      .catch(err => alert('No channel by that name'));
+  };
   render() {
     const { user } = this.props;
     if (user.length > 0) {
@@ -10,6 +23,7 @@ export class Instructor extends Component {
         <div className='container-fluid'>
           <div className='container'>
             <div className='instructor'>
+              <button onClick={this.getChannel}>okay</button>
               {/*<header>
                 <h3>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae,
