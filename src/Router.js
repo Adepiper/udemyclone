@@ -91,6 +91,7 @@ export class Router extends Component {
         this.setState({
           isSignedIn: null
         });
+        localStorage.removeItem('user');
         google.handleSignoutClick();
       })
       .catch(err => console.log(err));
@@ -98,12 +99,9 @@ export class Router extends Component {
 
   updateSignInStatus = isSignedIn => {
     if (isSignedIn) {
+      localStorage.setItem('user', isSignedIn);
       this.setState({
         isSignedIn: isSignedIn
-      });
-    } else {
-      this.setState({
-        isSignedIn: null
       });
     }
   };
