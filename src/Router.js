@@ -33,7 +33,6 @@ export class Router extends Component {
         gapi.auth2.getAuthInstance().isSignedIn.get(),
         gapi.auth2.getAuthInstance().currentUser.get()
       );
-      this.getSignInStatus();
       google.handleAuthClick();
     });
   };
@@ -100,15 +99,14 @@ export class Router extends Component {
 
   updateSignInStatus = isSignedIn => {
     if (isSignedIn) {
-      localStorage.setItem('user', isSignedIn);
+      this.setState({
+        isSignedIn: isSignedIn
+      });
     }
   };
 
   getSignInStatus = () => {
     const isSignedIn = localStorage.getItem('user');
-    this.setState({
-      isSignedIn: isSignedIn
-    });
   };
 
   componentDidUpdate() {
