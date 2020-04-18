@@ -33,6 +33,7 @@ export class Router extends Component {
       );
       gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSignInStatus);
       this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      this.getSignInStatus();
       google.handleAuthClick();
     });
   };
