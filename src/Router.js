@@ -76,7 +76,6 @@ export class Router extends Component {
   getIndividualData = (id, firstName, lastname, email, imageUrl) => {
     let userData = [];
     userData.push(id, firstName, lastname, email, imageUrl);
-    console.log(userData);
     this.setState({
       user: userData
     });
@@ -142,7 +141,8 @@ export class Router extends Component {
   }
 
   render() {
-    const { isSignedIn } = this.state;
+    const { isSignedIn, user } = this.state;
+    console.log(user);
     return (
       <div>
         <Navbar
