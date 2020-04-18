@@ -27,12 +27,12 @@ export class Router extends Component {
     const { google } = this.props;
     google.handleAuthClick();
     google.initClient().then(() => {
-      gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSignInStatus);
-      this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
       this.getUserData(
         gapi.auth2.getAuthInstance().isSignedIn.get(),
         gapi.auth2.getAuthInstance().currentUser.get()
       );
+      gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSignInStatus);
+      this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
       google.handleAuthClick();
     });
   };
@@ -50,6 +50,8 @@ export class Router extends Component {
       this.addUserData(id, firstName, lastname, email, imageUrl);
     }
   };
+
+  compo;
 
   addUserData = (id, firstname, lastname, Email, imageUrl) => {
     const { users } = this.state;
@@ -99,22 +101,24 @@ export class Router extends Component {
 
   updateSignInStatus = isSignedIn => {
     if (isSignedIn) {
+      localStorage.setItem('user', isSignedIn);
+    }
+  };
+  getSignInStatus = () => {
+    const isSignedIn = localStorage.getItem('user');
+    if (isSignedIn) {
       this.setState({
         isSignedIn: isSignedIn
       });
     }
   };
 
-  getSignInStatus = () => {
-    const isSignedIn = localStorage.getItem('user');
-  };
-
-  componentDidUpdate() {
-    this.props.google.handleClientLoad();
+  componentWillMount() {
+    this.getUsers();
   }
 
   componentDidMount() {
-    this.getUsers();
+    this.props.google.handleClientLoad();
   }
 
   render() {
