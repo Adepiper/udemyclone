@@ -142,7 +142,6 @@ export class Router extends Component {
 
   render() {
     const { isSignedIn, user } = this.state;
-    console.log(user);
     return (
       <div>
         <Navbar
@@ -168,7 +167,15 @@ export class Router extends Component {
           )}
         ></Route>
 
-        <Route path='/Instructor' component={Instructor}></Route>
+        <Route
+          path='/instructor'
+          render={prop => (
+            <React.Fragment>
+              <Instructor user={user} />
+            </React.Fragment>
+          )}
+        ></Route>
+
         <Route path='/login' component={Login}></Route>
         <Footer />
       </div>
