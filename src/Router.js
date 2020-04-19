@@ -47,7 +47,7 @@ export class Router extends Component {
       const imageUrl = profile.getImageUrl();
       const email = profile.getEmail();
       this.addUserData(id, firstName, lastname, email, imageUrl);
-      this.getIndividualData(id);
+      // this.getIndividualData(id);
     }
   };
 
@@ -64,7 +64,9 @@ export class Router extends Component {
           imageUrl
         })
         .then(res => {
-          console.log(res.data);
+          const data = res.data;
+          let dataId = data.id;
+          console.log(dataId);
         })
         .catch(err => {
           console.log(err);
@@ -83,7 +85,10 @@ export class Router extends Component {
               imageUrl
             })
             .then(res => {
-              console.log(res.data);
+              const data = res.data;
+              let dataId = data.id;
+              console.log(dataId);
+              //this.getIndividualData(id);
             })
             .catch(err => {
               console.log(err);
@@ -99,10 +104,11 @@ export class Router extends Component {
       .get(`https://peaceful-dawn-85735.herokuapp.com/users/${id}`)
       .then(res => {
         userData.push(res.data);
-        console.log(userData);
+        this.setState({
+          user: userData
+        });
       });
 
-    //userData.push({ id, firstName, lastname, email, imageUrl });
     //  this.setState({
     //  user: userData
     // });
