@@ -95,7 +95,8 @@ export class Router extends Component {
 
   getIndividualData = (id, firstName, lastname, email, imageUrl) => {
     let userData = [];
-    userData.push(id, firstName, lastname, email, imageUrl);
+    userData.push({ id, firstName, lastname, email, imageUrl });
+    console.log(userData);
     this.setState({
       user: userData
     });
@@ -103,7 +104,6 @@ export class Router extends Component {
 
   getUsers = () => {
     axios.get('https://peaceful-dawn-85735.herokuapp.com/users').then(res => {
-      console.log(res.data);
       this.setState({
         users: res.data
       });
@@ -162,7 +162,7 @@ export class Router extends Component {
 
   render() {
     const { isSignedIn, user } = this.state;
-
+    console.log(user);
     return (
       <div>
         <Navbar
