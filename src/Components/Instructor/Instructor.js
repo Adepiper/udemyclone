@@ -3,6 +3,10 @@ import React, { Component } from 'react';
 import './Instructor.css';
 
 export class Instructor extends Component {
+  createChannel = () => {
+    const { user } = this.props;
+  };
+
   getChannel = () => {
     return gapi.client.youtube.channels
       .list({
