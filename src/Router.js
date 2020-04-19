@@ -96,7 +96,9 @@ export class Router extends Component {
   getIndividualData = (id, firstName, lastname, email, imageUrl) => {
     let userData = [];
     userData.push({ id, firstName, lastname, email, imageUrl });
-    console.log(userData);
+    this.setState({
+      user: userData
+    });
   };
 
   getUsers = () => {
