@@ -10,6 +10,9 @@ import Login from './Components/Login/Login';
 import { withGoogle } from './Google';
 import axios from 'axios';
 
+const newChannel =
+  'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
+
 export class Router extends Component {
   constructor(props) {
     super(props);
@@ -26,7 +29,6 @@ export class Router extends Component {
 
   loginUser = () => {
     const { google } = this.props;
-    google.handleAuthClick();
     google.initClient().then(() => {
       this.getUserData(
         gapi.auth2.getAuthInstance().isSignedIn.get(),
@@ -66,7 +68,7 @@ export class Router extends Component {
         .then(res => {
           const data = res.data;
           let dataId = data.id;
-          console.log(dataId);
+          this.getIndividualData(dataId);
         })
         .catch(err => {
           console.log(err);
@@ -120,7 +122,6 @@ export class Router extends Component {
 
   logOut = () => {
     const { google } = this.props;
-    google.handleSignoutClick();
     google
       .initClient()
       .then(() => {
@@ -144,8 +145,12 @@ export class Router extends Component {
     }
   };
 
+  createNewChannel = () => {
+    window.open(newChannel);
+  };
+
   getChannel = channel => {
-    return gapi.client.youtube.channels.list({
+    gapi.client.youtube.channels.list({
       part: 'snippet, contentDetails, statistics',
       forUsername: channel
     });
@@ -199,7 +204,10 @@ export class Router extends Component {
           path='/instructor'
           render={prop => (
             <React.Fragment>
-              <Instructor user={user} />
+              <Instructor
+                user={user}
+                createNewChannel={this.createNewChannel}
+              />
             </React.Fragment>
           )}
         ></Route>

@@ -20,14 +20,14 @@ export class Instructor extends Component {
       .catch(err => alert('No channel by that name'));
   };
   render() {
-    const { user } = this.props;
+    const { user, createNewChannel } = this.props;
     if (user.length > 0) {
       console.log(user);
       return (
         <div className='container-fluid'>
           <div className='container'>
             <div className='instructor'>
-              <button onClick={this.getChannel}>okay</button>
+              <button onClick={createNewChannel}>okay</button>
               {/*<header>
                 <h3>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae,
