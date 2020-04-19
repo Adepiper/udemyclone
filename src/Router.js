@@ -53,26 +53,20 @@ export class Router extends Component {
 
   addUserData = (id, firstname, lastname, Email, imageUrl) => {
     const { users } = this.state;
-    users.map(user => {
-      if (user.id === id) {
-        return false;
-      } else {
-        axios
-          .post('https://peaceful-dawn-85735.herokuapp.com/users', {
-            id,
-            firstname,
-            lastname,
-            Email,
-            imageUrl
-          })
-          .then(res => {
-            console.log(res.data);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
-    });
+    axios
+      .post('https://peaceful-dawn-85735.herokuapp.com/users', {
+        id,
+        firstname,
+        lastname,
+        Email,
+        imageUrl
+      })
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   getIndividualData = (id, firstName, lastname, email, imageUrl) => {
