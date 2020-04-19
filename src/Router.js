@@ -74,7 +74,7 @@ export class Router extends Component {
     } else {
       users.forEach(user => {
         if (user.id === id) {
-          return false;
+          this.getIndividualData(user.id);
         } else {
           axios
             .post('https://peaceful-dawn-85735.herokuapp.com/users', {
@@ -87,8 +87,7 @@ export class Router extends Component {
             .then(res => {
               const data = res.data;
               let dataId = data.id;
-              console.log(dataId);
-              //this.getIndividualData(id);
+              this.getIndividualData(dataId);
             })
             .catch(err => {
               console.log(err);
@@ -104,14 +103,11 @@ export class Router extends Component {
       .get(`https://peaceful-dawn-85735.herokuapp.com/users/${id}`)
       .then(res => {
         userData.push(res.data);
+        console.log(userData);
         this.setState({
           user: userData
         });
       });
-
-    //  this.setState({
-    //  user: userData
-    // });
   };
 
   getUsers = () => {
