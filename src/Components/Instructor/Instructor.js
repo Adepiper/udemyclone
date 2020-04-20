@@ -1,6 +1,10 @@
 /* global gapi */
 import React, { Component } from 'react';
 import './Instructor.css';
+import { Link } from 'react-router-dom';
+
+const newChannel =
+  'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
 
 export class Instructor extends Component {
   createChannel = () => {
@@ -28,6 +32,7 @@ export class Instructor extends Component {
           <div className='container'>
             <div className='instructor'>
               <button onClick={createNewChannel}>okay</button>
+              <Link to={newChannel}>New Channel </Link>
               {/*<header>
                 <h3>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae,

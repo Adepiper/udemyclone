@@ -145,10 +145,6 @@ export class Router extends Component {
     }
   };
 
-  createNewChannel = () => {
-    window.open(newChannel);
-  };
-
   getChannel = channel => {
     gapi.client.youtube.channels.list({
       part: 'snippet, contentDetails, statistics',
