@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import './Instructor.css';
 import { Link } from 'react-router-dom';
+import Login from '../Login/Login';
 
 const newChannel =
   'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
@@ -9,6 +10,10 @@ const newChannel =
 export class Instructor extends Component {
   createChannel = () => {
     const { user } = this.props;
+  };
+
+  createChannel = () => {
+    window.open(newChannel);
   };
 
   getChannel = () => {
@@ -24,17 +29,27 @@ export class Instructor extends Component {
       .catch(err => alert('No channel by that name'));
   };
   render() {
-    const { user, createNewChannel } = this.props;
+    const { user, createNewChannel, loginUser } = this.props;
     if (user.length > 0) {
       console.log(user);
       return (
         <div className='container-fluid'>
           <div className='container'>
+            <div className='options'>
+              <header>
+                <h4>hi {/*user.firstname*/}, Welcome.</h4>
+              </header>
+              <div className='formoptions'>
+                <form action=''>
+                  <input type='text' placeholder='Enter channel name' />
+
+                  <button>Find Channel</button>
+                </form>
+                <p>Or</p>
+                <button>Create Channel</button>
+              </div>
+            </div>
             <div className='instructor'>
-              <button onClick={createNewChannel}>okay</button>
-              <a href='https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done'>
-                okay
-              </a>
               {/*<header>
                 <h3>
                   Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae,
@@ -85,7 +100,7 @@ export class Instructor extends Component {
         </div>
       );
     } else {
-      return false;
+      return <Login loginUser={loginUser} />;
     }
   }
 }

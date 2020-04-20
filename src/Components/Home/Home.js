@@ -1,29 +1,38 @@
 import React, { Component } from 'react';
 import './Home.css';
 import Courses from './Courses';
+import Login from '../Login/Login';
 
 export class Home extends Component {
   render() {
-    return (
-      <div className='container-fluid'>
-        <div className='container'>
-          <header className='header'>
-            <div className='jumbotron text-center'>
-              <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Ratione hic repudiandae harum asperiores iure ipsum dolore odit.
-                Praesentium, quasi ipsum!
-              </p>
-              <button className='btn btn-outline-primary'>Go to courses</button>
-            </div>
-          </header>
+    const { isSignedIn, loginUser } = this.props;
 
-          <div className=' courses'>
-            <Courses />
+    if (isSignedIn) {
+      return (
+        <div className='container-fluid'>
+          <div className='container'>
+            <header className='header'>
+              <div className='jumbotron text-center'>
+                <p>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+                  Ratione hic repudiandae harum asperiores iure ipsum dolore
+                  odit. Praesentium, quasi ipsum!
+                </p>
+                <button className='btn btn-outline-primary'>
+                  Go to courses
+                </button>
+              </div>
+            </header>
+
+            <div className=' courses'>
+              <Courses />
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return <Login loginUser={loginUser} />;
+    }
   }
 }
 

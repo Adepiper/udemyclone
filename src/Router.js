@@ -183,7 +183,7 @@ export class Router extends Component {
           path='/'
           render={prop => (
             <React.Fragment>
-              <Home />
+              <Home isSignedIn={isSignedIn} loginUser={this.loginUser} />
             </React.Fragment>
           )}
         ></Route>
@@ -203,6 +203,7 @@ export class Router extends Component {
               <Instructor
                 user={user}
                 createNewChannel={this.createNewChannel}
+                loginUser={this.loginUser}
               />
             </React.Fragment>
           )}

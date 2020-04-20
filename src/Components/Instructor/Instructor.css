@@ -1,9 +1,83 @@
+.container {
+  min-height: 80vh;
+}
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
+.options header {
+  text-align: center;
+  padding: 20px;
+  margin: 30px;
+}
+
+.options .formoptions {
+  display: flex;
+  justify-content: space-around;
+  align-content: center;
+}
+
+.options .formoptions p {
+  margin: 50px;
+}
+
+.options .formoptions button {
+  margin: 10px;
+  padding: 10px;
+  height: 100%;
+  border-radius: 5px;
+  border: none;
+  width: 30%;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.options .formoptions form button {
+  margin: 10px;
+  height: auto;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  color: white;
+}
+.options .formoptions form input[type='text'] {
+  padding: 10px;
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  margin: 10px;
+  width: 70%;
+}
+
+.notSignedIn {
+  display: flex;
+  margin: 0;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  flex-direction: column;
+  min-height: 70vh;
+}
+
+.notSignedIn button {
+  margin: 20px 30%;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
 .instructor {
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
   margin: 0;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  flex-direction: column;
+  min-height: 70vh;
 }
 
 .instructor header {
@@ -96,5 +170,36 @@
   }
   .instructor .form {
     width: 100%;
+  }
+
+  .options .formoptions {
+    display: block;
+    width: 100%;
+  }
+  .options .formoptions p {
+    text-align: center;
+    padding: 10px;
+    margin: 5px;
+  }
+
+  .options .formoptions button {
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    width: 100%;
+    color: white;
+  }
+  .options .formoptions form input[type='text'] {
+    padding: 10px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin: 10px;
+    width: 70%;
+  }
+
+  .notSignedIn button {
+    margin: 20px;
   }
 }
