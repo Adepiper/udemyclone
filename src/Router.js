@@ -31,13 +31,14 @@ export class Router extends Component {
 
   loginUser = () => {
     const { google } = this.props;
+    const googleAuth = gapi.auth2.getAuthInstance();
     google.initClient().then(() => {
       this.getUserData(
-        gapi.auth2.getAuthInstance().isSignedIn.get(),
-        gapi.auth2.getAuthInstance().currentUser.get()
+        googleAuth.isSignedIn.get(),
+        googleAuth.currentUser.get()
       );
-      gapi.auth2.getAuthInstance().isSignedIn.listen(this.updateSignInStatus);
-      this.updateSignInStatus(gapi.auth2.getAuthInstance().isSignedIn.get());
+      googleAuth.isSignedIn.listen(this.updateSignInStatus);
+      this.updateSignInStatus(googleAuth.currentUser.get());
       google.handleAuthClick();
     });
   };
