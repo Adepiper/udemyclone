@@ -13,7 +13,7 @@ import axios from 'axios';
 const newChannel =
   'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
 
-const SCOPE = 'https://www.googleapis.com/auth/drive.metadata.readonly';
+const SCOPES = 'https://www.googleapis.com/auth/youtube.force-ssl';
 
 export class Router extends Component {
   constructor(props) {
@@ -135,7 +135,7 @@ export class Router extends Component {
   };
 
   updateSignInStatus = user => {
-    const isSignedIn = user.hasGrantedScopes(SCOPE);
+    const isSignedIn = user.hasGrantedScopes(SCOPES);
     if (isSignedIn) {
       this.setState({
         isSignedIn: isSignedIn
