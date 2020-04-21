@@ -13,6 +13,8 @@ import axios from 'axios';
 const newChannel =
   'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
 
+const SCOPE = 'https://www.googleapis.com/auth/drive.metadata.readonly';
+
 export class Router extends Component {
   constructor(props) {
     super(props);
@@ -105,7 +107,6 @@ export class Router extends Component {
       .get(`https://peaceful-dawn-85735.herokuapp.com/users/${id}`)
       .then(res => {
         userData.push(res.data);
-        console.log(userData);
         this.setState({
           user: userData
         });
@@ -133,7 +134,8 @@ export class Router extends Component {
       .catch(err => console.log(err));
   };
 
-  updateSignInStatus = isSignedIn => {
+  updateSignInStatus = user => {
+    const isSignedIn = user.hasGrantedScopes(SCOPE);
     if (isSignedIn) {
       this.setState({
         isSignedIn: isSignedIn
