@@ -29,13 +29,13 @@ export class Instructor extends Component {
     const { user, loginUser, getChannel, channel } = this.props;
     if (user.length > 0) {
       console.log(channel);
-      console.log(user);
+      console.log(user.firstname);
       return (
         <div className='container-fluid'>
           <div className='container'>
             <div className='options'>
               <header>
-                <h4>hi {user.firstName}, Welcome.</h4>
+                <h4>hi {user.firstname}, Welcome.</h4>
               </header>
               {channel.length === 0 ? (
                 <FormOptions
