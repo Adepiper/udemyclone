@@ -28,6 +28,7 @@ export class Instructor extends Component {
   render() {
     const { user, loginUser, getChannel, channel } = this.props;
     if (user.length > 0) {
+      console.log(channel);
       return (
         <div className='container-fluid'>
           <div className='container'>
@@ -35,13 +36,13 @@ export class Instructor extends Component {
               <header>
                 <h4>hi {user.firstName}, Welcome.</h4>
               </header>
-              {channel.length > 0 ? (
-                <InstructorDetails />
-              ) : (
+              {channel.length === 0 ? (
                 <FormOptions
                   getChannel={getChannel}
                   createChannel={this.createChannel}
                 />
+              ) : (
+                <InstructorDetails />
               )}
             </div>
             <div className='instructor'>
