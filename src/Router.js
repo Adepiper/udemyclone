@@ -108,7 +108,8 @@ export class Router extends Component {
     axios
       .get(`https://peaceful-dawn-85735.herokuapp.com/users/${id}`)
       .then(res => {
-        userData.push(res.data);
+        const data = JSON.parse(res.data);
+        userData.push(data);
         this.setState({
           user: userData
         });
