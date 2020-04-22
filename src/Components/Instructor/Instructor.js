@@ -3,18 +3,12 @@ import React, { Component } from 'react';
 import './Instructor.css';
 import { Link } from 'react-router-dom';
 import Login from '../Login/Login';
+import FormOptions from './FormOptions';
 
 const newChannel =
   'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
 
 export class Instructor extends Component {
-  state = {
-    name: ''
-  };
-  createChannel = () => {
-    const { user } = this.props;
-  };
-
   onChange = e => {
     this.setState({
       name: e.target.value
@@ -32,21 +26,18 @@ export class Instructor extends Component {
 
   render() {
     const { user, loginUser, getChannel } = this.props;
-    const { name } = this.state;
     if (user.length > 0) {
-      console.log(user);
       return (
         <div className='container-fluid'>
           <div className='container'>
             <div className='options'>
               <header>
-                <h4>hi {/*user.firstname*/}, Welcome.</h4>
+                <h4>hi {user.firstname}, Welcome.</h4>
               </header>
-              <div className='formoptions'>
-                <button onClick={getChannel}>Find Channel</button>
-                <p>Or</p>
-                <button onClick={this.createChannel}>Create Channel</button>
-              </div>
+              <FormOptions
+                getChannel={getChannel}
+                createChannel={this.createChannel}
+              />
             </div>
             <div className='instructor'>
               {/*<header>
