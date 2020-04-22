@@ -31,7 +31,7 @@ export class Instructor extends Component {
   };
 
   render() {
-    const { user, loginUser } = this.props;
+    const { user, loginUser, getChannel } = this.props;
     const { name } = this.state;
     if (user.length > 0) {
       console.log(user);
@@ -43,18 +43,9 @@ export class Instructor extends Component {
                 <h4>hi {/*user.firstname*/}, Welcome.</h4>
               </header>
               <div className='formoptions'>
-                <form onSubmit={this.submit}>
-                  <input
-                    type='text'
-                    placeholder='Enter channel name'
-                    onChange={this.onChange}
-                    value={name}
-                  />
-
-                  <button>Find Channel</button>
-                </form>
+                <button onClick={getChannel}>Find Channel</button>
                 <p>Or</p>
-                <button>Create Channel</button>
+                <button onClick={this.createChannel}>Create Channel</button>
               </div>
             </div>
             <div className='instructor'>

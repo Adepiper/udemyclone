@@ -25,7 +25,8 @@ export class Router extends Component {
       gapiReady: false,
       isSignedIn: null,
       users: [],
-      user: []
+      user: [],
+      channel: []
     };
   }
 
@@ -147,7 +148,7 @@ export class Router extends Component {
     }
   };
 
-  getChannel = channel => {
+  getChannel = () => {
     gapi.client.youtube.channels
       .list({
         part: 'snippet, contentDetails, statistics',
