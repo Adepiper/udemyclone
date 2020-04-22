@@ -157,6 +157,9 @@ export class Router extends Component {
       .then(res => {
         const channel = res.result.items[0];
         console.log(channel);
+        this.setState({
+          channel: channel
+        });
       })
       .catch(err => alert('No channel by that name'));
   };
@@ -169,7 +172,7 @@ export class Router extends Component {
   }
 
   render() {
-    const { isSignedIn, user } = this.state;
+    const { isSignedIn, user, channel } = this.state;
     return (
       <div>
         <Navbar
@@ -204,6 +207,7 @@ export class Router extends Component {
                 createNewChannel={this.createNewChannel}
                 loginUser={this.loginUser}
                 getChannel={this.getChannel}
+                channel={channel}
               />
             </React.Fragment>
           )}

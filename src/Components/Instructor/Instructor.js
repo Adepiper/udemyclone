@@ -4,6 +4,7 @@ import './Instructor.css';
 import { Link } from 'react-router-dom';
 import Login from '../Login/Login';
 import FormOptions from './FormOptions';
+import InstructorDetails from './InstructorDetails';
 
 const newChannel =
   'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
@@ -25,19 +26,23 @@ export class Instructor extends Component {
   };
 
   render() {
-    const { user, loginUser, getChannel } = this.props;
+    const { user, loginUser, getChannel, channel } = this.props;
     if (user.length > 0) {
       return (
         <div className='container-fluid'>
           <div className='container'>
             <div className='options'>
               <header>
-                <h4>hi {user.firstname}, Welcome.</h4>
+                <h4>hi {user.firstName}, Welcome.</h4>
               </header>
-              <FormOptions
-                getChannel={getChannel}
-                createChannel={this.createChannel}
-              />
+              {channel.length > 0 ? (
+                <InstructorDetails />
+              ) : (
+                <FormOptions
+                  getChannel={getChannel}
+                  createChannel={this.createChannel}
+                />
+              )}
             </div>
             <div className='instructor'>
               {/*<header>
