@@ -28,7 +28,8 @@ export class Router extends Component {
       isSignedIn: null,
       users: [],
       user: [],
-      channel: []
+      channel: [],
+      channels: []
     };
   }
 
@@ -131,12 +132,12 @@ export class Router extends Component {
   };
 
   getIndividualData = id => {
-    let userData = [];
+    // let userData = [];
     axios.get(`${db}/users/${id}`).then(res => {
       const data = res.data;
-      userData.push(data);
+      // userData.push(data);
       this.setState({
-        user: userData
+        user: data
       });
     });
   };
@@ -149,7 +150,15 @@ export class Router extends Component {
     });
   };
 
-  getChannel = () => {
+  getChannels = () => {
+    axios.get(`${db}/channels`).then(res => {
+      this.setState({
+        channels: res.data
+      });
+    });
+  };
+
+  getChannelData = () => {
     gapi.client.youtube.channels
       .list({
         part: 'snippet, contentDetails, statistics',
@@ -165,19 +174,58 @@ export class Router extends Component {
       .catch(err => alert('No channel by that name'));
   };
 
-  setChannels = channels => {
+  setChannels = channelData => {
+    const { channels } = this.state;
+
+    if (channels.length === 0) {
+      axios
+        .post(`${db}/channels`, channelData)
+        .then(res => {
+          const channelData = res.data;
+          const channelId = channelData.id;
+          this.getIndividualChannel(channelId);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      channels.map(channel => {
+        if (channel.id === channelData.id) {
+          this.getIndividualChannel(channel.id);
+        } else {
+          axios
+            .post(`${db}/channels`, channelData)
+            .then(res => {
+              const channelData = res.data;
+              const channelId = channelData.id;
+              this.getIndividualChannel(channelId);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }
+      });
+    }
+  };
+
+  getIndividualChannel = id => {
+    //let channelData = [];
     axios
-      .post(`${db}/channels`, channels)
+      .get(`${db}/channels/${id}`)
       .then(res => {
-        console.log(res.data);
+        const data = res.data;
+
+        this.setState({
+          channel: data
+        });
       })
       .catch(err => {
         console.log(err);
       });
   };
-
   componentWillMount() {
     this.getUsers();
+    this.getChannels();
   }
 
   componentDidMount() {
