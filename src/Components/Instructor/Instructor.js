@@ -8,28 +8,31 @@ const newChannel =
   'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
 
 export class Instructor extends Component {
+  state = {
+    name: ''
+  };
   createChannel = () => {
     const { user } = this.props;
   };
 
+  onChange = e => {
+    this.setState({
+      name: e.target.value
+    });
+  };
   createChannel = () => {
     window.open(newChannel);
   };
 
-  getChannel = () => {
-    return gapi.client.youtube.channels
-      .list({
-        part: 'snippet, contentDetails, statistics',
-        id: 'UCz3-6QUWq5fdPHW0P8Yb-nQ'
-      })
-      .then(res => {
-        const channel = res.result.items[0];
-        console.log(channel);
-      })
-      .catch(err => alert('No channel by that name'));
+  submit = e => {
+    e.preventDefault();
+    const { getChannel } = this.props;
+    getChannel(this.state.name);
   };
+
   render() {
-    const { user, createNewChannel, loginUser } = this.props;
+    const { user } = this.props;
+    const { name } = this.state;
     if (user.length > 0) {
       console.log(user);
       return (
@@ -41,9 +44,14 @@ export class Instructor extends Component {
               </header>
               <div className='formoptions'>
                 <form action=''>
-                  <input type='text' placeholder='Enter channel name' />
+                  <input
+                    type='text'
+                    placeholder='Enter channel name'
+                    onChange={this.onChange}
+                    value={name}
+                  />
 
-                  <button>Find Channel</button>
+                  <button onClick={this.getChannel(name)}>Find Channel</button>
                 </form>
                 <p>Or</p>
                 <button>Create Channel</button>
@@ -100,7 +108,23 @@ export class Instructor extends Component {
         </div>
       );
     } else {
-      return <Login loginUser={loginUser} />;
+      return (
+        //<Login loginUser={loginUser}/>}
+        <div className='formoptions'>
+          <form onSubmit={this.submit}>
+            <input
+              type='text'
+              placeholder='Enter channel name'
+              onChange={this.onChange}
+              value={name}
+            />
+
+            <button>Find Channel</button>
+          </form>
+          <p>Or</p>
+          <button>Create Channel</button>
+        </div>
+      );
     }
   }
 }

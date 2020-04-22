@@ -135,8 +135,7 @@ export class Router extends Component {
       .catch(err => console.log(err));
   };
 
-  updateSignInStatus = user => {
-    const isSignedIn = user.hasGrantedScopes(SCOPES);
+  updateSignInStatus = isSignedIn => {
     if (isSignedIn) {
       this.setState({
         isSignedIn: isSignedIn
@@ -149,20 +148,16 @@ export class Router extends Component {
   };
 
   getChannel = channel => {
-    gapi.client.youtube.channels.list({
-      part: 'snippet, contentDetails, statistics',
-      forUsername: channel
-    });
-    /*.then(res => {
+    gapi.client.youtube.channels
+      .list({
+        part: 'snippet, contentDetails, statistics',
+        forUsername: channel
+      })
+      .then(res => {
         const channel = res.result.items[0];
-        this.setState({
-          channel: channel
-        });
-        const playListId = channel.contentDetails.relatedPlaylists.uploads;
-        this.requestVideoPlaylist(playListId);
+        console.log(channel);
       })
       .catch(err => alert('No channel by that name'));
-      */
   };
   componentWillMount() {
     this.getUsers();
@@ -207,6 +202,7 @@ export class Router extends Component {
                 user={user}
                 createNewChannel={this.createNewChannel}
                 loginUser={this.loginUser}
+                getChannel={this.getChannel}
               />
             </React.Fragment>
           )}
