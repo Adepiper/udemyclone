@@ -27,7 +27,7 @@ export class Instructor extends Component {
   submit = e => {
     e.preventDefault();
     const { getChannel } = this.props;
-    getChannel(this.state.name);
+    getChannel();
   };
 
   render() {
