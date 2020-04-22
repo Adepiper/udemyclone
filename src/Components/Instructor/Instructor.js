@@ -31,7 +31,7 @@ export class Instructor extends Component {
   };
 
   render() {
-    const { user } = this.props;
+    const { user, loginUser } = this.props;
     const { name } = this.state;
     if (user.length > 0) {
       console.log(user);
@@ -43,7 +43,7 @@ export class Instructor extends Component {
                 <h4>hi {/*user.firstname*/}, Welcome.</h4>
               </header>
               <div className='formoptions'>
-                <form action=''>
+                <form onSubmit={this.submit}>
                   <input
                     type='text'
                     placeholder='Enter channel name'
@@ -51,7 +51,7 @@ export class Instructor extends Component {
                     value={name}
                   />
 
-                  <button onClick={this.getChannel(name)}>Find Channel</button>
+                  <button>Find Channel</button>
                 </form>
                 <p>Or</p>
                 <button>Create Channel</button>
@@ -108,23 +108,7 @@ export class Instructor extends Component {
         </div>
       );
     } else {
-      return (
-        //<Login loginUser={loginUser}/>}
-        <div className='formoptions'>
-          <form onSubmit={this.submit}>
-            <input
-              type='text'
-              placeholder='Enter channel name'
-              onChange={this.onChange}
-              value={name}
-            />
-
-            <button>Find Channel</button>
-          </form>
-          <p>Or</p>
-          <button>Create Channel</button>
-        </div>
-      );
+      return <Login loginUser={loginUser} />;
     }
   }
 }
