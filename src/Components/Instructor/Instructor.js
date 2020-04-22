@@ -44,7 +44,7 @@ export class Instructor extends Component {
                   createChannel={this.createChannel}
                 />
               ) : (
-                <InstructorDetails />
+                <InstructorDetails channel={channel} />
               )}
             </div>
             <div className='instructor'>

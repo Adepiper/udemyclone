@@ -10,6 +10,8 @@ import Login from './Components/Login/Login';
 import { withGoogle } from './Google';
 import axios from 'axios';
 
+const db = 'https://peaceful-dawn-85735.herokuapp.com';
+
 const newChannel =
   'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
 
@@ -44,86 +46,6 @@ export class Router extends Component {
     });
   };
 
-  getUserData = (isSignedin, basicProfile) => {
-    if (isSignedin) {
-      const profile = basicProfile.getBasicProfile();
-      const id = profile.getId();
-      const firstName = profile.getGivenName();
-      const lastname = profile.getFamilyName();
-      const imageUrl = profile.getImageUrl();
-      const email = profile.getEmail();
-      this.addUserData(id, firstName, lastname, email, imageUrl);
-      // this.getIndividualData(id);
-    }
-  };
-
-  addUserData = (id, firstname, lastname, Email, imageUrl) => {
-    const { users } = this.state;
-
-    if (users.length === 0) {
-      axios
-        .post('https://peaceful-dawn-85735.herokuapp.com/users', {
-          id,
-          firstname,
-          lastname,
-          Email,
-          imageUrl
-        })
-        .then(res => {
-          const data = res.data;
-          let dataId = data.id;
-          this.getIndividualData(dataId);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    } else {
-      users.forEach(user => {
-        if (user.id === id) {
-          this.getIndividualData(user.id);
-        } else {
-          axios
-            .post('https://peaceful-dawn-85735.herokuapp.com/users', {
-              id,
-              firstname,
-              lastname,
-              Email,
-              imageUrl
-            })
-            .then(res => {
-              const data = res.data;
-              let dataId = data.id;
-              this.getIndividualData(dataId);
-            })
-            .catch(err => {
-              console.log(err);
-            });
-        }
-      });
-    }
-  };
-
-  getIndividualData = id => {
-    let userData = [];
-    axios
-      .get(`https://peaceful-dawn-85735.herokuapp.com/users/${id}`)
-      .then(res => {
-        const data = res.data;
-        userData.push(data);
-        this.setState({
-          user: userData
-        });
-      });
-  };
-
-  getUsers = () => {
-    axios.get('https://peaceful-dawn-85735.herokuapp.com/users').then(res => {
-      this.setState({
-        users: res.data
-      });
-    });
-  };
-
   logOut = () => {
     const { google } = this.props;
     google
@@ -149,6 +71,84 @@ export class Router extends Component {
     }
   };
 
+  getUserData = (isSignedin, basicProfile) => {
+    if (isSignedin) {
+      const profile = basicProfile.getBasicProfile();
+      const id = profile.getId();
+      const firstName = profile.getGivenName();
+      const lastname = profile.getFamilyName();
+      const imageUrl = profile.getImageUrl();
+      const email = profile.getEmail();
+      this.addUserData(id, firstName, lastname, email, imageUrl);
+      // this.getIndividualData(id);
+    }
+  };
+
+  addUserData = (id, firstname, lastname, Email, imageUrl) => {
+    const { users } = this.state;
+
+    if (users.length === 0) {
+      axios
+        .post(`${db}/users`, {
+          id,
+          firstname,
+          lastname,
+          Email,
+          imageUrl
+        })
+        .then(res => {
+          const data = res.data;
+          let dataId = data.id;
+          this.getIndividualData(dataId);
+        })
+        .catch(err => {
+          console.log(err);
+        });
+    } else {
+      users.forEach(user => {
+        if (user.id === id) {
+          this.getIndividualData(user.id);
+        } else {
+          axios
+            .post(`${db}/users`, {
+              id,
+              firstname,
+              lastname,
+              Email,
+              imageUrl
+            })
+            .then(res => {
+              const data = res.data;
+              let dataId = data.id;
+              this.getIndividualData(dataId);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }
+      });
+    }
+  };
+
+  getIndividualData = id => {
+    let userData = [];
+    axios.get(`${db}/users/${id}`).then(res => {
+      const data = res.data;
+      userData.push(data);
+      this.setState({
+        user: userData
+      });
+    });
+  };
+
+  getUsers = () => {
+    axios.get(`${db}/users`).then(res => {
+      this.setState({
+        users: res.data
+      });
+    });
+  };
+
   getChannel = () => {
     gapi.client.youtube.channels
       .list({
@@ -157,12 +157,25 @@ export class Router extends Component {
       })
       .then(res => {
         const channel = res.result.items[0];
+        this.setChannels(channel);
         this.setState({
           channel: channel
         });
       })
       .catch(err => alert('No channel by that name'));
   };
+
+  setChannels = channels => {
+    axios
+      .post(`${db}/channels`, channels)
+      .then(res => {
+        console.log(res.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   componentWillMount() {
     this.getUsers();
   }
