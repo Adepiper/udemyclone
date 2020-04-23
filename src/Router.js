@@ -237,7 +237,6 @@ export class Router extends Component {
 
   componentWillMount() {
     this.getUsers();
-    this.getChannels();
   }
 
   componentDidMount() {
@@ -281,6 +280,7 @@ export class Router extends Component {
                 loginUser={this.loginUser}
                 getChannelData={this.getChannelData}
                 channel={channel}
+                getChannels={this.getChannels}
               />
             </React.Fragment>
           )}
