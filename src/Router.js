@@ -211,6 +211,7 @@ export class Router extends Component {
       .get(`${db}/channels/${id}`)
       .then(res => {
         const data = res.data;
+        console.log(data);
         channelData.push(data);
         this.setState({
           channel: channelData
@@ -264,7 +265,7 @@ export class Router extends Component {
                 user={user}
                 createNewChannel={this.createNewChannel}
                 loginUser={this.loginUser}
-                getChannel={this.getChannelData}
+                getChannelData={this.getChannelData}
                 channel={channel}
               />
             </React.Fragment>

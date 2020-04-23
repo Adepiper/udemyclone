@@ -19,18 +19,10 @@ export class Instructor extends Component {
     window.open(newChannel);
   };
 
-  submit = e => {
-    e.preventDefault();
-    const { getChannel } = this.props;
-    getChannel();
-  };
-
   render() {
     const { user, loginUser, getChannelData, channel } = this.props;
     if (user.length > 0) {
       console.log(channel);
-      console.log(user[0].firstname);
-      console.log(user);
       return (
         <div className='container-fluid'>
           <div className='container'>
