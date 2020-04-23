@@ -146,13 +146,15 @@ export class Router extends Component {
   getChannels = () => {
     axios.get(`${db}/channels`).then(res => {
       const channels = res.data;
+      this.setState({
+        channels
+      });
+
       const playListId = channels.forEach(channel => {
         return channel.contentDetails.relatedPlaylists.uploads;
       });
-      this.requestVideoPlaylist(playListId);
-      this.setState({
-        channels: res.data
-      });
+      //this.requestVideoPlaylist(playListId);
+      console.log(playListId);
     });
   };
 
