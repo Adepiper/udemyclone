@@ -19,11 +19,6 @@ export class Instructor extends Component {
     window.open(newChannel);
   };
 
-  componentDidMount() {
-    const { getChannel } = this.props;
-    getChannel();
-  }
-
   render() {
     const { user, loginUser, getChannelData, channel } = this.props;
     if (user.length > 0) {

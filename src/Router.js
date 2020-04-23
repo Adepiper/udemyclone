@@ -150,7 +150,7 @@ export class Router extends Component {
         channels
       });
 
-      const playListId = channels.forEach(channel => {
+      const playListId = channels.map(channel => {
         return channel.contentDetails.relatedPlaylists.uploads;
       });
       //this.requestVideoPlaylist(playListId);
@@ -233,7 +233,9 @@ export class Router extends Component {
       console.log(response);
     });
   };
-  componentDidUpdate() {}
+  componentDidUpdate() {
+    this.getChannels();
+  }
 
   componentWillMount() {
     this.getUsers();
@@ -280,7 +282,6 @@ export class Router extends Component {
                 loginUser={this.loginUser}
                 getChannelData={this.getChannelData}
                 channel={channel}
-                getChannels={this.getChannels}
               />
             </React.Fragment>
           )}
