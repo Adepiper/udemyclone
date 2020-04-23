@@ -239,9 +239,12 @@ export class Router extends Component {
     });
     */
   };
+  componentDidUpdate() {
+    this.getChannels();
+  }
+
   componentWillMount() {
     this.getUsers();
-    this.getChannels();
   }
 
   componentDidMount() {
