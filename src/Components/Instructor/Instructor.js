@@ -27,7 +27,7 @@ export class Instructor extends Component {
           <div className='container'>
             <div className='options'>
               <header>
-                <h4>hi {user[0].firstname}, Welcome.</h4>
+                <h4>Hi {user[0].firstname}, Welcome.</h4>
               </header>
               {channel.length === 0 ? (
                 <FormOptions
