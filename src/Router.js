@@ -132,12 +132,12 @@ export class Router extends Component {
   };
 
   getIndividualData = id => {
-    // let userData = [];
+    let userData = [];
     axios.get(`${db}/users/${id}`).then(res => {
       const data = res.data;
-      // userData.push(data);
+      userData.push(data);
       this.setState({
-        user: data
+        user: userData
       });
     });
   };
@@ -167,9 +167,6 @@ export class Router extends Component {
       .then(res => {
         const channel = res.result.items[0];
         this.setChannels(channel);
-        this.setState({
-          channel: channel
-        });
       })
       .catch(err => alert('No channel by that name'));
   };
@@ -209,14 +206,14 @@ export class Router extends Component {
   };
 
   getIndividualChannel = id => {
-    //let channelData = [];
+    let channelData = [];
     axios
       .get(`${db}/channels/${id}`)
       .then(res => {
         const data = res.data;
-
+        channelData.push(data);
         this.setState({
-          channel: data
+          channel: channelData
         });
       })
       .catch(err => {
@@ -267,7 +264,7 @@ export class Router extends Component {
                 user={user}
                 createNewChannel={this.createNewChannel}
                 loginUser={this.loginUser}
-                getChannel={this.getChannel}
+                getChannel={this.getChannelData}
                 channel={channel}
               />
             </React.Fragment>

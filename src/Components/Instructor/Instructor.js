@@ -26,7 +26,7 @@ export class Instructor extends Component {
   };
 
   render() {
-    const { user, loginUser, getChannel, channel } = this.props;
+    const { user, loginUser, getChannelData, channel } = this.props;
     if (user.length > 0) {
       console.log(channel);
       console.log(user[0].firstname);
@@ -40,7 +40,7 @@ export class Instructor extends Component {
               </header>
               {channel.length === 0 ? (
                 <FormOptions
-                  getChannel={getChannel}
+                  getChannel={getChannelData}
                   createChannel={this.createChannel}
                 />
               ) : (
