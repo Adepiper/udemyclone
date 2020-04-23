@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 export class InstructorDetails extends Component {
   render() {
     const { channel } = this.props;
-    console.log(channel);
     if (channel.length > 0) {
       return (
         <div className='collection'>
@@ -17,7 +16,7 @@ export class InstructorDetails extends Component {
             </li>
             <li className='collection-item'>
               {' '}
-              <strong>Subscriber:</strong>
+              <strong>Subscribers:</strong>
               {channel[0].statistics.subscriberCount}
             </li>
             <li className='collection-item'>
@@ -31,7 +30,9 @@ export class InstructorDetails extends Component {
               {channel[0].statistics.viewCount}
             </li>
           </ul>
-          <label htmlFor='Description'>Description:</label>
+          <label htmlFor='Description'>
+            <strong>Description:</strong>{' '}
+          </label>
           <p>{channel[0].snippet.description}</p>
         </div>
       );
