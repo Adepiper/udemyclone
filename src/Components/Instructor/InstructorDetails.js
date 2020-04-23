@@ -6,15 +6,17 @@ export class InstructorDetails extends Component {
     return (
       <div>
         <ul className='collection'>
-          <li className='collection-item'>{channel.snippet.title}</li>
-          <li className='collection-item'>{channel.id}</li>
+          <li className='collection-item'>{channel[0].snippet.title}</li>
+          <li className='collection-item'>{channel[0].id}</li>
           <li className='collection-item'>
-            {channel.statistics.subscriberCount}
+            {channel[0].statistics.subscriberCount}
           </li>
-          <li className='collection-item'>{channel.statistics.videoCount}</li>
-          <li className='collection-item'>{channel.statistics.viewCount}</li>
+          <li className='collection-item'>
+            {channel[0].statistics.videoCount}
+          </li>
+          <li className='collection-item'>{channel[0].statistics.viewCount}</li>
         </ul>
-        <p>{channel.snippet.description}</p>
+        <p>{channel[0].snippet.description}</p>
       </div>
     );
   }
