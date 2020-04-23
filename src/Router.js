@@ -145,6 +145,11 @@ export class Router extends Component {
 
   getChannels = () => {
     axios.get(`${db}/channels`).then(res => {
+      const channels = res.data;
+      const playListId = channels.map(channel => {
+        return channel.contentDetails.relatedPlaylists.uploads;
+      });
+      console.log(playListId);
       this.setState({
         channels: res.data
       });
@@ -160,11 +165,6 @@ export class Router extends Component {
       })
       .then(res => {
         const channel = res.result.items[0];
-        const playListId = channel.contentDetails.relatedPlaylists.uploads;
-        console.log(channel.contentDetails);
-        console.log(channel.contentDetails.relatedPlaylists);
-        console.log(playListId);
-
         this.setChannels(channel);
       })
       .catch(err => alert('No channel by that name'));
