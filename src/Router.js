@@ -160,6 +160,11 @@ export class Router extends Component {
       })
       .then(res => {
         const channel = res.result.items[0];
+        const playListId = channel.contentDetails.relatedPlaylists.uploads;
+        console.log(channel.contentDetails);
+        console.log(channel.contentDetails.relatedPlaylists);
+        console.log(playListId);
+
         this.setChannels(channel);
       })
       .catch(err => alert('No channel by that name'));
@@ -213,6 +218,26 @@ export class Router extends Component {
       .catch(err => {
         console.log(err);
       });
+  };
+
+  requestVideoPlaylist = Id => {
+    const requestOptions = {
+      playlistId: Id,
+      part: 'snippet',
+      maxResults: 10
+    };
+
+    const request = gapi.client.youtube.playlistItems.list(requestOptions);
+    return request;
+    /*  request.execute(response => {
+      const items = response.result.items;
+
+      if (items) {
+        this.setState({
+          items: items
+        });
+      }
+    });*/
   };
   componentWillMount() {
     this.getUsers();
