@@ -228,16 +228,12 @@ export class Router extends Component {
     };
     const request = gapi.client.youtube.playlistItems.list(requestOptions);
     console.log(request);
-    /*  request.execute(response => {
+    request.execute(response => {
       const items = response.result.items;
-
       if (items) {
-        this.setState({
-          items: items
-        });
+        console.log(items);
       }
     });
-    */
   };
   componentDidUpdate() {
     this.getChannels();
