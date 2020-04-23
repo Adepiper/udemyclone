@@ -155,7 +155,8 @@ export class Router extends Component {
     gapi.client.youtube.channels
       .list({
         part: 'snippet, contentDetails, statistics',
-        mine: true
+        // mine: true
+        forUsername: 'techguyweb'
       })
       .then(res => {
         const channel = res.result.items[0];

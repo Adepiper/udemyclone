@@ -31,13 +31,6 @@ export class Google extends Component {
     });
   };
 
-  /*  onChange = e => {
-    this.setState({
-      name: e.target.value
-    });
-  };
-  */
-
   handleAuthClick = () => {
     return gapi.auth2.getAuthInstance().signIn();
   };
@@ -45,23 +38,6 @@ export class Google extends Component {
   handleSignoutClick = () => {
     return gapi.auth2.getAuthInstance().signOut();
   };
-
-  /* updateSigninStatus = isSignedIn => {
-    if (isSignedIn) {
-      this.setState({
-        isSignIn: isSignedIn
-      });
-      this.getChannel(defaultChannel);
-    } else {
-      return false;
-    }
-  }*/
-
-  /* submit = e => {
-    e.preventDefault();
-    this.getChannel(this.state.name);
-  };
-  */
 
   getChannel = channel => {
     return gapi.client.youtube.channels.list({
