@@ -22,7 +22,6 @@ export class Instructor extends Component {
   render() {
     const { user, loginUser, getChannelData, channel } = this.props;
     if (user.length > 0) {
-      console.log(channel);
       return (
         <div className='container-fluid'>
           <div className='container'>

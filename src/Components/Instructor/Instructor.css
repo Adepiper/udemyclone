@@ -80,7 +80,8 @@
   min-height: 70vh;
 }
 
-.instructor header {
+.instructor,
+.options header {
   width: 70%;
   margin: 15px;
   text-align: center;

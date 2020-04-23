@@ -9,13 +9,7 @@ import Footer from './Components/Footer/Footer';
 import Login from './Components/Login/Login';
 import { withGoogle } from './Google';
 import axios from 'axios';
-
 const db = 'https://peaceful-dawn-85735.herokuapp.com';
-
-const newChannel =
-  'https://m.youtube.com/create_channel?chromeless=1&next=/channel_creation_done';
-
-const SCOPES = 'https://www.googleapis.com/auth/youtube.force-ssl';
 
 export class Router extends Component {
   constructor(props) {
@@ -81,7 +75,6 @@ export class Router extends Component {
       const imageUrl = profile.getImageUrl();
       const email = profile.getEmail();
       this.addUserData(id, firstName, lastname, email, imageUrl);
-      // this.getIndividualData(id);
     }
   };
 
@@ -211,7 +204,6 @@ export class Router extends Component {
       .get(`${db}/channels/${id}`)
       .then(res => {
         const data = res.data;
-        console.log(data);
         channelData.push(data);
         this.setState({
           channel: channelData
