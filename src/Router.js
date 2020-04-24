@@ -48,7 +48,9 @@ export class Router extends Component {
       .initClient()
       .then(() => {
         this.setState({
-          isSignedIn: null
+          ...this.state,
+          isSignedIn: null,
+          channels: []
         });
         google.handleSignoutClick();
       })
@@ -58,10 +60,12 @@ export class Router extends Component {
   updateSignInStatus = isSignedIn => {
     if (isSignedIn) {
       this.setState({
+        ...this.state,
         isSignedIn: isSignedIn
       });
     } else {
       this.setState({
+        ...this.state,
         isSignedIn: null
       });
     }
@@ -131,6 +135,7 @@ export class Router extends Component {
       const data = res.data;
       userData.push(data);
       this.setState({
+        ...this.state,
         user: userData
       });
     });
@@ -150,6 +155,7 @@ export class Router extends Component {
       .then(res => {
         const channels = res.data;
         this.setState({
+          ...this.state,
           channels: channels
         });
         const playListId = channels.map(channel => {
@@ -218,6 +224,7 @@ export class Router extends Component {
         const data = res.data;
         channelData.push(data);
         this.setState({
+          ...this.state,
           channel: channelData
         });
       })
@@ -287,6 +294,7 @@ export class Router extends Component {
       .then(res => {
         const videos = res.data;
         this.setState({
+          ...this.state,
           videos: videos
         });
       })
@@ -345,8 +353,6 @@ export class Router extends Component {
             </React.Fragment>
           )}
         ></Route>
-
-        <Route path='/login' component={Login}></Route>
         <Footer />
       </div>
     );
