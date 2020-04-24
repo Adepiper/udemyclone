@@ -144,7 +144,6 @@ export class Router extends Component {
   };
 
   getChannels = () => {
-    let playListId;
     axios
       .get(`${db}/channels`)
       .then(res => {
@@ -227,7 +226,8 @@ export class Router extends Component {
   };
 
   requestVideoPlaylist = Id => {
-    Id.map(item => {
+    console.log(Id);
+    Id.forEach(item => {
       const requestOptions = {
         playlistId: item,
         part: 'snippet',
