@@ -248,11 +248,10 @@ export class Router extends Component {
   componentWillMount() {
     this.getUsers();
     this.getChannels();
-  }
-
-  componentDidMount() {
     this.props.google.handleClientLoad();
   }
+
+  componentDidMount() {}
 
   render() {
     const { isSignedIn, user, channel } = this.state;
