@@ -156,11 +156,6 @@ export class Router extends Component {
         //  channel.contentDetails.relatedPlaylists.uploads;
         // break
         //});
-        for (var i = 0; i < channels.length; i++) {
-          playListId = channels[i].contentDetails.relatedPlaylists.uploads;
-          break;
-        }
-        this.requestVideoPlaylist(playListId);
       })
       .catch(err => {
         console.log(err);
@@ -231,7 +226,7 @@ export class Router extends Component {
       });
   };
 
-  requestVideoPlaylist = Id => {
+  /*  requestVideoPlaylist = Id => {
     const requestOptions = {
       playlistId: Id,
       part: 'snippet',
@@ -245,6 +240,7 @@ export class Router extends Component {
       }
     });
   };
+  */
 
   sendVideoToJson = videosData => {
     const { videos } = this.state;
