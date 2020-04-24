@@ -247,7 +247,9 @@ export class Router extends Component {
       }
     });
   };
-  componentDidUpdate() {
+  componentDidUpdate() {}
+
+  componentWillUpdate() {
     this.getChannels();
   }
 
