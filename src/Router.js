@@ -149,7 +149,7 @@ export class Router extends Component {
       .then(res => {
         const channels = res.data;
         this.setState({
-          channels
+          channels: channels
         });
       })
       .catch(err => {
@@ -157,9 +157,11 @@ export class Router extends Component {
       });
     const { channels } = this.state;
     if (channels.length > 0) {
+      console.log(channels);
       const playListId = channels.map(channel => {
         return channel.contentDetails.relatedPlaylists.uploads;
       });
+      console.log(playListId);
       this.requestVideoPlaylist(playListId);
     } else {
       return false;
