@@ -227,6 +227,7 @@ export class Router extends Component {
   };
 
   requestVideoPlaylist = Id => {
+    console.log(Id);
     if (Id.length === 0) {
       return false;
     } else {
