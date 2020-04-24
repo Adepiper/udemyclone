@@ -50,7 +50,8 @@ export class Router extends Component {
         this.setState({
           ...this.state,
           isSignedIn: null,
-          channel: []
+          channel: [],
+          user: []
         });
         google.handleSignoutClick();
       })
