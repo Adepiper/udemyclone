@@ -144,17 +144,22 @@ export class Router extends Component {
   };
 
   getChannels = () => {
-    axios.get(`${db}/channels`).then(res => {
-      const channels = res.data;
-      this.setState({
-        channels
-      });
+    axios
+      .get(`${db}/channels`)
+      .then(res => {
+        const channels = res.data;
+        this.setState({
+          channels
+        });
 
-      const playListId = channels.map(channel => {
-        return channel.contentDetails.relatedPlaylists.uploads;
+        const playListId = channels.map(channel => {
+          return channel.contentDetails.relatedPlaylists.uploads;
+        });
+        this.requestVideoPlaylist(playListId);
+      })
+      .catch(err => {
+        console.log(err);
       });
-      this.requestVideoPlaylist(playListId);
-    });
   };
 
   getChannelData = () => {
@@ -229,7 +234,13 @@ export class Router extends Component {
     };
     const request = gapi.client.youtube.playlistItems.list(requestOptions);
     request.execute(response => {
-      console.log(response);
+      const videos = response.result.items;
+      console.log(videos);
+      if (videos) {
+        this.setState({
+          videos: videos
+        });
+      }
     });
   };
   componentDidUpdate() {
