@@ -234,7 +234,6 @@ export class Router extends Component {
     const request = gapi.client.youtube.playlistItems.list(requestOptions);
     request.execute(response => {
       const videos = response.result.items;
-      console.log(videos);
       if (videos) {
         this.sendVideoToJson(videos);
       }
