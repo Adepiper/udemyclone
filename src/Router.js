@@ -236,11 +236,52 @@ export class Router extends Component {
       const videos = response.result.items;
       console.log(videos);
       if (videos) {
+        this.sendVideoToJson(videos);
+      }
+    });
+  };
+
+  sendVideoToJson = videosData => {
+    const { videos } = this.state;
+    if (videos.length === 0) {
+      axios
+        .post(`${db}/videos`, videosData)
+        .then(res => {
+          console.log(res.data);
+        })
+        .then(err => {
+          console.log(err);
+        });
+    } else {
+      videos.map(video => {
+        if (video.id === videosData.id) {
+          return false;
+        } else {
+          axios
+            .post(`${db}/videos`, videosData)
+            .then(res => {
+              console.log(res.data);
+            })
+            .catch(err => {
+              console.log(err);
+            });
+        }
+      });
+    }
+  };
+
+  getVideos = () => {
+    axios
+      .get(`${db}/videos`)
+      .then(res => {
+        const videos = res.data;
         this.setState({
           videos: videos
         });
-      }
-    });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
   componentDidUpdate() {
     this.getChannels();
@@ -248,6 +289,7 @@ export class Router extends Component {
 
   componentWillMount() {
     this.getUsers();
+    this.getVideos();
   }
 
   componentDidMount() {
