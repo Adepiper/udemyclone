@@ -232,12 +232,11 @@ export class Router extends Component {
       console.log(response);
     });
   };
-  componentDidUpdate() {
-    this.getChannels();
-  }
+  componentDidUpdate() {}
 
   componentWillMount() {
     this.getUsers();
+    this.getChannels();
   }
 
   componentDidMount() {
