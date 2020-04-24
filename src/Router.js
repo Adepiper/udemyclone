@@ -144,6 +144,7 @@ export class Router extends Component {
   };
 
   getChannels = () => {
+    let playListId;
     axios
       .get(`${db}/channels`)
       .then(res => {
@@ -151,9 +152,14 @@ export class Router extends Component {
         this.setState({
           channels: channels
         });
-        const playListId = channels.map(channel => {
-          return channel.contentDetails.relatedPlaylists.uploads;
-        });
+        //  const playListId = channels.map(channel => {
+        //  channel.contentDetails.relatedPlaylists.uploads;
+        // break
+        //});
+        for (var i = 0; i < channels.length; i++) {
+          playListId = channels[i].contentDetails.relatedPlaylists.uploads;
+          break;
+        }
         this.requestVideoPlaylist(playListId);
       })
       .catch(err => {
