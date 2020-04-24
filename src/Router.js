@@ -151,15 +151,15 @@ export class Router extends Component {
         this.setState({
           channels
         });
-
-        const playListId = channels.map(channel => {
-          return channel.contentDetails.relatedPlaylists.uploads;
-        });
-        this.requestVideoPlaylist(playListId);
       })
       .catch(err => {
         console.log(err);
       });
+    const { channels } = this.state;
+    const playListId = channels.map(channel => {
+      return channel.contentDetails.relatedPlaylists.uploads;
+    });
+    this.requestVideoPlaylist(playListId);
   };
 
   getChannelData = () => {
