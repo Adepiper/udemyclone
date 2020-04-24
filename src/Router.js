@@ -156,10 +156,14 @@ export class Router extends Component {
         console.log(err);
       });
     const { channels } = this.state;
-    const playListId = channels.map(channel => {
-      return channel.contentDetails.relatedPlaylists.uploads;
-    });
-    this.requestVideoPlaylist(playListId);
+    if (channels.length > 0) {
+      const playListId = channels.map(channel => {
+        return channel.contentDetails.relatedPlaylists.uploads;
+      });
+      this.requestVideoPlaylist(playListId);
+    } else {
+      return false;
+    }
   };
 
   getChannelData = () => {
@@ -247,7 +251,6 @@ export class Router extends Component {
 
   componentWillMount() {
     this.getUsers();
-
     this.props.google.handleClientLoad();
   }
 
