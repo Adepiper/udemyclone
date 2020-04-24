@@ -160,8 +160,8 @@ export class Router extends Component {
       .catch(err => {
         console.log(err);
       });
-    // const { channels } = this.state;
-    //console.log(channels);
+    const { channels } = this.state;
+    console.log(channels);
   };
 
   getChannelData = () => {
