@@ -38,6 +38,7 @@ export class Router extends Component {
       googleAuth.isSignedIn.listen(this.updateSignInStatus);
       this.updateSignInStatus(googleAuth.currentUser.get());
       google.handleAuthClick();
+      this.getChannels();
     });
   };
 
@@ -296,13 +297,6 @@ export class Router extends Component {
   componentWillMount() {
     this.getUsers();
     this.getVideos();
-  }
-
-  componentWillUnmount() {
-    this.getChannels = this.getChannels.destroy();
-  }
-  componentDidUpdate() {
-    this.getChannels();
   }
 
   componentDidMount() {
