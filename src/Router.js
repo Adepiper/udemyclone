@@ -157,15 +157,15 @@ export class Router extends Component {
       });
     const { channels } = this.state;
     //console.log(channels);
-    if (channels.length > 0) {
+    if (channels.length === 0) {
+      return false;
+    } else {
       console.log(channels);
       const playListId = channels.map(channel => {
         return channel.contentDetails.relatedPlaylists.uploads;
       });
       console.log(playListId);
       this.requestVideoPlaylist(playListId);
-    } else {
-      return false;
     }
   };
 
