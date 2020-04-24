@@ -166,7 +166,8 @@ export class Router extends Component {
       .catch(err => {
         console.log(err);
       });
-    // const { channels } = this.state;
+    const { channels } = this.state;
+    console.log(channels);
   };
 
   getChannelData = () => {
@@ -254,11 +255,11 @@ export class Router extends Component {
 
   componentWillMount() {
     this.getUsers();
-    this.props.google.handleClientLoad();
+    this.getChannels();
   }
 
   componentDidMount() {
-    this.getChannels();
+    this.props.google.handleClientLoad();
   }
 
   render() {
