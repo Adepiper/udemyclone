@@ -153,7 +153,7 @@ export class Router extends Component {
           channels: channels
         });
         const playListId = channels.map(channel => {
-          channel.contentDetails.relatedPlaylists.uploads;
+          return channel.contentDetails.relatedPlaylists.uploads;
         });
         this.requestVideoPlaylist(playListId);
       })
