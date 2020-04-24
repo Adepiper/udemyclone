@@ -301,10 +301,12 @@ export class Router extends Component {
   componentWillUnmount() {
     this.getChannels = this.getChannels.destroy();
   }
+  componentDidUpdate() {
+    this.getChannels();
+  }
 
   componentDidMount() {
     this.props.google.handleClientLoad();
-    this.getChannels();
   }
 
   render() {
