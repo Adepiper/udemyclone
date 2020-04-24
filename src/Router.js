@@ -292,17 +292,19 @@ export class Router extends Component {
         console.log(err);
       });
   };
-  componentDidUpdate() {
-    this.getChannels();
-  }
 
   componentWillMount() {
     this.getUsers();
     this.getVideos();
   }
 
+  componentWillUnmount() {
+    this.getChannels = this.getChannels.destroy();
+  }
+
   componentDidMount() {
     this.props.google.handleClientLoad();
+    this.getChannels();
   }
 
   render() {
