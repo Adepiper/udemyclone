@@ -226,25 +226,28 @@ export class Router extends Component {
   };
 
   requestVideoPlaylist = Id => {
-    console.log(Id);
-    Id.forEach(item => {
-      const requestOptions = {
-        playlistId: item,
-        part: 'snippet',
-        maxResults: 10
-      };
-      const request = gapi.client.youtube.playlistItems.list(requestOptions);
-      request.execute(response => {
-        if ('error' in response) {
-          console.log(response.error.message);
-        } else {
-          const videos = response.result.items;
-          if (videos) {
-            this.sendVideoToJson(videos);
+    if (Id.length === 0) {
+      return false;
+    } else {
+      Id.forEach(item => {
+        const requestOptions = {
+          playlistId: item,
+          part: 'snippet',
+          maxResults: 10
+        };
+        const request = gapi.client.youtube.playlistItems.list(requestOptions);
+        request.execute(response => {
+          if ('error' in response) {
+            console.log(response.error.message);
+          } else {
+            const videos = response.result.items;
+            if (videos) {
+              this.sendVideoToJson(videos);
+            }
           }
-        }
+        });
       });
-    });
+    }
   };
 
   sendVideoToJson = videosData => {
