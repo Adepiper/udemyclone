@@ -281,7 +281,7 @@ export class Router extends Component {
         });
     } else {
       videos.map((video, index) => {
-        console.log(video[index].snippet);
+        console.log(videosData[0].snippet.channelId);
         if (
           video[index].snippet.channelId === videosData[0].snippet.channelId
         ) {
