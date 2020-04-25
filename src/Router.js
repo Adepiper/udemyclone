@@ -281,7 +281,7 @@ export class Router extends Component {
         });
     } else {
       videos.map(video => {
-        console.log(video);
+        console.log(video.snippet);
         if (video.snippet.channelId === videosData.snippet.channelId) {
           return false;
         } else {
