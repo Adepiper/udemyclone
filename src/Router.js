@@ -281,6 +281,7 @@ export class Router extends Component {
         });
     } else {
       videos.map(video => {
+        console.log(video);
         if (video.snippet.channelId === videosData.snippet.channelId) {
           return false;
         } else {
@@ -319,7 +320,7 @@ export class Router extends Component {
       .get(`${db}/videos`)
       .then(res => {
         const videos = res.data;
-        console.log(videos);
+        // console.log(videos);
         this.setState({
           ...this.state,
           videos: videos
