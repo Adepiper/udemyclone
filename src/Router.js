@@ -41,7 +41,6 @@ export class Router extends Component {
         this.updateSignInStatus(googleAuth.currentUser.get());
         google.handleAuthClick();
         this.getChannels();
-        this.getVideos();
       })
       .catch(err => {
         console.log(err);
@@ -314,6 +313,7 @@ export class Router extends Component {
 
   componentWillMount() {
     this.getUsers();
+    this.getVideos();
   }
 
   componentDidMount() {
