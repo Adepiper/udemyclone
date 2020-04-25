@@ -252,8 +252,7 @@ export class Router extends Component {
           } else {
             const videos = response.result.items;
             if (videos) {
-              // this.sendVideoToJson(videos);
-              console.log(videos);
+              this.sendVideoToJson(videos);
             }
           }
         });
@@ -274,7 +273,7 @@ export class Router extends Component {
         });
     } else {
       videos.map(video => {
-        if (video.id === videosData.id) {
+        if (video.snippet.channelId === videosData.snippet.channelId) {
           return false;
         } else {
           axios
