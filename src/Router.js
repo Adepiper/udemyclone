@@ -274,7 +274,7 @@ export class Router extends Component {
         .post(`${db}/videos`, videosData)
         .then(res => {
           const videoData = res.data;
-          this.getIndividualVideos(videoData.snippet.channelId);
+          this.getIndividualVideos(videoData[0].snippet.channelId);
         })
         .then(err => {
           console.log(err);
@@ -282,7 +282,9 @@ export class Router extends Component {
     } else {
       videos.map((video, index) => {
         console.log(video[index].snippet);
-        if (video[index].snippet.channelId === videosData.snippet.channelId) {
+        if (
+          video[index].snippet.channelId === videosData[0].snippet.channelId
+        ) {
           return false;
         } else {
           console.log(videosData.snippet.channelId);
@@ -291,7 +293,7 @@ export class Router extends Component {
             .post(`${db}/videos`, videosData)
             .then(res => {
               const videoData = res.data;
-              this.getIndividualVideos(videoData.snippet.channelId);
+              this.getIndividualVideos(videoData[0].snippet.channelId);
             })
             .catch(err => {
               console.log(err);
@@ -304,8 +306,8 @@ export class Router extends Component {
   getIndividualVideos = instructorId => {
     axios.get(`${db}/videos`).then(res => {
       const videos = res.data;
-      const videoData = videos.find(video => {
-        return video.snippet.channelId === instructorId;
+      const videoData = videos.find((video, index) => {
+        return video[index].snippet.channelId === instructorId;
       });
       console.log(videoData);
       this.setState({
