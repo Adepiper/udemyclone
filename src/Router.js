@@ -319,6 +319,7 @@ export class Router extends Component {
       .get(`${db}/videos`)
       .then(res => {
         const videos = res.data;
+        console.log(videos);
         this.setState({
           ...this.state,
           videos: videos
