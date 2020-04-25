@@ -30,16 +30,22 @@ export class Router extends Component {
   loginUser = () => {
     const { google } = this.props;
     const googleAuth = gapi.auth2.getAuthInstance();
-    google.initClient().then(() => {
-      this.getUserData(
-        googleAuth.isSignedIn.get(),
-        googleAuth.currentUser.get()
-      );
-      googleAuth.isSignedIn.listen(this.updateSignInStatus);
-      this.updateSignInStatus(googleAuth.currentUser.get());
-      google.handleAuthClick();
-      this.getChannels();
-    });
+    google
+      .initClient()
+      .then(() => {
+        this.getUserData(
+          googleAuth.isSignedIn.get(),
+          googleAuth.currentUser.get()
+        );
+        googleAuth.isSignedIn.listen(this.updateSignInStatus);
+        this.updateSignInStatus(googleAuth.currentUser.get());
+        google.handleAuthClick();
+        this.getChannels();
+        this.getVideos();
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   logOut = () => {
@@ -51,7 +57,8 @@ export class Router extends Component {
           ...this.state,
           isSignedIn: null,
           channel: [],
-          user: []
+          user: [],
+          videos: []
         });
         google.handleSignoutClick();
       })
@@ -235,7 +242,6 @@ export class Router extends Component {
   };
 
   requestVideoPlaylist = Id => {
-    console.log(Id);
     if (Id.length === 0) {
       return false;
     } else {
@@ -276,14 +282,16 @@ export class Router extends Component {
         if (video.snippet.channelId === videosData.snippet.channelId) {
           return false;
         } else {
-          axios
+          console.log(videosData.snippet.channelId);
+          console.log(video.snippet.channelId);
+          /* axios
             .post(`${db}/videos`, videosData)
             .then(res => {
               console.log(res.data);
             })
             .catch(err => {
               console.log(err);
-            });
+            }); */
         }
       });
     }
@@ -306,7 +314,6 @@ export class Router extends Component {
 
   componentWillMount() {
     this.getUsers();
-    this.getVideos();
   }
 
   componentDidMount() {
