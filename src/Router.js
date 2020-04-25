@@ -252,7 +252,8 @@ export class Router extends Component {
           } else {
             const videos = response.result.items;
             if (videos) {
-              this.sendVideoToJson(videos);
+              // this.sendVideoToJson(videos);
+              console.log(videos);
             }
           }
         });
