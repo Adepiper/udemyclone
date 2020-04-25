@@ -6,7 +6,6 @@ import Student from './Components/Student/Student';
 import Instructor from './Components/Instructor/Instructor';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
-import Login from './Components/Login/Login';
 import { withGoogle } from './Google';
 import axios from 'axios';
 const db = 'https://peaceful-dawn-85735.herokuapp.com';
@@ -23,7 +22,8 @@ export class Router extends Component {
       users: [],
       user: [],
       channel: [],
-      channels: []
+      channels: [],
+      video: []
     };
   }
 
@@ -234,6 +234,7 @@ export class Router extends Component {
           ...this.state,
           channel: channelData
         });
+        this.getIndividualVideos(data.id);
       })
       .catch(err => {
         console.log(err);
@@ -271,7 +272,8 @@ export class Router extends Component {
       axios
         .post(`${db}/videos`, videosData)
         .then(res => {
-          console.log(res.data);
+          const videoData = res.data;
+          this.getIndividualVideos(videoData.snippet.channelId);
         })
         .then(err => {
           console.log(err);
@@ -283,17 +285,32 @@ export class Router extends Component {
         } else {
           console.log(videosData.snippet.channelId);
           console.log(video.snippet.channelId);
-          /* axios
+          axios
             .post(`${db}/videos`, videosData)
             .then(res => {
-              console.log(res.data);
+              const videoData = res.data;
+              this.getIndividualVideos(videoData.snippet.channelId);
             })
             .catch(err => {
               console.log(err);
-            }); */
+            });
         }
       });
     }
+  };
+
+  getIndividualVideos = instructorId => {
+    axios.get(`${db}/videos`).then(res => {
+      const videos = res.data;
+      const videoData = videos.find(video => {
+        return video.snippet.channelId === instructorId;
+      });
+      console.log(videoData);
+      this.setState({
+        ...this.state,
+        video: videoData
+      });
+    });
   };
 
   getVideos = () => {
