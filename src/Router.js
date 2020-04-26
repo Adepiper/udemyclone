@@ -234,7 +234,6 @@ export class Router extends Component {
           ...this.state,
           channel: channelData
         });
-        this.getIndividualVideos(data.id);
       })
       .catch(err => {
         console.log(err);
@@ -285,7 +284,7 @@ export class Router extends Component {
         if (
           video[index].snippet.channelId === videosData[0].snippet.channelId
         ) {
-          return false;
+          this.getIndividualVideos(video[0].snippet.channelId);
         } else {
           console.log(videosData.snippet.channelId);
           console.log(video.snippet.channelId);
