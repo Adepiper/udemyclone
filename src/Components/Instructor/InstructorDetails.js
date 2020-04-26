@@ -49,6 +49,6 @@ export class InstructorDetails extends Component {
 
 const NoVideos = () => <div>No videos</div>;
 
-const InstructorVideoList = ({ video }) => console.log(video);
+const InstructorVideoList = ({ video }) => video.map(item => <div></div>);
 
 export default InstructorDetails;
