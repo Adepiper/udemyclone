@@ -53,9 +53,9 @@ const NoVideos = () => <div>No videos</div>;
 
 const InstructorVideoList = ({ video }) =>
   video.map((item, index) => (
-    <div className='course' key={item[index].etag}>
-      <img src={item[index].snippet.thumbnails.default.url} alt='' />
-      <p className='info'> {item[index].snippet.title}</p>
+    <div className='course' key={item.etag}>
+      <img src={item.snippet.thumbnails.default.url} alt='' />
+      <p className='info'> {item.snippet.title}</p>
     </div>
   ));
 
