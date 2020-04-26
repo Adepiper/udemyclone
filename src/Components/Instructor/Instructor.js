@@ -1,7 +1,6 @@
 /* global gapi */
 import React, { Component } from 'react';
 import './Instructor.css';
-import { Link } from 'react-router-dom';
 import Login from '../Login/Login';
 import FormOptions from './FormOptions';
 import InstructorDetails from './InstructorDetails';
