@@ -1,6 +1,6 @@
 /* global gapi */
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Student from './Components/Student/Student';
 import Instructor from './Components/Instructor/Instructor';
@@ -367,7 +367,14 @@ export class Router extends Component {
             </React.Fragment>
           )}
         ></Route>
-
+        <Route
+          path='/instructor/courses/:id'
+          render={prop => (
+            <React.Fragment>
+              <InstructorCoursesDetails channel={channel} video={video} />
+            </React.Fragment>
+          )}
+        ></Route>
         <Route
           path='/instructor'
           render={prop => (
@@ -383,14 +390,7 @@ export class Router extends Component {
             </React.Fragment>
           )}
         ></Route>
-        <Route
-          path='/instructor/courses/:id'
-          render={prop => (
-            <React.Fragment>
-              <InstructorCoursesDetails channel={channel} video={video} />
-            </React.Fragment>
-          )}
-        ></Route>
+
         <Footer />
       </div>
     );
