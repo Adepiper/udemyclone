@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 export class InstructorDetails extends Component {
   render() {
-    const { channel } = this.props;
+    const { channel, video } = this.props;
     if (channel.length > 0) {
       return (
         <div className='collection'>
@@ -34,6 +34,11 @@ export class InstructorDetails extends Component {
             <strong>Description:</strong>{' '}
           </label>
           <p>{channel[0].snippet.description}</p>
+          {video.length === 0 ? (
+            <NoVideos />
+          ) : (
+            <InstructorVideoList video={video} />
+          )}
         </div>
       );
     } else {
@@ -41,5 +46,9 @@ export class InstructorDetails extends Component {
     }
   }
 }
+
+const NoVideos = () => <div>No videos</div>;
+
+const InstructorVideoList = ({ video }) => console.log(video);
 
 export default InstructorDetails;

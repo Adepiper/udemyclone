@@ -20,9 +20,8 @@ export class Instructor extends Component {
   };
 
   render() {
-    const { user, loginUser, getChannelData, channel } = this.props;
+    const { user, loginUser, getChannelData, channel, video } = this.props;
     if (user.length > 0) {
-      console.log(user);
       return (
         <div className='container-fluid'>
           <div className='container'>
@@ -36,7 +35,7 @@ export class Instructor extends Component {
                   createChannel={this.createChannel}
                 />
               ) : (
-                <InstructorDetails channel={channel} />
+                <InstructorDetails channel={channel} video={video} />
               )}
             </div>
             <div className='instructor'>

@@ -256,7 +256,7 @@ export class Router extends Component {
             console.log(response.error.message);
           } else {
             const videos = response.result.items;
-            console.log(videos);
+
             if (videos) {
               this.sendVideoToJson(videos);
             }
@@ -281,7 +281,6 @@ export class Router extends Component {
         });
     } else {
       videos.map((video, index) => {
-        console.log(videosData[0].snippet.channelId);
         if (
           video[index].snippet.channelId === videosData[0].snippet.channelId
         ) {
@@ -308,7 +307,6 @@ export class Router extends Component {
       const videoData = videos.find((video, index) => {
         return video[index].snippet.channelId === instructorId;
       });
-      console.log(videoData);
       this.setState({
         ...this.state,
         video: videoData
@@ -321,7 +319,6 @@ export class Router extends Component {
       .get(`${db}/videos`)
       .then(res => {
         const videos = res.data;
-        console.log(videos);
         this.setState({
           ...this.state,
           videos: videos
@@ -344,7 +341,7 @@ export class Router extends Component {
   }
 
   render() {
-    const { isSignedIn, user, channel } = this.state;
+    const { isSignedIn, user, channel, video } = this.state;
     return (
       <div>
         <Navbar
@@ -380,6 +377,7 @@ export class Router extends Component {
                 loginUser={this.loginUser}
                 getChannelData={this.getChannelData}
                 channel={channel}
+                video={video}
               />
             </React.Fragment>
           )}
