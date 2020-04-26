@@ -55,13 +55,17 @@ const NoVideos = () => <div>No videos</div>;
 const InstructorVideoList = ({ video }) =>
   video.map((item, index) => (
     <>
-      <Link to={`instructor/course/${item.id}`} key={item.id}>
-        <div className='course'>
-          <img src={item.snippet.thumbnails.default.url} alt='' />
-          <p className='info'> {item.snippet.title}</p>
-        </div>
+      <Link to={`instructor/course/${item.id}`}>
+        <InstructorVideoListSnippet item={item} key={item.id} />
       </Link>
     </>
   ));
+
+const InstructorVideoListSnippet = ({ item }) => (
+  <div className='course'>
+    <img src={item.snippet.thumbnails.default.url} alt='' />
+    <p className='info'> {item.snippet.title}</p>
+  </div>
+);
 
 export default InstructorDetails;
