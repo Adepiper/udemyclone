@@ -52,14 +52,16 @@ export class InstructorDetails extends Component {
 
 const NoVideos = () => <div>No videos</div>;
 
-const InstructorVideoList = ({ video }) =>
-  video.map((item, index) => (
+const InstructorVideoList = ({ video }) => {
+  console.log(video);
+  return video.map((item, index) => (
     <>
-      <Link to={`instructor/course/${item.id}`}>
+      <Link to={`instructor/courses/${item.id}`}>
         <InstructorVideoListSnippet item={item} key={item.id} />
       </Link>
     </>
   ));
+};
 
 const InstructorVideoListSnippet = ({ item }) => (
   <div className='course'>
