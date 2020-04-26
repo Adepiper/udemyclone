@@ -274,6 +274,7 @@ export class Router extends Component {
         .then(res => {
           const videoData = res.data;
           this.getIndividualVideos(videoData[0].snippet.channelId);
+          this.getVideos();
         })
         .then(err => {
           console.log(err);
@@ -286,13 +287,12 @@ export class Router extends Component {
         ) {
           this.getIndividualVideos(video[0].snippet.channelId);
         } else {
-          console.log(videosData.snippet.channelId);
-          console.log(video.snippet.channelId);
           axios
             .post(`${db}/videos`, videosData)
             .then(res => {
               const videoData = res.data;
               this.getIndividualVideos(videoData[0].snippet.channelId);
+              this.getVideos();
             })
             .catch(err => {
               console.log(err);
@@ -331,6 +331,8 @@ export class Router extends Component {
         console.log(err);
       });
   };
+
+  componentDidUpdate() {}
 
   componentWillMount() {
     this.getUsers();
