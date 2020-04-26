@@ -37,7 +37,9 @@ export class InstructorDetails extends Component {
           {video.length === 0 ? (
             <NoVideos />
           ) : (
-            <InstructorVideoList video={video} />
+            <div className='courses'>
+              <InstructorVideoList video={video} />
+            </div>
           )}
         </div>
       );
@@ -49,6 +51,12 @@ export class InstructorDetails extends Component {
 
 const NoVideos = () => <div>No videos</div>;
 
-const InstructorVideoList = ({ video }) => video.map(item => <div></div>);
+const InstructorVideoList = ({ video }) =>
+  video.map((item, index) => (
+    <div className='course' key={item[index].etag}>
+      <img src={item[index].snippet.thumbnails.default.url} alt='' />
+      <p className='info'> {item[index].snippet.title}</p>
+    </div>
+  ));
 
 export default InstructorDetails;
