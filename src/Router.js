@@ -8,6 +8,7 @@ import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import { withGoogle } from './Google';
 import axios from 'axios';
+import InstructorCoursesDetails from './Components/Instructor/InstructorCoursesDetails';
 const db = 'https://peaceful-dawn-85735.herokuapp.com';
 
 export class Router extends Component {
@@ -379,6 +380,14 @@ export class Router extends Component {
                 channel={channel}
                 video={video}
               />
+            </React.Fragment>
+          )}
+        ></Route>
+        <Route
+          path='/instructor/courses/:id'
+          render={prop => (
+            <React.Fragment>
+              <InstructorCoursesDetails channel={channel} video={video} />
             </React.Fragment>
           )}
         ></Route>
