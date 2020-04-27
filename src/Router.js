@@ -315,15 +315,12 @@ export class Router extends Component {
   };
 
   getVideos = () => {
-    let videosData = [];
     axios
       .get(`${db}/videos`)
       .then(res => {
-        videosData.push(res.data);
-
         this.setState({
           ...this.state,
-          videos: videosData
+          videos: res.data
         });
       })
       .catch(err => {
@@ -350,6 +347,7 @@ export class Router extends Component {
           isSignedIn={isSignedIn}
           logOut={this.logOut}
         />
+
         {isSignedIn ? (
           <>
             {' '}
