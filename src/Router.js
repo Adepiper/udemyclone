@@ -57,10 +57,7 @@ export class Router extends Component {
       .then(() => {
         this.setState({
           ...this.state,
-          isSignedIn: null,
-          channel: [],
-          user: [],
-          videos: []
+          isSignedIn: null
         });
         google.handleSignoutClick();
       })
@@ -397,7 +394,7 @@ export class Router extends Component {
             ></Route>{' '}
           </>
         ) : (
-          <Login />
+          <Login loginUser={this.loginUser} />
         )}
 
         <Footer />
