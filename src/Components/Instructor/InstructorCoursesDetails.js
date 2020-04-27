@@ -13,31 +13,41 @@ const InstructorCoursesDetails = () => {
     });
   }, [id]);
 
-  return (
-    <div className='container-fluid student'>
-      <div className='container'>
-        <header>
-          <h2></h2>
-        </header>
+  if (item.length > 0) {
+    return (
+      <div className='container-fluid student'>
+        <div className='container'>
+          <header>
+            <h2></h2>
+          </header>
 
-        <div>
-          <iframe className='screen' allowFullScreen></iframe>
-        </div>
-
-        <div className='about'>
-          <h2>About Course</h2>
-          <div className='stack'>
-            <h3>Stack</h3>
-            <p>{/*item.snippet.channelTitle*/}</p>
+          <div>
+            <iframe className='screen' allowFullScreen></iframe>
           </div>
-          <div className='description'>
-            <h3>Description</h3>
-            <p>{/*item.snippet.description*/}</p>
+
+          <div className='about'>
+            <h2>About Course</h2>
+            <div className='stack'>
+              <h3>Stack</h3>
+              <p>{/*item.snippet.channelTitle*/}</p>
+            </div>
+            <div className='description'>
+              <h3>Description</h3>
+              <p>{/*item.snippet.description*/}</p>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  } else {
+    return (
+      <div className='conatiner-fluid student'>
+        <div className='container'>
+          <p>Loading</p>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default InstructorCoursesDetails;
