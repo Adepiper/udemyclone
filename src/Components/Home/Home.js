@@ -4,6 +4,7 @@ import Courses from './Courses';
 
 export class Home extends Component {
   render() {
+    const { videos } = this.props;
     return (
       <div className='container-fluid'>
         <div className='container'>
@@ -19,7 +20,7 @@ export class Home extends Component {
           </header>
 
           <div className=' courses'>
-            <Courses />
+            <Courses videos={videos} />
           </div>
         </div>
       </div>

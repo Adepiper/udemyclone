@@ -179,8 +179,8 @@ export class Router extends Component {
     gapi.client.youtube.channels
       .list({
         part: 'snippet, contentDetails, statistics',
-        // mine: true
-        forUsername: 'techguyweb'
+        mine: true
+        // forUsername: 'techguyweb'
       })
       .then(res => {
         const channel = res.result.items[0];
@@ -340,7 +340,7 @@ export class Router extends Component {
   }
 
   render() {
-    const { isSignedIn, user, channel, video } = this.state;
+    const { isSignedIn, user, channel, video, videos } = this.state;
     return (
       <div>
         <Navbar
@@ -356,7 +356,11 @@ export class Router extends Component {
               path='/'
               render={prop => (
                 <React.Fragment>
-                  <Home isSignedIn={isSignedIn} loginUser={this.loginUser} />
+                  <Home
+                    isSignedIn={isSignedIn}
+                    loginUser={this.loginUser}
+                    videos={videos}
+                  />
                 </React.Fragment>
               )}
             ></Route>
