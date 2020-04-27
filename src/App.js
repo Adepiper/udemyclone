@@ -6,9 +6,7 @@ import { Switch } from 'react-router-dom';
 function App() {
   return (
     <div className='App'>
-      <Switch>
-        <Router />
-      </Switch>
+      <Router />
     </div>
   );
 }

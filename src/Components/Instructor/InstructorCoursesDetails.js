@@ -14,11 +14,12 @@ const InstructorCoursesDetails = () => {
   }, [id]);
 
   if (item.length > 0) {
+    console.log(item);
     return (
       <div className='container-fluid student'>
         <div className='container'>
           <header>
-            <h2></h2>
+            <h2>{item.id}</h2>
           </header>
 
           <div>
