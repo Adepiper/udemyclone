@@ -331,13 +331,12 @@ export class Router extends Component {
 
   componentDidUpdate() {}
 
-  componentWillMount() {
-    this.getUsers();
-  }
+  componentWillMount() {}
 
   componentDidMount() {
     this.props.google.handleClientLoad();
     this.getVideos();
+    this.getUsers();
   }
 
   render() {
