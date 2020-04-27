@@ -56,7 +56,7 @@ const InstructorVideoList = ({ video }) => {
   console.log(video);
   return video.map((item, index) => (
     <>
-      <Link to={`instructor/courses/${item.id}`}>
+      <Link to={`/course/${item.id}`}>
         <InstructorVideoListSnippet item={item} key={item.id} />
       </Link>
     </>
