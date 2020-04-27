@@ -19,7 +19,7 @@ export class Instructor extends Component {
   };
 
   render() {
-    const { user, loginUser, getChannelData, channel, video } = this.props;
+    const { user, getChannelData, channel, video } = this.props;
     if (user.length > 0) {
       return (
         <div className='container-fluid'>
@@ -87,8 +87,6 @@ export class Instructor extends Component {
           </div>
         </div>
       );
-    } else {
-      return <Login loginUser={loginUser} />;
     }
   }
 }

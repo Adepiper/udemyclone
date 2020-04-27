@@ -1,27 +1,19 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { axios } from 'axios';
+import axios from 'axios';
 
-export class InstructorCoursesDetails extends Component {
-  state = {
-    item: []
-  };
+const InstructorCoursesDetails = () => {
+  const [item, setItem] = useState([]);
+  let { id } = useParams();
+  console.log(id);
+  useEffect(() => {
+    console.log(id);
+    axios.get(`http://localhost:4000/videos/${id}`).then(res => {
+      setItem(res.data);
+    });
+  }, [id]);
 
-  getItems = () => {
-    let { id } = useParams();
-    axios
-      .get(`https://peaceful-dawn-85735.herokuapp.com/videos/${id}`)
-      .then(res => {
-        const item = res.data;
-        this.setState({
-          item
-        }).catch(err => [console.log(err)]);
-      });
-  };
-
-  render() {
-    return <div>hello</div>;
-  }
-}
+  return <div>hello</div>;
+};
 
 export default InstructorCoursesDetails;

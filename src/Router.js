@@ -8,6 +8,8 @@ import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import { withGoogle } from './Google';
 import axios from 'axios';
+
+import Login from './Components/Login/Login';
 import InstructorCoursesDetails from './Components/Instructor/InstructorCoursesDetails';
 const db = 'https://peaceful-dawn-85735.herokuapp.com';
 
@@ -350,47 +352,53 @@ export class Router extends Component {
           isSignedIn={isSignedIn}
           logOut={this.logOut}
         />
-        <Route
-          exact
-          path='/'
-          render={prop => (
-            <React.Fragment>
-              <Home isSignedIn={isSignedIn} loginUser={this.loginUser} />
-            </React.Fragment>
-          )}
-        ></Route>
-        <Route
-          path='/courses'
-          render={prop => (
-            <React.Fragment>
-              <Student />
-            </React.Fragment>
-          )}
-        ></Route>
+        {isSignedIn ? (
+          <>
+            {' '}
+            <Route
+              exact
+              path='/'
+              render={prop => (
+                <React.Fragment>
+                  <Home isSignedIn={isSignedIn} loginUser={this.loginUser} />
+                </React.Fragment>
+              )}
+            ></Route>
+            <Route
+              path='/courses'
+              render={prop => (
+                <React.Fragment>
+                  <Student />
+                </React.Fragment>
+              )}
+            ></Route>
+            <Route
+              path='/instructor'
+              render={prop => (
+                <React.Fragment>
+                  <Instructor
+                    user={user}
+                    createNewChannel={this.createNewChannel}
+                    loginUser={this.loginUser}
+                    getChannelData={this.getChannelData}
+                    channel={channel}
+                    video={video}
+                  />
+                </React.Fragment>
+              )}
+            ></Route>{' '}
+          </>
+        ) : (
+          <Login />
+        )}
         <Route
           path='/instructor/courses/:id'
           render={prop => (
             <React.Fragment>
-              <InstructorCoursesDetails channel={channel} video={video} />
+              <InstructorCoursesDetails />
             </React.Fragment>
           )}
         ></Route>
-        <Route
-          path='/instructor'
-          render={prop => (
-            <React.Fragment>
-              <Instructor
-                user={user}
-                createNewChannel={this.createNewChannel}
-                loginUser={this.loginUser}
-                getChannelData={this.getChannelData}
-                channel={channel}
-                video={video}
-              />
-            </React.Fragment>
-          )}
-        ></Route>
-
         <Footer />
       </div>
     );
