@@ -7,12 +7,12 @@ const InstructorCoursesDetails = () => {
   let { id } = useParams();
   console.log(id);
   useEffect(() => {
-    console.log(id);
+    //console.log(id);
     axios.get(`http://localhost:4000/videos/${id}`).then(res => {
       setItem(res.data);
     });
   }, [id]);
-
+  console.log(item);
   if (item.length > 0) {
     console.log(item);
     return (
