@@ -27,7 +27,7 @@ const InstructorCoursesDetails = () => {
       <div className='container-fluid student'>
         <div className='container'>
           <header>
-            <h2>{item.id}</h2>
+            <h2></h2>
           </header>
 
           <div>
