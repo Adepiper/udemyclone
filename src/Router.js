@@ -370,7 +370,7 @@ export class Router extends Component {
               )}
             ></Route>
             <Route
-              path='/instructor/courses/:id'
+              path='/course/:id'
               render={prop => (
                 <React.Fragment>
                   <InstructorCoursesDetails />

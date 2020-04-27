@@ -13,7 +13,15 @@ const InstructorCoursesDetails = () => {
     });
   }, [id]);
   console.log(item);
-  if (item.length > 0) {
+  if (item.length === 0) {
+    return (
+      <div className='conatiner-fluid student'>
+        <div className='container'>
+          <p>Loading</p>
+        </div>
+      </div>
+    );
+  } else {
     console.log(item);
     return (
       <div className='container-fluid student'>
@@ -37,14 +45,6 @@ const InstructorCoursesDetails = () => {
               <p>{/*item.snippet.description*/}</p>
             </div>
           </div>
-        </div>
-      </div>
-    );
-  } else {
-    return (
-      <div className='conatiner-fluid student'>
-        <div className='container'>
-          <p>Loading</p>
         </div>
       </div>
     );
