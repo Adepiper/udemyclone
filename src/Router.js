@@ -370,6 +370,14 @@ export class Router extends Component {
               )}
             ></Route>
             <Route
+              path='/instructor/courses/:id'
+              render={prop => (
+                <React.Fragment>
+                  <InstructorCoursesDetails />
+                </React.Fragment>
+              )}
+            ></Route>
+            <Route
               path='/instructor'
               render={prop => (
                 <React.Fragment>
@@ -384,14 +392,6 @@ export class Router extends Component {
                 </React.Fragment>
               )}
             ></Route>
-            <Route
-              path='/instructor/courses/:id'
-              render={prop => (
-                <React.Fragment>
-                  <InstructorCoursesDetails />
-                </React.Fragment>
-              )}
-            ></Route>{' '}
           </>
         ) : (
           <Login loginUser={this.loginUser} />
