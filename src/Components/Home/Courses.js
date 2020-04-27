@@ -9,7 +9,7 @@ export class Courses extends Component {
       console.log(videos);
       return videos.map((video, index) => (
         <>
-          <Link to={`/courses/${video.id}`}>
+          <Link to={`/courses/${video[index].id}`}>
             <div className='course'>
               <img src={video[index].snippet.thumbnails.default.url} alt='' />
               <p className='info'> {video[index].snippet.title}</p>

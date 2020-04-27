@@ -315,13 +315,15 @@ export class Router extends Component {
   };
 
   getVideos = () => {
+    let videosData = [];
     axios
       .get(`${db}/videos`)
       .then(res => {
-        const videos = res.data;
+        videosData.push(res.data);
+
         this.setState({
           ...this.state,
-          videos: videos
+          videos: videosData
         });
       })
       .catch(err => {
