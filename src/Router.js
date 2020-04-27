@@ -365,7 +365,7 @@ export class Router extends Component {
               )}
             ></Route>
             <Route
-              path='/courses'
+              path='/videos/:id'
               render={prop => (
                 <React.Fragment>
                   <Student />

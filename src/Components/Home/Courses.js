@@ -16,7 +16,7 @@ export class Courses extends Component {
 const VideoList = ({ item }) => {
   return item.map(video => (
     <>
-      <Link to={`/courses/${video.id}`}>
+      <Link to={`/videos/${video.id}`}>
         <div className='course' key={video.id}>
           <img src={video.snippet.thumbnails.default.url} alt='' />
           <p className='info'> {video.snippet.title}</p>
