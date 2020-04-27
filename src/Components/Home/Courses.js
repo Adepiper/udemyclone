@@ -6,23 +6,24 @@ export class Courses extends Component {
   render() {
     const { videos } = this.props;
     if (videos.length > 0) {
-      console.log(videos);
-      return videos.map(item =>
-        item.map((video, index) => (
-          <>
-            <Link to={`/courses/${video.id}`} key={video.id}>
-              <div className='course'>
-                <img src={video.snippet.thumbnails.default.url} alt='' />
-                <p className='info'> {video.snippet.title}</p>
-              </div>
-            </Link>
-          </>
-        ))
-      );
+      return videos.map(item => <VideoList item={item} key={item.id} />);
     } else {
       return <div>Loading</div>;
     }
   }
 }
+
+const VideoList = ({ item }) => {
+  return item.map(video => (
+    <>
+      <Link to={`/courses/${video.id}`}>
+        <div className='course' key={video.id}>
+          <img src={video.snippet.thumbnails.default.url} alt='' />
+          <p className='info'> {video.snippet.title}</p>
+        </div>
+      </Link>
+    </>
+  ));
+};
 
 export default Courses;
