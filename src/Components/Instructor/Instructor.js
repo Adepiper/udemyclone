@@ -85,6 +85,14 @@ export class Instructor extends Component {
           </div>
         </div>
       );
+    } else {
+      return (
+        <div className='container-fluid'>
+          <div className='container'>
+            <p>Loading User</p>
+          </div>
+        </div>
+      );
     }
   }
 }
