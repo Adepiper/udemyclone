@@ -255,7 +255,7 @@ export class Router extends Component {
           if ('error' in response) {
             console.log(response.error.message);
           } else {
-            const videos = response.result.items;
+            const videos = response.result.items[0];
 
             if (videos) {
               this.sendVideoToJson(videos);
@@ -273,24 +273,22 @@ export class Router extends Component {
         .post(`${db}/videos`, videosData)
         .then(res => {
           const videoData = res.data;
-          this.getIndividualVideos(videoData[0].snippet.channelId);
+          this.getIndividualVideos(videoData.snippet.channelId);
           this.getVideos();
         })
         .then(err => {
           console.log(err);
         });
     } else {
-      videos.map((video, index) => {
-        if (
-          video[index].snippet.channelId === videosData[0].snippet.channelId
-        ) {
-          this.getIndividualVideos(video[0].snippet.channelId);
+      videos.map(video => {
+        if (video.snippet.channelId === videosData.snippet.channelId) {
+          this.getIndividualVideos(video.snippet.channelId);
         } else {
           axios
             .post(`${db}/videos`, videosData)
             .then(res => {
               const videoData = res.data;
-              this.getIndividualVideos(videoData[0].snippet.channelId);
+              this.getIndividualVideos(videoData.snippet.channelId);
               this.getVideos();
             })
             .catch(err => {
@@ -304,8 +302,8 @@ export class Router extends Component {
   getIndividualVideos = instructorId => {
     axios.get(`${db}/videos`).then(res => {
       const videos = res.data;
-      const videoData = videos.find((video, index) => {
-        return video[index].snippet.channelId === instructorId;
+      const videoData = videos.find(video => {
+        return video.snippet.channelId === instructorId;
       });
       this.setState({
         ...this.state,
