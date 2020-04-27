@@ -6,7 +6,7 @@ export class Courses extends Component {
   render() {
     const { videos } = this.props;
     if (videos.length > 0) {
-      return videos.map(video => <VideoList item={video} key={video.id} />);
+      return videos.map(video => <VideoList video={video} key={video.id} />);
     } else {
       return <div>Loading</div>;
     }
