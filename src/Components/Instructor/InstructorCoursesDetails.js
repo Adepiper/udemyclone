@@ -13,7 +13,31 @@ const InstructorCoursesDetails = () => {
     });
   }, [id]);
 
-  return <div>hello</div>;
+  return (
+    <div className='container-fluid student'>
+      <div className='container'>
+        <header>
+          <h2></h2>
+        </header>
+
+        <div>
+          <iframe className='screen' allowFullScreen></iframe>
+        </div>
+
+        <div className='about'>
+          <h2>About Course</h2>
+          <div className='stack'>
+            <h3>Stack</h3>
+            <p>{/*item.snippet.channelTitle*/}</p>
+          </div>
+          <div className='description'>
+            <h3>Description</h3>
+            <p>{/*item.snippet.description*/}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default InstructorCoursesDetails;

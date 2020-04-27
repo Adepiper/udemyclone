@@ -1,6 +1,6 @@
 /* global gapi */
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Home from './Components/Home/Home';
 import Student from './Components/Student/Student';
 import Instructor from './Components/Instructor/Instructor';
@@ -11,7 +11,7 @@ import axios from 'axios';
 
 import Login from './Components/Login/Login';
 import InstructorCoursesDetails from './Components/Instructor/InstructorCoursesDetails';
-const db = 'https://peaceful-dawn-85735.herokuapp.com';
+const db = 'http://localhost:4000';
 
 export class Router extends Component {
   constructor(props) {
@@ -386,19 +386,20 @@ export class Router extends Component {
                   />
                 </React.Fragment>
               )}
+            ></Route>
+            <Route
+              path='/instructor/courses/:id'
+              render={prop => (
+                <React.Fragment>
+                  <InstructorCoursesDetails />
+                </React.Fragment>
+              )}
             ></Route>{' '}
           </>
         ) : (
           <Login />
         )}
-        <Route
-          path='/instructor/courses/:id'
-          render={prop => (
-            <React.Fragment>
-              <InstructorCoursesDetails />
-            </React.Fragment>
-          )}
-        ></Route>
+
         <Footer />
       </div>
     );

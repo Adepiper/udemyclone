@@ -1,7 +1,5 @@
-/* global gapi */
 import React, { Component } from 'react';
 import './Instructor.css';
-import Login from '../Login/Login';
 import FormOptions from './FormOptions';
 import InstructorDetails from './InstructorDetails';
 
