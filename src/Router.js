@@ -377,6 +377,21 @@ export class Router extends Component {
               )}
             ></Route>
             <Route
+              path='/instructor'
+              render={prop => (
+                <React.Fragment>
+                  <Instructor
+                    user={user}
+                    createNewChannel={this.createNewChannel}
+                    loginUser={this.loginUser}
+                    getChannelData={this.getChannelData}
+                    channel={channel}
+                    video={video}
+                  />
+                </React.Fragment>
+              )}
+            ></Route>
+            <Route
               path='/videos/:id'
               render={prop => (
                 <React.Fragment>
@@ -396,21 +411,7 @@ export class Router extends Component {
         ) : (
           <Login loginUser={this.loginUser} />
         )}
-        <Route
-          path='/instructor'
-          render={prop => (
-            <React.Fragment>
-              <Instructor
-                user={user}
-                createNewChannel={this.createNewChannel}
-                loginUser={this.loginUser}
-                getChannelData={this.getChannelData}
-                channel={channel}
-                video={video}
-              />
-            </React.Fragment>
-          )}
-        ></Route>
+
         <Footer />
       </div>
     );
