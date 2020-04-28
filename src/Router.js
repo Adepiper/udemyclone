@@ -273,7 +273,7 @@ export class Router extends Component {
         .post(`${db}/videos`, videosData)
         .then(res => {
           const videosData = res.data;
-          const channelId = videosData.filter(videoData => {
+          const channelId = videosData.map(videoData => {
             return videoData.snippet.channelId;
           });
           console.log(channelId);
@@ -286,7 +286,7 @@ export class Router extends Component {
     } else {
       videos.map(video => {
         if (video.id === videosData.id) {
-          const channelId = videosData.filter(videoData => {
+          const channelId = videosData.map(videoData => {
             return videoData.snippet.channelId;
           });
           console.log(channelId);
@@ -296,7 +296,7 @@ export class Router extends Component {
             .post(`${db}/videos`, videosData)
             .then(res => {
               const videosData = res.data;
-              const channelId = videosData.filter(videoData => {
+              const channelId = videosData.map(videoData => {
                 return videoData.snippet.channelId;
               });
               console.log(channelId);
