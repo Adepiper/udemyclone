@@ -274,9 +274,9 @@ export class Router extends Component {
         .then(res => {
           const videosData = res.data;
           const channelId = videosData.map(videoData => {
-            return videoData.snippet.channelId[0];
+            return videoData[0].snippet.channelId;
           });
-          console.log(channelId);
+
           this.getIndividualVideos(channelId);
           this.getVideos();
         })
@@ -287,9 +287,8 @@ export class Router extends Component {
       videos.map(video => {
         if (video.id === videosData.id) {
           const channelId = videosData.map(videoData => {
-            return videoData.snippet.channelId[0];
+            return videoData[0].snippet.channelId;
           });
-          console.log(channelId);
           this.getIndividualVideos(channelId);
         } else {
           axios
@@ -297,7 +296,7 @@ export class Router extends Component {
             .then(res => {
               const videosData = res.data;
               const channelId = videosData.map(videoData => {
-                return videoData.snippet.channelId[0];
+                return videoData[0].snippet.channelId;
               });
               console.log(channelId);
               this.getIndividualVideos(channelId);
@@ -314,10 +313,11 @@ export class Router extends Component {
   getIndividualVideos = instructorId => {
     axios.get(`${db}/videos`).then(res => {
       const videos = res.data;
-      const videoData = videos.find(video => {
-        console.log(video);
-        return video.snippet.channelId === instructorId;
+      const videoData = videos.find(video, index => {
+        // console.log(video);
+        return video[index].snippet.channelId === instructorId;
       });
+      console.log(videoData);
       this.setState({
         ...this.state,
         video: videoData
@@ -341,7 +341,7 @@ export class Router extends Component {
 
   componentDidUpdate() {}
 
-  componentWillMount() {}
+  componentWillUnMount() {}
 
   componentDidMount() {
     this.props.google.handleClientLoad();
