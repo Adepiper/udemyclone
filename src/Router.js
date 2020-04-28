@@ -179,8 +179,8 @@ export class Router extends Component {
     gapi.client.youtube.channels
       .list({
         part: 'snippet, contentDetails, statistics',
-        //mine: true
-        forUsername: 'techguyweb'
+        mine: true
+        //forUsername: 'techguyweb'
       })
       .then(res => {
         const channel = res.result.items[0];
@@ -255,8 +255,7 @@ export class Router extends Component {
           if ('error' in response) {
             console.log(response.error.message);
           } else {
-            const videosItem = response.result.items;
-            const videos = { ...videosItem };
+            const videos = response.result.items;
             console.log(videos);
             if (videos) {
               this.sendVideoToJson(videos);
@@ -273,9 +272,9 @@ export class Router extends Component {
       axios
         .post(`${db}/videos`, videosData)
         .then(res => {
-          const videosData = res.data;
+          const videosData = res.data.flat();
           const channelId = videosData.map(videoData => {
-            return videoData[0].snippet.channelId;
+            return videoData.snippet.channelId;
           });
 
           this.getIndividualVideos(channelId);
