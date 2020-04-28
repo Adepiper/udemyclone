@@ -255,8 +255,9 @@ export class Router extends Component {
           if ('error' in response) {
             console.log(response.error.message);
           } else {
-            const videos = response.result.items;
-
+            const videosItem = response.result.items;
+            const videos = { ...videosItem };
+            console.log(videos);
             if (videos) {
               this.sendVideoToJson(videos);
             }
