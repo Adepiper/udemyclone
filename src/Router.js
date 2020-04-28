@@ -315,6 +315,7 @@ export class Router extends Component {
     axios.get(`${db}/videos`).then(res => {
       const videos = res.data;
       const videoData = videos.find(video => {
+        console.log(video);
         return video.snippet.channelId === instructorId;
       });
       this.setState({
