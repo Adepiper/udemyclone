@@ -274,7 +274,7 @@ export class Router extends Component {
         .then(res => {
           const videosData = res.data;
           const channelId = videosData.map(videoData => {
-            return videoData.snippet.channelId;
+            return videoData.snippet.channelId[0];
           });
           console.log(channelId);
           this.getIndividualVideos(channelId);
@@ -287,7 +287,7 @@ export class Router extends Component {
       videos.map(video => {
         if (video.id === videosData.id) {
           const channelId = videosData.map(videoData => {
-            return videoData.snippet.channelId;
+            return videoData.snippet.channelId[0];
           });
           console.log(channelId);
           this.getIndividualVideos(channelId);
@@ -297,7 +297,7 @@ export class Router extends Component {
             .then(res => {
               const videosData = res.data;
               const channelId = videosData.map(videoData => {
-                return videoData.snippet.channelId;
+                return videoData.snippet.channelId[0];
               });
               console.log(channelId);
               this.getIndividualVideos(channelId);
@@ -346,6 +346,7 @@ export class Router extends Component {
     this.props.google.handleClientLoad();
     this.getVideos();
     this.getUsers();
+    //this.getChannels();
   }
 
   render() {
@@ -390,26 +391,25 @@ export class Router extends Component {
                 </React.Fragment>
               )}
             ></Route>
-            <Route
-              path='/instructor'
-              render={prop => (
-                <React.Fragment>
-                  <Instructor
-                    user={user}
-                    createNewChannel={this.createNewChannel}
-                    loginUser={this.loginUser}
-                    getChannelData={this.getChannelData}
-                    channel={channel}
-                    video={video}
-                  />
-                </React.Fragment>
-              )}
-            ></Route>
           </>
         ) : (
           <Login loginUser={this.loginUser} />
         )}
-
+        <Route
+          path='/instructor'
+          render={prop => (
+            <React.Fragment>
+              <Instructor
+                user={user}
+                createNewChannel={this.createNewChannel}
+                loginUser={this.loginUser}
+                getChannelData={this.getChannelData}
+                channel={channel}
+                video={video}
+              />
+            </React.Fragment>
+          )}
+        ></Route>
         <Footer />
       </div>
     );
