@@ -256,7 +256,7 @@ export class Router extends Component {
             console.log(response.error.message);
           } else {
             const videos = response.result.items;
-            console.log(videos);
+
             if (videos) {
               this.sendVideoToJson(videos);
             }
@@ -272,8 +272,10 @@ export class Router extends Component {
       axios
         .post(`${db}/videos`, videosData)
         .then(res => {
-          const videoData = res.data;
-          this.getIndividualVideos(videoData.snippet.channelId);
+          const videosData = res.data;
+          videosData.map(videoData => {
+            this.getIndividualVideos(videoData.snippet.channelId);
+          });
           this.getVideos();
         })
         .then(err => {
@@ -282,15 +284,17 @@ export class Router extends Component {
     } else {
       videos.map(video => {
         if (video.id === videosData.id) {
-          console.log(video.id);
-          console.log(videosData.id);
-          this.getIndividualVideos(videosData.snippet.channelId);
+          videosData.map(videoData => {
+            this.getIndividualVideos(videoData.snippet.channelId);
+          });
         } else {
           axios
             .post(`${db}/videos`, videosData)
             .then(res => {
-              const videoData = res.data;
-              this.getIndividualVideos(videoData.snippet.channelId);
+              const videosData = res.data;
+              videosData.map(videoData => {
+                this.getIndividualVideos(videoData.snippet.channelId);
+              });
               this.getVideos();
             })
             .catch(err => {
