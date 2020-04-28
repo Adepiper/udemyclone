@@ -179,8 +179,8 @@ export class Router extends Component {
     gapi.client.youtube.channels
       .list({
         part: 'snippet, contentDetails, statistics',
-        mine: true
-        // forUsername: 'techguyweb'
+        //mine: true
+        forUsername: 'techguyweb'
       })
       .then(res => {
         const channel = res.result.items[0];
@@ -281,7 +281,7 @@ export class Router extends Component {
         });
     } else {
       videos.map(video => {
-        if (video.snippet.channelId === videosData.snippet.channelId) {
+        if (video.id === videosData.id) {
           this.getIndividualVideos(video.snippet.channelId);
         } else {
           axios
