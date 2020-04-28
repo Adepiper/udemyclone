@@ -341,8 +341,6 @@ export class Router extends Component {
 
   componentDidUpdate() {}
 
-  componentWillUnMount() {}
-
   componentDidMount() {
     this.props.google.handleClientLoad();
     this.getVideos();
