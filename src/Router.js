@@ -273,28 +273,34 @@ export class Router extends Component {
         .post(`${db}/videos`, videosData)
         .then(res => {
           const videosData = res.data;
-          videosData.map(videoData => {
-            this.getIndividualVideos(videoData.snippet.channelId);
+          const channelId = videosData.filter(videoData => {
+            return videoData.snippet.channelId;
           });
+          console.log(channelId);
+          this.getIndividualVideos(channelId);
           this.getVideos();
         })
-        .then(err => {
+        .catch(err => {
           console.log(err);
         });
     } else {
       videos.map(video => {
         if (video.id === videosData.id) {
-          videosData.map(videoData => {
-            this.getIndividualVideos(videoData.snippet.channelId);
+          const channelId = videosData.filter(videoData => {
+            return videoData.snippet.channelId;
           });
+          console.log(channelId);
+          this.getIndividualVideos(channelId);
         } else {
           axios
             .post(`${db}/videos`, videosData)
             .then(res => {
               const videosData = res.data;
-              videosData.map(videoData => {
-                this.getIndividualVideos(videoData.snippet.channelId);
+              const channelId = videosData.filter(videoData => {
+                return videoData.snippet.channelId;
               });
+              console.log(channelId);
+              this.getIndividualVideos(channelId);
               this.getVideos();
             })
             .catch(err => {
