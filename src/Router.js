@@ -274,7 +274,7 @@ export class Router extends Component {
         .then(res => {
           const videosData = res.data;
           const channelId = videosData.map(videoData => {
-            return videoData[0].snippet.channelId;
+            return videoData.snippet.channelId;
           });
           console.log(channelId);
           this.getIndividualVideos(channelId);
@@ -287,7 +287,7 @@ export class Router extends Component {
       videos.map(video => {
         if (video.id === videosData.id) {
           const channelId = videosData.map(videoData => {
-            return videoData[0].snippet.channelId;
+            return videoData.snippet.channelId;
           });
           console.log(channelId);
           this.getIndividualVideos(channelId);
@@ -297,7 +297,7 @@ export class Router extends Component {
             .then(res => {
               const videosData = res.data;
               const channelId = videosData.map(videoData => {
-                return videoData[0].snippet.channelId;
+                return videoData.snippet.channelId;
               });
               console.log(channelId);
               this.getIndividualVideos(channelId);
