@@ -256,7 +256,7 @@ export class Router extends Component {
             console.log(response.error.message);
           } else {
             const videos = response.result.items[0];
-
+            console.log(videos);
             if (videos) {
               this.sendVideoToJson(videos);
             }
@@ -282,7 +282,9 @@ export class Router extends Component {
     } else {
       videos.map(video => {
         if (video.id === videosData.id) {
-          this.getIndividualVideos(video.snippet.channelId);
+          console.log(video.id);
+          console.log(videosData.id);
+          this.getIndividualVideos(videosData.snippet.channelId);
         } else {
           axios
             .post(`${db}/videos`, videosData)
