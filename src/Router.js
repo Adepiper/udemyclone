@@ -282,7 +282,11 @@ export class Router extends Component {
             .post(`${db}/videos`, videosData)
             .then(res => {
               const videoData = res.data;
-              this.getIndividualVideos(videoData.snippet.channelId);
+              if (videoData.length > 0) {
+                this.getIndividualVideos(videoData.snippet.channelId);
+              } else {
+                return false;
+              }
             })
             .catch(err => {
               console.log(err);
