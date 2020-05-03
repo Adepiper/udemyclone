@@ -1,6 +1,7 @@
 /* global gapi */
 
 import React, { Component } from 'react';
+import './Instructor.css';
 
 export class AddCourse extends Component {
   state = {
