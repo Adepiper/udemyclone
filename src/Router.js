@@ -255,11 +255,20 @@ export class Router extends Component {
       } else {
         const videos = response.result.items;
         if (videos.length > 0) {
-          this.sendVideoToJson(videos);
+          this.unrefinedVideos(videos);
         } else {
           return false;
         }
       }
+    });
+  };
+
+  unrefinedVideos = videosData => {
+    axios.post(`${db}/unrefinedVideos`, videosData).then(res => {
+      const data = res.data;
+      const video = data.flat();
+      console.log(video);
+      //   this.sendVideoToJson(video)
     });
   };
 
