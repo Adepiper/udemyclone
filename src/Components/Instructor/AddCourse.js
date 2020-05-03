@@ -107,89 +107,98 @@ export class AddCourse extends Component {
     } = this.state;
 
     return (
-      <div className='instructor'>
-        <header>
-          <h3>
-            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae,
-            iste?
-          </h3>
-        </header>
-        <div className='form'>
-          <form action='' onSubmit={this.addVideo}>
-            {overallError.length > 0 && (
-              <span className='errors'>{overallError}</span>
-            )}
-            <div className='formgroup'>
-              <label htmlFor='Name'>Course Title:</label>
-              <input
-                type='text'
-                name='courseTitle'
-                onChange={this.onChange}
-                value={courseTitle}
-              />
+      <div className='container-fluid'>
+        <div className='container'>
+          <div className='instructor'>
+            <header>
+              <h3>
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae,
+                iste?
+              </h3>
+            </header>
+            <div className='form'>
+              <form action='' onSubmit={this.addVideo}>
+                {overallError.length > 0 && (
+                  <span className='errors'>{overallError}</span>
+                )}
+                <div className='formgroup'>
+                  <label htmlFor='Name'>Course Title:</label>
+                  <input
+                    type='text'
+                    name='courseTitle'
+                    onChange={this.onChange}
+                    value={courseTitle}
+                  />
+                </div>
+                <div className='formgroup'>
+                  <label htmlFor='Name'>About Course:</label>
+                  <input
+                    type='text'
+                    name='about'
+                    onChange={this.onChange}
+                    value={about}
+                  />
+                </div>
+                <div className='formgroup'>
+                  <label htmlFor='Name'>Course Description:</label>
+                  <input
+                    type='text'
+                    name='description'
+                    onChange={this.onChange}
+                    title={description}
+                  />
+                </div>
+                <div className='formgroup'>
+                  <label htmlFor='Name'>Stack</label>
+                  <select
+                    name='stack'
+                    id=''
+                    onChange={this.onChange}
+                    title={stack}
+                  >
+                    <option value='Front-End'>Front-End</option>
+                    <option value='Python'>Python</option>
+                    <option value='Dev-Ops'>Dev-Ops</option>
+                    <option value='Java'>Java</option>
+                    <option value='C#'>C#</option>
+                    <option value='Software-Quality'>
+                      Software Quality Assurance
+                    </option>
+                    <option value='User-Experience'>
+                      Visual And User Experience
+                    </option>
+                  </select>
+                </div>
+                <div className='formgroup image'>
+                  <label htmlFor='Image'>Course Cover:</label>
+                  <input
+                    type='text'
+                    onChange={this.onChange}
+                    name='coverImageUrl'
+                    title={coverImageUrl}
+                  />
+                  <input
+                    type='file'
+                    name='CoverImage'
+                    id='coverImage'
+                    title={CoverImage}
+                    onChange={this.onChange}
+                  />
+                </div>
+                <div className='formgroup'>
+                  <label htmlFor='Course Video'>Course Video:</label>
+                  <input
+                    type='file'
+                    onChange={this.onChange}
+                    name='video'
+                    id='video'
+                    value={video}
+                  />
+                </div>
+                <button className='instructor-btn'>Submit</button>
+              </form>
             </div>
-            <div className='formgroup'>
-              <label htmlFor='Name'>About Course:</label>
-              <input
-                type='text'
-                name='about'
-                onChange={this.onChange}
-                value={about}
-              />
-            </div>
-            <div className='formgroup'>
-              <label htmlFor='Name'>Course Description:</label>
-              <input
-                type='text'
-                name='description'
-                onChange={this.onChange}
-                title={description}
-              />
-            </div>
-            <div className='formgroup'>
-              <label htmlFor='Name'>Stack</label>
-              <select name='stack' id='' onChange={this.onChange} title={stack}>
-                <option value='Front-End'>Front-End</option>
-                <option value='Python'>Python</option>
-                <option value='Dev-Ops'>Dev-Ops</option>
-                <option value='Java'>Java</option>
-                <option value='C#'>C#</option>
-                <option value='Software-Quality'>
-                  Software Quality Assurance
-                </option>
-                <option value='User-Experience'>
-                  Visual And User Experience
-                </option>
-              </select>
-            </div>
-            <div className='formgroup image'>
-              <label htmlFor='Image'>Course Cover:</label>
-              <input
-                type='text'
-                onChange={this.onChange}
-                name='coverImageUrl'
-                title={coverImageUrl}
-              />
-              <input
-                type='file'
-                name='CoverImage'
-                id='coverImage'
-                title={CoverImage}
-                onChange={this.onChange}
-              />
-            </div>
-            <div className='formgroup'>
-              <label htmlFor='Course Video'>Course Video:</label>
-              <input
-                type='file'
-                onChange={this.onChange}
-                name='video'
-                id='video'
-                value={video}
-              />
-            </div>
-            <button className='instructor-btn'>Submit</button>
-          </form>
+          </div>
         </div>
       </div>
     );
