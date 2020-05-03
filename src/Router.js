@@ -271,8 +271,9 @@ export class Router extends Component {
         .post(`${db}/videos`, videosData)
         .then(res => {
           const videoData = res.data;
-          const redefined = videosData.flat();
-          this.getIndividualVideos(videoData.snippet.channelId);
+          const redefined = videoData.flat();
+          console.log(redefined);
+          this.getIndividualVideos(redefined.snippet.channelId);
           this.getVideos();
         })
         .then(err => {
@@ -281,16 +282,15 @@ export class Router extends Component {
     } else {
       videos.map(video => {
         if (video.id === videosData.id) {
-          console.log(video.id);
-          console.log(videosData.id);
           this.getIndividualVideos(videosData.snippet.channelId);
         } else {
           axios
             .post(`${db}/videos`, videosData)
             .then(res => {
               const videoData = res.data;
-              this.getIndividualVideos(videoData.snippet.channelId);
-              this.getVideos();
+              const redefined = videoData.flat();
+              console.log(redefined);
+              this.getIndividualVideos(redefined.snippet.channelId);
             })
             .catch(err => {
               console.log(err);
