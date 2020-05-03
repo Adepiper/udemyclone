@@ -267,9 +267,11 @@ export class Router extends Component {
   unrefinedVideos = videosData => {
     axios.post(`${db}/unrefinedVideos`, videosData).then(res => {
       const data = res.data;
-      const video = data.flat();
-      console.log(video);
-      this.sendVideoToJson(video);
+      let refinedData = data.reduce(item => {
+        return { ...item };
+      });
+      console.log(refinedData);
+      //this.sendVideoToJson(video);
     });
   };
 
