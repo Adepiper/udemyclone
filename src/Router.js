@@ -254,9 +254,9 @@ export class Router extends Component {
             console.log(response.error.message);
           } else {
             const videos = response.result.items;
-            console.log(videos);
+            const redefindedVideos = videos.flat();
             if (videos) {
-              this.sendVideoToJson(videos);
+              this.sendVideoToJson(redefindedVideos);
             }
           }
         });
@@ -271,9 +271,7 @@ export class Router extends Component {
         .post(`${db}/videos`, videosData)
         .then(res => {
           const videoData = res.data;
-          const redefined = videoData.flat();
-          console.log(redefined);
-          this.getIndividualVideos(redefined.snippet.channelId);
+          this.getIndividualVideos(videoData.snippet.channelId);
           this.getVideos();
         })
         .then(err => {
@@ -288,9 +286,7 @@ export class Router extends Component {
             .post(`${db}/videos`, videosData)
             .then(res => {
               const videoData = res.data;
-              const redefined = videoData.flat();
-              console.log(redefined);
-              this.getIndividualVideos(redefined.snippet.channelId);
+              this.getIndividualVideos(videoData.snippet.channelId);
             })
             .catch(err => {
               console.log(err);
