@@ -205,6 +205,8 @@ export class Router extends Component {
         });
     } else {
       channels.map(channel => {
+        console.log(channel.id);
+        console.log(channelData.id);
         if (channel.id === channelData.id) {
           this.getIndividualChannel(channel.id);
         } else {
@@ -252,9 +254,10 @@ export class Router extends Component {
         console.log(response.error.message);
       } else {
         const videos = response.result.items;
-        const redefindedVideos = videos.flat();
-        if (redefindedVideos) {
-          this.sendVideoToJson(redefindedVideos);
+        if (videos.length > 0) {
+          this.sendVideoToJson(videos);
+        } else {
+          return false;
         }
       }
     });
@@ -276,6 +279,7 @@ export class Router extends Component {
     } else {
       videos.map(video => {
         if (video.id === videosData.id) {
+          console.log(videosData);
           this.getIndividualVideos(videosData.snippet.channelId);
         } else {
           axios
