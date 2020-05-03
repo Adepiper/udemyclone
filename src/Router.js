@@ -255,7 +255,7 @@ export class Router extends Component {
           } else {
             const videos = response.result.items;
             const redefindedVideos = videos.flat();
-            if (videos) {
+            if (redefindedVideos) {
               this.sendVideoToJson(redefindedVideos);
             }
           }
