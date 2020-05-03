@@ -23,7 +23,6 @@ export class AddCourse extends Component {
   };
 
   addVideo = e => {
-    const { name } = e.target;
     e.preventDefault();
     const {
       CoverImage,
@@ -48,42 +47,45 @@ export class AddCourse extends Component {
         overallError: `Please fill the all fields!`
       });
     } else {
-      console.log(true);
-    }
-    // const resource = {
-    //   kind: 'youtube#playlistItem',
-    //   etag: '',
-    //   id: '',
-    //   snippet: {
-    //     publishedAt: '',
-    //     channelId: '',
-    //     title: '',
-    //     description: '',
-    //     thumbnails: {
-    //       default: {
-    //         url: 'https://i.ytimg.com/vi/Gx_7GQtSdpc/default.jpg',
-    //         width: 120,
-    //         height: 90
-    //       }
-    //     },
-    //     channelTitle: '',
-    //     playlistId: '',
-    //     position: 0,
-    //     resourceId: {
-    //       kind: 'youtube#video',
-    //       videoId: 'Gx_7GQtSdpc'
-    //     }
-    //   }
-    // };
+      const Resource = {
+        snippet: {
+          publishedAt: '',
+          channelId: '',
+          title: { courseTitle },
+          description: { description },
+          thumbnails: {
+            default: {
+              url: { CoverImage },
+              width: 120,
+              height: 90
+            }
+          }
+        },
+        status: {
+          privacyStatus: 'private'
+        }
+      };
 
-    // const requestOptions = {
-    //   path: 'upload/youtube/v3/videos',
-    //   method: 'POST',
-    //   params: {
-    //     part: 'snippet',
-    //     mine: true
-    //   }
-    // };
+      const requestOptions = {
+        path: 'upload/youtube/v3/videos',
+        method: 'POST',
+        params: {
+          part: 'snippet',
+          mine: true
+        },
+        resource: { Resource }
+      };
+
+      const request = gapi.client.youtube.insert(requestOptions);
+
+      request.execute(res => {
+        if ('error' in res) {
+          console.log(res.err.message);
+        } else {
+          console.log(true);
+        }
+      });
+    }
 
     // const request = gapi.client.request(requestOptions);
     // request.execute(res => {
