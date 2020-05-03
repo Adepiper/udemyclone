@@ -11,6 +11,7 @@ import axios from 'axios';
 
 import Login from './Components/Login/Login';
 import InstructorCoursesDetails from './Components/Instructor/InstructorCoursesDetails';
+import AddCourse from './Components/Instructor/AddCourse';
 const db = 'http://localhost:4000';
 
 export class Router extends Component {
@@ -409,6 +410,14 @@ export class Router extends Component {
         ) : (
           <Login loginUser={this.loginUser} />
         )}
+        <Route
+          path='/add'
+          render={prop => (
+            <React.Fragment>
+              <AddCourse />
+            </React.Fragment>
+          )}
+        ></Route>
 
         <Footer />
       </div>

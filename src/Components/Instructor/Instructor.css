@@ -130,6 +130,11 @@
   margin-bottom: 5px;
 }
 
+.errors {
+  color: #f51726;
+  font-size: larger;
+}
+
 .instructor .form form .formgroup input {
   border: 2px solid #f0f0f0;
   width: 100%;
