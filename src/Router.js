@@ -269,7 +269,7 @@ export class Router extends Component {
       const data = res.data;
       const video = data.flat();
       console.log(video);
-      //   this.sendVideoToJson(video)
+      this.sendVideoToJson(video);
     });
   };
 
