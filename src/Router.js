@@ -184,7 +184,9 @@ export class Router extends Component {
         this.requestVideoPlaylist(playListId);
         this.setChannels(channel);
       })
-      .catch(err => alert('No channel by that name'));
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   setChannels = channelData => {
