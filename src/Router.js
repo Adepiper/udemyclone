@@ -180,8 +180,8 @@ export class Router extends Component {
     gapi.client.youtube.channels
       .list({
         part: 'snippet, contentDetails, statistics',
-        mine: true
-        //forUsername: 'techguyweb'
+        //mine: true
+        forUsername: 'techguyweb'
       })
       .then(res => {
         const channel = res.result.items[0];
@@ -273,34 +273,25 @@ export class Router extends Component {
       axios
         .post(`${db}/videos`, videosData)
         .then(res => {
-          const videosData = res.data.flat();
-          const channelId = videosData.map(videoData => {
-            return videoData.snippet.channelId;
-          });
-
-          this.getIndividualVideos(channelId);
+          const videoData = res.data;
+          this.getIndividualVideos(videoData.snippet.channelId);
           this.getVideos();
         })
-        .catch(err => {
+        .then(err => {
           console.log(err);
         });
     } else {
       videos.map(video => {
         if (video.id === videosData.id) {
-          const channelId = videosData.map(videoData => {
-            return videoData[0].snippet.channelId;
-          });
-          this.getIndividualVideos(channelId);
+          console.log(video.id);
+          console.log(videosData.id);
+          this.getIndividualVideos(videosData.snippet.channelId);
         } else {
           axios
             .post(`${db}/videos`, videosData)
             .then(res => {
-              const videosData = res.data;
-              const channelId = videosData.map(videoData => {
-                return videoData[0].snippet.channelId;
-              });
-              console.log(channelId);
-              this.getIndividualVideos(channelId);
+              const videoData = res.data;
+              this.getIndividualVideos(videoData.snippet.channelId);
               this.getVideos();
             })
             .catch(err => {
@@ -314,11 +305,9 @@ export class Router extends Component {
   getIndividualVideos = instructorId => {
     axios.get(`${db}/videos`).then(res => {
       const videos = res.data;
-      const videoData = videos.find((video, index) => {
-        // console.log(video);
-        return video[index].snippet.channelId === instructorId;
+      const videoData = videos.find(video => {
+        return video.snippet.channelId === instructorId;
       });
-      console.log(videoData);
       this.setState({
         ...this.state,
         video: videoData
@@ -342,11 +331,12 @@ export class Router extends Component {
 
   componentDidUpdate() {}
 
+  componentWillMount() {}
+
   componentDidMount() {
     this.props.google.handleClientLoad();
     this.getVideos();
     this.getUsers();
-    //this.getChannels();
   }
 
   render() {
@@ -406,18 +396,18 @@ export class Router extends Component {
                 </React.Fragment>
               )}
             ></Route>
+            <Route
+              path='/add'
+              render={prop => (
+                <React.Fragment>
+                  <AddCourse />
+                </React.Fragment>
+              )}
+            ></Route>
           </>
         ) : (
           <Login loginUser={this.loginUser} />
         )}
-        <Route
-          path='/add'
-          render={prop => (
-            <React.Fragment>
-              <AddCourse />
-            </React.Fragment>
-          )}
-        ></Route>
 
         <Footer />
       </div>
