@@ -347,6 +347,7 @@ export class Router extends Component {
           loginUser={this.loginUser}
           isSignedIn={isSignedIn}
           logOut={this.logOut}
+          channel={channel}
         />
 
         {isSignedIn ? (

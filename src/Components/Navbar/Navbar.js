@@ -10,7 +10,7 @@ export class Navbar extends Component {
   }
 
   render() {
-    const { isSignedIn, loginUser, logOut } = this.props;
+    const { isSignedIn, loginUser, logOut, channel } = this.props;
     if (isSignedIn) {
       return (
         <div>
@@ -39,9 +39,13 @@ export class Navbar extends Component {
               <li className='float-right'>
                 <button onClick={logOut}>Logout</button>
               </li>
-              <li className='float-right'>
-                <Link to='/courses'>Register</Link>
-              </li>
+              {channel.length > 0 ? (
+                <li className=''>
+                  <Link to='/add'>Add Course</Link>
+                </li>
+              ) : (
+                ''
+              )}
               <li className='float-right'>
                 <Link to='/instructor'>Instructor</Link>
               </li>
@@ -139,6 +143,13 @@ export class Navbar extends Component {
                 </button>
               </form>
             </li>
+            {channel.length > 0 ? (
+              <li className=''>
+                <Link to='/add'>Add Course</Link>
+              </li>
+            ) : (
+              ''
+            )}
             <li className=''>
               <Link to='/instructor'>Instructor</Link>
             </li>
