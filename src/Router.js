@@ -12,6 +12,7 @@ import axios from 'axios';
 import Login from './Components/Login/Login';
 import InstructorCoursesDetails from './Components/Instructor/InstructorCoursesDetails';
 import AddCourse from './Components/Instructor/AddCourse';
+import { array } from 'prop-types';
 const db = 'http://localhost:4000';
 
 export class Router extends Component {
@@ -256,7 +257,12 @@ export class Router extends Component {
       } else {
         const videos = response.result.items;
         if (videos.length > 0) {
-          this.unrefinedVideos(videos);
+          let videosData = videos.reduce((obj, item) => {
+            obj[item.id] = item;
+            return obj;
+          }, {});
+          // this.unrefinedVideos(videos);
+          console.log(videosData);
         } else {
           return false;
         }
