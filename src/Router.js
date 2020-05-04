@@ -258,7 +258,7 @@ export class Router extends Component {
         const videos = response.result.items;
         if (videos.length > 0) {
           let videosData = videos.reduce((obj, item) => {
-            obj[item.id] = item;
+            obj = item;
             return obj;
           }, {});
           // this.unrefinedVideos(videos);
