@@ -261,23 +261,11 @@ export class Router extends Component {
             obj = item;
             return obj;
           }, {});
-          //console.log(videosData);
-          this.unrefinedVideos(videosData);
+          this.sendVideoToJson(videosData);
         } else {
           return false;
         }
       }
-    });
-  };
-
-  unrefinedVideos = videosData => {
-    axios.post(`${db}/unrefinedVideos`, videosData).then(res => {
-      const data = res.data;
-
-      // let refinedData = data.map(video => {
-      //   video = JSON.parse(JSON.stringify(video));
-      // });
-      //this.sendVideoToJson(video);
     });
   };
 
@@ -297,7 +285,6 @@ export class Router extends Component {
     } else {
       videos.map(video => {
         if (video.id === videosData.id) {
-          console.log(videosData);
           this.getIndividualVideos(videosData.snippet.channelId);
         } else {
           axios
