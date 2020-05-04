@@ -258,11 +258,10 @@ export class Router extends Component {
         const videos = response.result.items;
         if (videos.length > 0) {
           let videosData = videos.reduce((obj, item) => {
-            obj = item;
+            obj[item.id] = item;
             return obj;
           }, {});
-          // this.unrefinedVideos(videos);
-          console.log(videosData);
+          this.unrefinedVideos(videosData);
         } else {
           return false;
         }
@@ -273,14 +272,10 @@ export class Router extends Component {
   unrefinedVideos = videosData => {
     axios.post(`${db}/unrefinedVideos`, videosData).then(res => {
       const data = res.data;
-      let refinedData = data.map((video, index) => {
-        return { ...video };
-      });
+
       // let refinedData = data.map(video => {
       //   video = JSON.parse(JSON.stringify(video));
       // });
-
-      console.log(refinedData);
       //this.sendVideoToJson(video);
     });
   };
