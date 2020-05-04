@@ -267,7 +267,7 @@ export class Router extends Component {
   unrefinedVideos = videosData => {
     axios.post(`${db}/unrefinedVideos`, videosData).then(res => {
       const data = res.data;
-      let refinedData = data.forEach((video, index) => {
+      let refinedData = data.map((video, index) => {
         return { ...video[index] };
       });
       console.log(refinedData);
