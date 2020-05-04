@@ -272,7 +272,7 @@ export class Router extends Component {
       // });
 
       let refinedData = data.reduce((result, item) => {
-        let key = Object.keys(item)[0];
+        let key = Object.keys(item);
         result[key] = item[key];
         return result;
       }, {});
