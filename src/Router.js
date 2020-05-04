@@ -270,12 +270,10 @@ export class Router extends Component {
       // let refinedData = data.map((video, index) => {
       //   return video[index];
       // });
+      let refinedData = data.forEach((video, index) => {
+        video = JSON.parse(JSON.stringify(video[index]));
+      });
 
-      let refinedData = data.reduce((result, item) => {
-        let key = Object.keys(item);
-        result[key] = item[key];
-        return result;
-      }, {});
       console.log(refinedData);
       //this.sendVideoToJson(video);
     });
