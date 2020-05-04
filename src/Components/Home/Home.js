@@ -15,7 +15,6 @@ export class Home extends Component {
                 Ratione hic repudiandae harum asperiores iure ipsum dolore odit.
                 Praesentium, quasi ipsum!
               </p>
-              <button className='btn btn-outline-primary'>Go to courses</button>
             </div>
           </header>
 

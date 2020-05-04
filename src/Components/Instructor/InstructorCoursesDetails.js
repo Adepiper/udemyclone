@@ -12,7 +12,6 @@ const InstructorCoursesDetails = () => {
       setItem(res.data);
     });
   }, [id]);
-  console.log(item);
   if (item.length === 0) {
     return (
       <div className='conatiner-fluid student'>
@@ -22,7 +21,6 @@ const InstructorCoursesDetails = () => {
       </div>
     );
   } else {
-    console.log(item);
     return (
       <div className='container-fluid student'>
         <div className='container'>

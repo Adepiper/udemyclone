@@ -5,7 +5,7 @@ export class FormOptions extends Component {
     const { getChannel, createChannel } = this.props;
     return (
       <div className='formoptions'>
-        <button onClick={getChannel}>Get Channel</button>
+        <button onClick={getChannel}>Get your Channel Data</button>
         <p>Or</p>
         <button onClick={createChannel}>Create Channel</button>
       </div>

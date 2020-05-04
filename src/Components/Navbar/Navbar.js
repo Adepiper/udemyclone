@@ -1,4 +1,3 @@
-/* global gapi */
 import React, { Component } from 'react';
 import './Navbar.css';
 import { Link } from 'react-router-dom';
@@ -40,7 +39,7 @@ export class Navbar extends Component {
                 <button onClick={logOut}>Logout</button>
               </li>
               {channel.length > 0 ? (
-                <li className=''>
+                <li className='float-right'>
                   <Link to='/add'>Add Course</Link>
                 </li>
               ) : (
@@ -61,7 +60,13 @@ export class Navbar extends Component {
                   <button onClick={logOut}>Logout</button>
                 </li>
               </div>
-
+              {channel.length > 0 ? (
+                <li className=''>
+                  <Link to='/add'>Add Course</Link>
+                </li>
+              ) : (
+                ''
+              )}
               <li>
                 <form className='form'>
                   <input
@@ -113,9 +118,6 @@ export class Navbar extends Component {
               <button onClick={loginUser}>Login</button>
             </li>
             <li className='float-right'>
-              <Link to='/courses'>Register</Link>
-            </li>
-            <li className='float-right'>
               <Link to='/instructor'>Instructor</Link>
             </li>
             <li className='float-right'>
@@ -143,13 +145,6 @@ export class Navbar extends Component {
                 </button>
               </form>
             </li>
-            {channel.length > 0 ? (
-              <li className=''>
-                <Link to='/add'>Add Course</Link>
-              </li>
-            ) : (
-              ''
-            )}
             <li className=''>
               <Link to='/instructor'>Instructor</Link>
             </li>
