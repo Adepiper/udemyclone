@@ -48,9 +48,6 @@ export class Navbar extends Component {
               <li className='float-right'>
                 <Link to='/instructor'>Instructor</Link>
               </li>
-              <li className='float-right'>
-                <Link to='/courses'>Courses</Link>
-              </li>
             </ul>
           </div>
           <div className='responsive'>
@@ -81,9 +78,6 @@ export class Navbar extends Component {
               </li>
               <li className=''>
                 <Link to='/instructor'>Instructor</Link>
-              </li>
-              <li className=''>
-                <Link to='/courses'>Courses</Link>
               </li>
             </ul>
           </div>
@@ -120,9 +114,6 @@ export class Navbar extends Component {
             <li className='float-right'>
               <Link to='/instructor'>Instructor</Link>
             </li>
-            <li className='float-right'>
-              <Link to='/courses'>Courses</Link>
-            </li>
           </ul>
         </div>
         <div className='responsive'>
@@ -147,9 +138,6 @@ export class Navbar extends Component {
             </li>
             <li className=''>
               <Link to='/instructor'>Instructor</Link>
-            </li>
-            <li className=''>
-              <Link to='/courses'>Courses</Link>
             </li>
           </ul>
         </div>
