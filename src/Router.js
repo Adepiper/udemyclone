@@ -12,7 +12,6 @@ import axios from 'axios';
 import Login from './Components/Login/Login';
 import InstructorCoursesDetails from './Components/Instructor/InstructorCoursesDetails';
 import AddCourse from './Components/Instructor/AddCourse';
-import { array } from 'prop-types';
 const db = 'http://localhost:4000';
 
 export class Router extends Component {
@@ -313,7 +312,9 @@ export class Router extends Component {
       const videoData = videos.find(video => {
         return video[0].snippet.channelId === instructorId;
       });
-      console.log(videoData);
+      this.setState({
+        video: videoData
+      });
     });
   };
 
@@ -321,9 +322,11 @@ export class Router extends Component {
     axios
       .get(`${db}/videos`)
       .then(res => {
+        const data = res.data;
+
         this.setState({
           ...this.state,
-          videos: res.data
+          videos: data
         });
       })
       .catch(err => {
