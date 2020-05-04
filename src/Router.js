@@ -207,11 +207,7 @@ export class Router extends Component {
         });
     } else {
       channels.map(channel => {
-        console.log(channel.id);
-        console.log(channelData.id);
-        if (channel.id === channelData.id) {
-          this.getIndividualChannel(channel.id);
-        } else {
+        if (channel.id !== channelData.id) {
           axios
             .post(`${db}/channels`, channelData)
             .then(res => {
@@ -222,6 +218,9 @@ export class Router extends Component {
             .catch(err => {
               console.log(err);
             });
+          //
+        } else {
+          this.getIndividualChannel(channel.id);
         }
       });
     }
@@ -276,6 +275,7 @@ export class Router extends Component {
         .post(`${db}/videos`, videosData)
         .then(res => {
           const videoData = res.data;
+          console.log(videoData.snippet.channelId);
           this.getIndividualVideos(videoData.snippet.channelId);
           this.getVideos();
         })
@@ -284,9 +284,7 @@ export class Router extends Component {
         });
     } else {
       videos.map(video => {
-        if (video.id === videosData.id) {
-          this.getIndividualVideos(videosData.snippet.channelId);
-        } else {
+        if (video.id !== videosData.id) {
           axios
             .post(`${db}/videos`, videosData)
             .then(res => {
@@ -300,6 +298,8 @@ export class Router extends Component {
             .catch(err => {
               console.log(err);
             });
+        } else {
+          this.getIndividualVideos(videosData.snippet.channelId);
         }
       });
     }
@@ -308,13 +308,10 @@ export class Router extends Component {
   getIndividualVideos = instructorId => {
     axios.get(`${db}/videos`).then(res => {
       const videos = res.data;
-      const videoData = videos.find(video => {
-        return video.snippet.channelId === instructorId;
+      const videoData = videos.map(video => {
+        return video.snippet[instructorId];
       });
-      this.setState({
-        ...this.state,
-        video: videoData
-      });
+      console.log(videoData);
     });
   };
 
