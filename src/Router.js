@@ -191,9 +191,11 @@ export class Router extends Component {
   };
 
   setChannels = channelData => {
+    let channelsArray = [];
     const { channels } = this.state;
+    channelsArray.push(channels);
 
-    if (channels.length === 0) {
+    if (channelsArray[0].length === 0) {
       axios
         .post(`${db}/channels`, channelData)
         .then(res => {
@@ -205,8 +207,8 @@ export class Router extends Component {
           console.log(err);
         });
     } else {
-      channels.map(channel => {
-        if (channel.id !== channelData.id) {
+      channelsArray.map(channel => {
+        if (channel[0].id !== channelData.id) {
           axios
             .post(`${db}/channels`, channelData)
             .then(res => {
@@ -268,8 +270,10 @@ export class Router extends Component {
   };
 
   sendVideoToJson = videosData => {
+    let videosArray = [];
     const { videos } = this.state;
-    if (videos.length === 0) {
+    videosArray.push(videos);
+    if (videosArray.length === 0) {
       axios
         .post(`${db}/videos`, videosData)
         .then(res => {
@@ -282,8 +286,8 @@ export class Router extends Component {
           console.log(err);
         });
     } else {
-      videos.map(video => {
-        if (video.id !== videosData.id) {
+      videosArray.map(video => {
+        if (video[0].id !== videosData.id) {
           axios
             .post(`${db}/videos`, videosData)
             .then(res => {
