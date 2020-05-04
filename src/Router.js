@@ -311,7 +311,7 @@ export class Router extends Component {
       const data = res.data;
       videos.push(data);
       const videoData = videos.find(video => {
-        return video.snippet.channelId === instructorId;
+        return video[0].snippet.channelId === instructorId;
       });
       console.log(videoData);
     });
