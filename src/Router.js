@@ -270,8 +270,8 @@ export class Router extends Component {
       // let refinedData = data.map((video, index) => {
       //   return video[index];
       // });
-      let refinedData = data.map((video, index) => {
-        video = JSON.parse(JSON.stringify(video[index]));
+      let refinedData = data.map(video => {
+        video = JSON.parse(JSON.stringify(video));
       });
 
       console.log(refinedData);
