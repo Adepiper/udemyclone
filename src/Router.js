@@ -8,7 +8,6 @@ import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import { withGoogle } from './Google';
 import axios from 'axios';
-
 import Login from './Components/Login/Login';
 import InstructorCoursesDetails from './Components/Instructor/InstructorCoursesDetails';
 import AddCourse from './Components/Instructor/AddCourse';

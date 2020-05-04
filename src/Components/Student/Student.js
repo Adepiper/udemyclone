@@ -6,12 +6,12 @@ import './Student.css';
 const Student = () => {
   const [item, setItem] = useState([]);
   let { id } = useParams();
-  console.log(id);
   useEffect(() => {
-    //console.log(id);
-    axios.get(`http://localhost:4000/videos/${id}`).then(res => {
-      setItem(res.data);
-    });
+    axios
+      .get(`https://peaceful-dawn-85735.herokuapp.com/videos/${id}`)
+      .then(res => {
+        setItem(res.data);
+      });
   }, [id]);
   if (item.length === 0) {
     return (
