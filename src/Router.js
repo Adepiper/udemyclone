@@ -12,7 +12,7 @@ import axios from 'axios';
 import Login from './Components/Login/Login';
 import InstructorCoursesDetails from './Components/Instructor/InstructorCoursesDetails';
 import AddCourse from './Components/Instructor/AddCourse';
-const db = 'http://localhost:4000';
+const db = 'https://peaceful-dawn-85735.herokuapp.com';
 
 export class Router extends Component {
   constructor(props) {
@@ -177,7 +177,6 @@ export class Router extends Component {
       .list({
         part: 'snippet, contentDetails, statistics',
         mine: true
-        //forUsername: 'techguyweb'
       })
       .then(res => {
         const channel = res.result.items[0];
@@ -186,7 +185,7 @@ export class Router extends Component {
         this.setChannels(channel);
       })
       .catch(err => {
-        console.log(err);
+        alert(`${err}`);
       });
   };
 
